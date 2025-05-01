@@ -1,1 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --color-background: #021324;
+  --color-text: #FFFFFF;
+  --color-special: #FFDA66;
+  --color-gold: #EBBA7F;
+  --color-card: #000B18;
+  --color-card-border: #FFD550;
+  --color-form-bg: #FFFFFF;
+  --color-form-text: #000000;
+  --color-form-label: #808080;
+  --color-btn-bg: #EBBA7F;
+  --color-btn-text: #000000;
+  --color-submit-bg: #FFDA66;
+  --color-submit-text: #000000;
+  --font-family-sans: "Poppins", sans-serif;
+  --btn-radius: 10px;
+  --card-radius: 20px;
+  --form-radius: 30px;
+  --card-border-width: 3px;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text font-sans;
+  }
+}
+
+@layer utilities {
+  .rounded-btn {
+    border-radius: var(--btn-radius);
+  }
+  .rounded-card {
+    border-radius: var(--card-radius);
+  }
+  .rounded-form {
+    border-radius: var(--form-radius);
+  }
+  .border-card {
+    border-width: var(--card-border-width);
+  }
+}

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "cross-env TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev --turbopack\"",
     "build": "next build",
-    "build:tina": "tinacms build",
+    "build:tina": "dotenv -e .env.local -- tinacms build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -17,6 +17,7 @@
     "postcss": "^8.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
     "tailwindcss": "^4.1.5",
     "tinacms": "^2.7.5"
   },
@@ -25,7 +26,9 @@
     "@types/node": "^20.17.32",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.21",
     "cross-env": "^7.0.3",
+    "dotenv-cli": "^8.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
     "typescript": "^5"

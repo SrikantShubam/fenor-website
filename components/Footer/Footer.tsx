@@ -20,9 +20,9 @@ interface FooterData {
   madeByPrefix?: string;
   agency?: { name: string; url: string };
 }
-console.log('Footer data:', data.footer);
+
 const Footer: React.FC<{ footerData?: FooterData }> = ({ footerData }) => {
-  // Fallback if footerData is undefined
+console.log('Footer data:', footerData);
   if (!footerData) {
     return (
       <footer className="bg-gray-800 text-white py-8">

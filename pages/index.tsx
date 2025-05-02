@@ -50,3 +50,4 @@ const Homepage = ({ content, locale }: HomepageProps) => {
 };
 
 export default Homepage;
+

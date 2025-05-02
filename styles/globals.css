@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
-
+:root {
+  --color-background: #021324;
+  --color-text: #FFFFFF;
+  --color-special: #FFDA66;
+  --color-gold: #EBBA7F;
+  --color-btn-text: #000000;
+  --font-family-sans: "Poppins", sans-serif;
+  --btn-radius: 10px;
+}
 @theme {
   --color-background: #021324;
   --color-text: #FFFFFF;
@@ -15,7 +23,7 @@
   --color-btn-text: #000000;
   --color-submit-bg: #FFDA66;
   --color-submit-text: #000000;
-  --font-family-sans: "Poppins", sans-serif;
+  --font-family-sans: "Poppins";
   --btn-radius: 10px;
   --card-radius: 20px;
   --form-radius: 30px;

@@ -104,7 +104,10 @@
     color: var(--color-text);
     line-height: 1;
   }
-  
+  .logo div img {
+    width: 54px;
+    height: 54px;
+  }
   .menuItem {
     font-size: 16px;
     font-weight: 400;
@@ -300,4 +303,48 @@
     background: none;
     border: none;
     cursor: pointer;
+  }
+  .mainMenu,
+  .investMenu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000B18;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .investMenuHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .investMenuHeader button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .investMenuItems {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px 0;
+  }
+  @media(max-width:480px) {
+    .logo {
+        font-size: 19px;
+   
+      }
+      .logo div img {
+        width: 30px;
+        height: 30px;
+      }
   }

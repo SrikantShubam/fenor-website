@@ -1074,6 +1074,262 @@
 // export default Nav;
 
 
+// the below version again worked great something extra now 
+
+// import React, { useState, useRef, useEffect } from 'react';
+// import Link from 'next/link';
+// import { useRouter } from 'next/router';
+// import Image from 'next/image';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import {
+//   faBars,
+//   faTimes,
+//   faChevronDown,
+//   faChevronUp,
+// } from '@fortawesome/free-solid-svg-icons';
+// import styles from './nav.module.css';
+
+// const Nav: React.FC = () => {
+//   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+//   const [isInvestOpen, setIsInvestOpen]         = useState(false);
+//   const [isLangOpen, setIsLangOpen]             = useState(false);
+//   const router = useRouter();
+//   const currentLocale = router.locale || 'en';
+
+//   const investRef = useRef<HTMLDivElement>(null);
+//   const langRef   = useRef<HTMLDivElement>(null);
+
+//   // Close dropdowns on outside click
+//   useEffect(() => {
+//     const handler = (e: MouseEvent) => {
+//       if (investRef.current && !investRef.current.contains(e.target as Node)) {
+//         setIsInvestOpen(false);
+//       }
+//       if (langRef.current && !langRef.current.contains(e.target as Node)) {
+//         setIsLangOpen(false);
+//       }
+//     };
+//     document.addEventListener('mousedown', handler);
+//     return () => document.removeEventListener('mousedown', handler);
+//   }, []);
+
+//   // Toggle handlers
+//   const toggleInvest = () => {
+//     setIsInvestOpen(o => !o);
+//     setIsLangOpen(false);
+//   };
+//   const toggleLang = () => {
+//     setIsLangOpen(o => !o);
+//     setIsInvestOpen(false);
+//   };
+
+//   const navLinks = [
+//     { href: '/members', label: 'Members' },
+//     { href: '/about',   label: 'About Us' },
+//     { href: '/esg',     label: 'ESG' },
+//     { href: '/press',   label: 'Press' },
+//     { href: '/contact', label: 'Contact Us' },
+//     { href: '/invest',  label: 'Invest', isDropdown: true },
+//   ];
+
+//   const investDropdownItems = [
+//     { href: '/invest/stocks',      label: 'Stocks'      },
+//     { href: '/invest/bonds',       label: 'Bonds'       },
+//     { href: '/invest/real-estate', label: 'Real Estate' },
+//   ];
+
+//   const langDropdownItems = [
+//     { href: '/en', label: 'English', locale: 'en' },
+//     { href: '/fr', label: 'French',  locale: 'fr' },
+//     { href: '/ar', label: 'Arabic',  locale: 'ar' },
+//   ];
+
+//   return (
+//     <nav
+//       dir={currentLocale === 'ar' ? 'rtl' : 'ltr'}
+//       className="bg-background text-text font-sans overflow-visible"
+//     >
+//       <div className="flex justify-between items-center py-4 overflow-visible">
+//         {/* Logo */}
+//         <Link href="/" className={styles.logo}>
+//   <div className="flex items-center space-x-2">
+//     <div className="relative w-[30px] h-[30px] md:w-[54px] md:h-[54px]">
+//       <Image src="/fenor-logo.png" alt="FENOR logo" layout="fill" objectFit="contain" />
+//     </div>
+//     <span>FENOR</span>
+//   </div>
+// </Link>
+
+//         {/* Desktop Menu */}
+//         <div className="hidden lg:flex items-center space-x-8 whitespace-nowrap overflow-visible">
+//           {navLinks.map(link => (
+//             <div key={link.href} className="relative">
+//               {link.isDropdown ? (
+//                 <div ref={investRef} className="relative">
+//                   <button
+//                     className={styles.menuItem}
+//                     onClick={toggleInvest}
+//                     aria-expanded={isInvestOpen}
+//                   >
+//                     Invest{' '}
+//                     <FontAwesomeIcon icon={isInvestOpen ? faChevronUp : faChevronDown} />
+//                   </button>
+//                   <div className={`${styles.dropdown} ${isInvestOpen ? styles.show : ''}`}>
+//                     {investDropdownItems.map(item => (
+//                       <Link
+//                         key={item.href}
+//                         href={item.href}
+//                         className={styles.dropdownItem}
+//                         onClick={() => setIsInvestOpen(false)}
+//                       >
+//                         {item.label}
+//                       </Link>
+//                     ))}
+//                   </div>
+//                 </div>
+//               ) : (
+//                 <Link
+//                   href={link.href}
+//                   className={`${styles.menuItem} ${
+//                     router.pathname === link.href ? styles.active : ''
+//                   }`}
+//                 >
+//                   {link.label}
+//                 </Link>
+//               )}
+//             </div>
+//           ))}
+
+//           {/* Language Switcher */}
+//           <div ref={langRef} className="relative">
+//             <button
+//               className={`${styles.menuItem} ${styles.selected}`}
+//               onClick={toggleLang}
+//               aria-expanded={isLangOpen}
+//             >
+//               {currentLocale.toUpperCase()}{' '}
+//               <FontAwesomeIcon icon={isLangOpen ? faChevronUp : faChevronDown} />
+//             </button>
+//             <div className={`${styles.dropdown} ${isLangOpen ? styles.show : ''}`}>
+//               {langDropdownItems.map(item => (
+//                 <Link
+//                   key={item.href}
+//                   href={item.href}
+//                   locale={item.locale}
+//                   className={styles.dropdownItem}
+//                   onClick={() => setIsLangOpen(false)}
+//                 >
+//                   {item.label}
+//                 </Link>
+//               ))}
+//             </div>
+//           </div>
+
+//           {/* Gold Price */}
+//           <button className="bg-gold text-btn-text text-base font-normal px-4 py-2 rounded-btn hover:bg-special transition-colors duration-200">
+//             Gold: $1,900/oz
+//           </button>
+//         </div>
+
+//         {/* Mobile Toggle */}
+//         <button
+//           className="block lg:hidden text-text focus:outline-none"
+//           onClick={() => setIsMobileMenuOpen(true)}
+//           aria-label="Toggle menu"
+//         >
+//           <FontAwesomeIcon icon={faBars} />
+//         </button>
+//       </div>
+
+//       {/* Mobile Menu Overlay */}
+//       {isMobileMenuOpen && (
+//         <div className={styles.mobileMenuOverlay}>
+//           <div className={styles.mobileMenuHeader}>
+//           <Link href="/" className={styles.logo}>
+//   <div className="flex items-center space-x-2">
+//     <div className="relative w-[30px] h-[30px] md:w-[54px] md:h-[54px]">
+//       <Image src="/fenor-logo.png" alt="FENOR logo" layout="fill" objectFit="contain" />
+//     </div>
+//     <span>FENOR</span>
+//   </div>
+// </Link>
+//             <button
+//               className={styles.closeButton}
+//               onClick={() => setIsMobileMenuOpen(false)}
+//               aria-label="Close menu"
+//             >
+//               <FontAwesomeIcon icon={faTimes} />
+//             </button>
+//           </div>
+//           <div className={styles.mobileMenuItems}>
+//             {navLinks.map(link => (
+//               <React.Fragment key={link.href}>
+//                 {!link.isDropdown ? (
+//                   <Link
+//                     href={link.href}
+//                     className={styles.mobileMenuItem}
+//                     onClick={() => setIsMobileMenuOpen(false)}
+//                   >
+//                     {link.label}
+//                   </Link>
+//                 ) : (
+//                   <div>
+//                     <button
+//                       className={styles.mobileMenuItem}
+//                       onClick={toggleInvest}
+//                     >
+//                       Invest{' '}
+//                       <FontAwesomeIcon icon={isInvestOpen ? faChevronUp : faChevronDown} />
+//                     </button>
+//                     {isInvestOpen && (
+//                       <div className="ml-4 flex flex-col">
+//                         {investDropdownItems.map(item => (
+//                           <Link
+//                             key={item.href}
+//                             href={item.href}
+//                             className={styles.dropdownItem}
+//                             onClick={() => {
+//                               setIsInvestOpen(false);
+//                               setIsMobileMenuOpen(false);
+//                             }}
+//                           >
+//                             {item.label}
+//                           </Link>
+//                         ))}
+//                       </div>
+//                     )}
+//                   </div>
+//                 )}
+//               </React.Fragment>
+//             ))}
+//           </div>
+//           <div className="mt-4">
+//             <div className={styles.langButtons}>
+//               {langDropdownItems.map(item => (
+//                 <Link
+//                   key={item.locale}
+//                   href={item.href}
+//                   locale={item.locale}
+//                   className={`${styles.langButton} ${
+//                     currentLocale === item.locale ? styles.activeLang : ''
+//                   }`}
+//                   onClick={() => setIsMobileMenuOpen(false)}
+//                 >
+//                   {item.locale.toUpperCase()}
+//                 </Link>
+//               ))}
+//             </div>
+//             <button className="bg-gold text-btn-text text-base font-normal px-4 py-2 rounded-btn hover:bg-special transition-colors duration-200 mt-4 w-full">
+//               Gold: $1,900/oz
+//             </button>
+//           </div>
+//         </div>
+//       )}
+//     </nav>
+//   );
+// };
+
+// export default Nav;
 
 
 import React, { useState, useRef, useEffect } from 'react';
@@ -1086,26 +1342,29 @@ import {
   faTimes,
   faChevronDown,
   faChevronUp,
+  faArrowLeft,
+  faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
+import { motion } from 'framer-motion';
 import styles from './nav.module.css';
-
-const Nav: React.FC = () => {
+import GoldButton from '../GoldButton';
+const Nav = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isInvestOpen, setIsInvestOpen]         = useState(false);
-  const [isLangOpen, setIsLangOpen]             = useState(false);
+  const [isInvestOpen, setIsInvestOpen] = useState(false);
+  const [isLangOpen, setIsLangOpen] = useState(false);
+  const [isInvestMenuOpen, setIsInvestMenuOpen] = useState(false);
   const router = useRouter();
   const currentLocale = router.locale || 'en';
 
-  const investRef = useRef<HTMLDivElement>(null);
-  const langRef   = useRef<HTMLDivElement>(null);
+  const investRef = useRef(null);
+  const langRef = useRef(null);
 
-  // Close dropdowns on outside click
   useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (investRef.current && !investRef.current.contains(e.target as Node)) {
+    const handler = (e) => {
+      if (investRef.current && !investRef.current.contains(e.target)) {
         setIsInvestOpen(false);
       }
-      if (langRef.current && !langRef.current.contains(e.target as Node)) {
+      if (langRef.current && !langRef.current.contains(e.target)) {
         setIsLangOpen(false);
       }
     };
@@ -1113,35 +1372,34 @@ const Nav: React.FC = () => {
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
-  // Toggle handlers
   const toggleInvest = () => {
-    setIsInvestOpen(o => !o);
+    setIsInvestOpen((o) => !o);
     setIsLangOpen(false);
   };
   const toggleLang = () => {
-    setIsLangOpen(o => !o);
+    setIsLangOpen((o) => !o);
     setIsInvestOpen(false);
   };
 
   const navLinks = [
     { href: '/members', label: 'Members' },
-    { href: '/about',   label: 'About Us' },
-    { href: '/esg',     label: 'ESG' },
-    { href: '/press',   label: 'Press' },
+    { href: '/about', label: 'About Us' },
+    { href: '/esg', label: 'ESG' },
+    { href: '/press', label: 'Press' },
     { href: '/contact', label: 'Contact Us' },
-    { href: '/invest',  label: 'Invest', isDropdown: true },
+    { href: '/invest', label: 'Invest', isDropdown: true },
   ];
 
   const investDropdownItems = [
-    { href: '/invest/stocks',      label: 'Stocks'      },
-    { href: '/invest/bonds',       label: 'Bonds'       },
+    { href: '/invest/stocks', label: 'Stocks' },
+    { href: '/invest/bonds', label: 'Bonds' },
     { href: '/invest/real-estate', label: 'Real Estate' },
   ];
 
   const langDropdownItems = [
     { href: '/en', label: 'English', locale: 'en' },
-    { href: '/fr', label: 'French',  locale: 'fr' },
-    { href: '/ar', label: 'Arabic',  locale: 'ar' },
+    { href: '/fr', label: 'French', locale: 'fr' },
+    { href: '/ar', label: 'Arabic', locale: 'ar' },
   ];
 
   return (
@@ -1150,17 +1408,17 @@ const Nav: React.FC = () => {
       className="bg-background text-text font-sans overflow-visible"
     >
       <div className="flex justify-between items-center py-4 overflow-visible">
-        {/* Logo */}
         <Link href="/" className={styles.logo}>
           <div className="flex items-center space-x-2">
-            <Image src="/fenor-logo.png" alt="FENOR logo" width={54} height={54} />
+            <div className="relative w-[30px] h-[30px] md:w-[54px] md:h-[54px]">
+              <Image src="/fenor-logo.png" alt="FENOR logo" layout="fill" objectFit="contain" />
+            </div>
             <span>FENOR</span>
           </div>
         </Link>
 
-        {/* Desktop Menu */}
         <div className="hidden lg:flex items-center space-x-8 whitespace-nowrap overflow-visible">
-          {navLinks.map(link => (
+          {navLinks.map((link) => (
             <div key={link.href} className="relative">
               {link.isDropdown ? (
                 <div ref={investRef} className="relative">
@@ -1173,7 +1431,7 @@ const Nav: React.FC = () => {
                     <FontAwesomeIcon icon={isInvestOpen ? faChevronUp : faChevronDown} />
                   </button>
                   <div className={`${styles.dropdown} ${isInvestOpen ? styles.show : ''}`}>
-                    {investDropdownItems.map(item => (
+                    {investDropdownItems.map((item) => (
                       <Link
                         key={item.href}
                         href={item.href}
@@ -1198,7 +1456,6 @@ const Nav: React.FC = () => {
             </div>
           ))}
 
-          {/* Language Switcher */}
           <div ref={langRef} className="relative">
             <button
               className={`${styles.menuItem} ${styles.selected}`}
@@ -1209,7 +1466,7 @@ const Nav: React.FC = () => {
               <FontAwesomeIcon icon={isLangOpen ? faChevronUp : faChevronDown} />
             </button>
             <div className={`${styles.dropdown} ${isLangOpen ? styles.show : ''}`}>
-              {langDropdownItems.map(item => (
+              {langDropdownItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -1223,13 +1480,9 @@ const Nav: React.FC = () => {
             </div>
           </div>
 
-          {/* Gold Price */}
-          <button className="bg-gold text-btn-text text-base font-normal px-4 py-2 rounded-btn hover:bg-special transition-colors duration-200">
-            Gold: $1,900/oz
-          </button>
+          <GoldButton/>
         </div>
 
-        {/* Mobile Toggle */}
         <button
           className="block lg:hidden text-text focus:outline-none"
           onClick={() => setIsMobileMenuOpen(true)}
@@ -1239,86 +1492,116 @@ const Nav: React.FC = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div className={styles.mobileMenuOverlay}>
-          <div className={styles.mobileMenuHeader}>
-          <Link href="/" className={styles.logo}>
-  <div className="flex items-center">
-    <Image src="/fenor-logo.png" alt="FENOR logo" width={54} height={54} />
-    <span>FENOR</span>
-  </div>
-</Link>
-            <button
-              className={styles.closeButton}
-              onClick={() => setIsMobileMenuOpen(false)}
-              aria-label="Close menu"
-            >
-              <FontAwesomeIcon icon={faTimes} />
-            </button>
-          </div>
-          <div className={styles.mobileMenuItems}>
-            {navLinks.map(link => (
-              <React.Fragment key={link.href}>
-                {!link.isDropdown ? (
-                  <Link
-                    href={link.href}
-                    className={styles.mobileMenuItem}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                ) : (
-                  <div>
+          <motion.div
+            className={styles.mainMenu}
+            initial={{ x: 0 }}
+            animate={{ x: isInvestMenuOpen ? '-100%' : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className={styles.mobileMenuHeader}>
+              <Link href="/" className={styles.logo}>
+                <div className="flex items-center space-x-2">
+                  <div className="relative w-[30px] h-[30px]">
+                    <Image src="/fenor-logo.png" alt="FENOR logo" layout="fill" objectFit="contain" />
+                  </div>
+                  <span>FENOR</span>
+                </div>
+              </Link>
+              <button
+                className={styles.closeButton}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setIsInvestMenuOpen(false);
+                }}
+                aria-label="Close menu"
+              >
+                <FontAwesomeIcon icon={faTimes} />
+              </button>
+            </div>
+            <div className={styles.mobileMenuItems}>
+              {navLinks.map((link) => (
+                <React.Fragment key={link.href}>
+                  {link.isDropdown ? (
                     <button
                       className={styles.mobileMenuItem}
-                      onClick={toggleInvest}
+                      onClick={() => setIsInvestMenuOpen(true)}
                     >
-                      Invest{' '}
-                      <FontAwesomeIcon icon={isInvestOpen ? faChevronUp : faChevronDown} />
+                      {link.label}{' '}
+                      <FontAwesomeIcon icon={faChevronRight} className="ml-2" />
                     </button>
-                    {isInvestOpen && (
-                      <div className="ml-4 flex flex-col">
-                        {investDropdownItems.map(item => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            className={styles.dropdownItem}
-                            onClick={() => {
-                              setIsInvestOpen(false);
-                              setIsMobileMenuOpen(false);
-                            }}
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-          <div className="mt-4">
-            <div className={styles.langButtons}>
-              {langDropdownItems.map(item => (
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className={styles.mobileMenuItem}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+            <div className="mt-4">
+              <div className={styles.langButtons}>
+                {langDropdownItems.map((item) => (
+                  <Link
+                    key={item.locale}
+                    href={item.href}
+                    locale={item.locale}
+                    className={`${styles.langButton} ${
+                      currentLocale === item.locale ? styles.activeLang : ''
+                    }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.locale.toUpperCase()}
+                  </Link>
+                ))}
+              </div>
+              {/* <button className="bg-gold text-btn-text text-base font-normal px-4 py-2 rounded-btn hover:bg-special transition-colors duration-200 mt-4 w-full">
+                Gold: $1,900/oz
+              </button> */}
+       
+              <GoldButton className="mt-4 w-full"/>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className={styles.investMenu}
+            initial={{ x: '100%' }}
+            animate={{ x: isInvestMenuOpen ? 0 : '100%' }}
+            transition={{ duration: 0.3 }}
+          >
+          <div className={styles.investMenuHeader}>
+  <div className="flex items-center space-x-2">
+    <Link href="/" className={styles.logo}>
+      <div className="relative w-[30px] h-[30px]">
+        <Image src="/fenor-logo.png" alt="FENOR logo" layout="fill" objectFit="contain" />
+      </div>
+    </Link>
+    <span>Invest</span>
+  </div>
+  <button onClick={() => setIsInvestMenuOpen(false)}>
+    <FontAwesomeIcon icon={faArrowLeft} />
+  </button>
+</div>
+            <div className={styles.investMenuItems}>
+              {investDropdownItems.map((item) => (
                 <Link
-                  key={item.locale}
+                  key={item.href}
                   href={item.href}
-                  locale={item.locale}
-                  className={`${styles.langButton} ${
-                    currentLocale === item.locale ? styles.activeLang : ''
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={styles.mobileMenuItem}
+                  onClick={() => {
+                    setIsInvestMenuOpen(false);
+                    setIsMobileMenuOpen(false);
+                  }}
                 >
-                  {item.locale.toUpperCase()}
+                  {item.label}
                 </Link>
               ))}
             </div>
-            <button className="bg-gold text-btn-text text-base font-normal px-4 py-2 rounded-btn hover:bg-special transition-colors duration-200 mt-4 w-full">
-              Gold: $1,900/oz
-            </button>
-          </div>
+          </motion.div>
         </div>
       )}
     </nav>

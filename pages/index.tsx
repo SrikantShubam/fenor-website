@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next';
 import { client } from '../tina/__generated__/client'; // Adjust path based on your project structure
-
+import { NextSeo } from 'next-seo';
 // Define the props type for the Homepage component
 interface HomepageProps {
   content: {
@@ -33,12 +33,19 @@ export const getStaticProps: GetStaticProps<HomepageProps> = async ({ locale }) 
 };
 
 const Homepage = ({ content, locale }: HomepageProps) => {
-  return (
-    <div className="homepage" lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+  return (<>
+  <NextSeo
+      title={content.seo?.title}
+      description={content.seo?.description}
+      keywords={content.seo?.keywords?.join(', ')}
+    />
+      <div className="homepage" lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <h1>{content.title}</h1>
       <p>This is a placeholder homepage.</p>
   
     </div>
+  </>
+
   );
 };
 

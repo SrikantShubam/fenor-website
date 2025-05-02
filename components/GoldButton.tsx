@@ -1,4 +1,3 @@
-// components/GoldButton.tsx
 import React, { useState, useEffect, ButtonHTMLAttributes } from 'react';
 import axios from 'axios';
 
@@ -20,14 +19,18 @@ export default function GoldButton({
     const now   = Date.now();
 
     if (saved && now - ts < DAY) {
-      setGoldPrice(saved);
+      // Sanitize the saved value to ensure no decimal places
+      const parsedSaved = parseFloat(saved);
+      const sanitizedPrice = Math.floor(parsedSaved).toString();
+      setGoldPrice(sanitizedPrice);
       return;
     }
 
     (async () => {
       try {
         const { data } = await axios.get('https://api.gold-api.com/price/XAU');
-        const price = data.price?.toFixed(2);
+        const parsedPrice = parseFloat(data.price); // Convert to number
+        const price = Math.floor(parsedPrice).toString(); // Truncate decimals and convert to string
         if (price) {
           localStorage.setItem(KEY, price);
           localStorage.setItem(TS, now.toString());

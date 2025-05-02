@@ -1331,6 +1331,286 @@
 
 // export default Nav;
 
+// all great version down below its ummah 
+
+// import React, { useState, useRef, useEffect } from 'react';
+// import Link from 'next/link';
+// import { useRouter } from 'next/router';
+// import Image from 'next/image';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import {
+//   faBars,
+//   faTimes,
+//   faChevronDown,
+//   faChevronUp,
+//   faArrowLeft,
+//   faChevronRight,
+// } from '@fortawesome/free-solid-svg-icons';
+// import { motion } from 'framer-motion';
+// import styles from './nav.module.css';
+// import GoldButton from '../GoldButton';
+// const Nav = () => {
+//   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+//   const [isInvestOpen, setIsInvestOpen] = useState(false);
+//   const [isLangOpen, setIsLangOpen] = useState(false);
+//   const [isInvestMenuOpen, setIsInvestMenuOpen] = useState(false);
+//   const router = useRouter();
+//   const currentLocale = router.locale || 'en';
+
+//   const investRef = useRef(null);
+//   const langRef = useRef(null);
+
+//   useEffect(() => {
+//     const handler = (e) => {
+//       if (investRef.current && !investRef.current.contains(e.target)) {
+//         setIsInvestOpen(false);
+//       }
+//       if (langRef.current && !langRef.current.contains(e.target)) {
+//         setIsLangOpen(false);
+//       }
+//     };
+//     document.addEventListener('mousedown', handler);
+//     return () => document.removeEventListener('mousedown', handler);
+//   }, []);
+
+//   const toggleInvest = () => {
+//     setIsInvestOpen((o) => !o);
+//     setIsLangOpen(false);
+//   };
+//   const toggleLang = () => {
+//     setIsLangOpen((o) => !o);
+//     setIsInvestOpen(false);
+//   };
+
+//   const navLinks = [
+//     { href: '/members', label: 'Members' },
+//     { href: '/about', label: 'About Us' },
+//     { href: '/esg', label: 'ESG' },
+//     { href: '/press', label: 'Press' },
+//     { href: '/contact', label: 'Contact Us' },
+//     { href: '/invest', label: 'Invest', isDropdown: true },
+//   ];
+
+//   const investDropdownItems = [
+//     { href: '/invest/stocks', label: 'Stocks' },
+//     { href: '/invest/bonds', label: 'Bonds' },
+//     { href: '/invest/real-estate', label: 'Real Estate' },
+//   ];
+
+//   const langDropdownItems = [
+//     { href: '/en', label: 'English', locale: 'en' },
+//     { href: '/fr', label: 'French', locale: 'fr' },
+//     { href: '/ar', label: 'Arabic', locale: 'ar' },
+//   ];
+
+//   return (
+//     <nav
+//       dir={currentLocale === 'ar' ? 'rtl' : 'ltr'}
+//       className="bg-background text-text font-sans overflow-visible"
+//     >
+//       <div className="flex justify-between items-center py-4 overflow-visible">
+//         <Link href="/" className={styles.logo}>
+//           <div className="flex items-center space-x-2">
+//             <div className="relative w-[30px] h-[30px] md:w-[54px] md:h-[54px]">
+//               <Image src="/fenor-logo.png" alt="FENOR logo" layout="fill" objectFit="contain" />
+//             </div>
+//             <span>FENOR</span>
+//           </div>
+//         </Link>
+
+//         <div className="hidden lg:flex items-center space-x-8 whitespace-nowrap overflow-visible">
+//           {navLinks.map((link) => (
+//             <div key={link.href} className="relative">
+//               {link.isDropdown ? (
+//                 <div ref={investRef} className="relative">
+//                   <button
+//                     className={styles.menuItem}
+//                     onClick={toggleInvest}
+//                     aria-expanded={isInvestOpen}
+//                   >
+//                     Invest{' '}
+//                     <FontAwesomeIcon icon={isInvestOpen ? faChevronUp : faChevronDown} />
+//                   </button>
+//                   <div className={`${styles.dropdown} ${isInvestOpen ? styles.show : ''}`}>
+//                     {investDropdownItems.map((item) => (
+//                       <Link
+//                         key={item.href}
+//                         href={item.href}
+//                         className={styles.dropdownItem}
+//                         onClick={() => setIsInvestOpen(false)}
+//                       >
+//                         {item.label}
+//                       </Link>
+//                     ))}
+//                   </div>
+//                 </div>
+//               ) : (
+//                 <Link
+//                   href={link.href}
+//                   className={`${styles.menuItem} ${
+//                     router.pathname === link.href ? styles.active : ''
+//                   }`}
+//                 >
+//                   {link.label}
+//                 </Link>
+//               )}
+//             </div>
+//           ))}
+
+//           <div ref={langRef} className="relative">
+//             <button
+//               className={`${styles.menuItem} ${styles.selected}`}
+//               onClick={toggleLang}
+//               aria-expanded={isLangOpen}
+//             >
+//               {currentLocale.toUpperCase()}{' '}
+//               <FontAwesomeIcon icon={isLangOpen ? faChevronUp : faChevronDown} />
+//             </button>
+//             <div className={`${styles.dropdown} ${isLangOpen ? styles.show : ''}`}>
+//               {langDropdownItems.map((item) => (
+//                 <Link
+//                   key={item.href}
+//                   href={item.href}
+//                   locale={item.locale}
+//                   className={styles.dropdownItem}
+//                   onClick={() => setIsLangOpen(false)}
+//                 >
+//                   {item.label}
+//                 </Link>
+//               ))}
+//             </div>
+//           </div>
+
+//           <GoldButton/>
+//         </div>
+
+//         <button
+//           className="block lg:hidden text-text focus:outline-none"
+//           onClick={() => setIsMobileMenuOpen(true)}
+//           aria-label="Toggle menu"
+//         >
+//           <FontAwesomeIcon icon={faBars} />
+//         </button>
+//       </div>
+
+//       {isMobileMenuOpen && (
+//         <div className={styles.mobileMenuOverlay}>
+//           <motion.div
+//             className={styles.mainMenu}
+//             initial={{ x: 0 }}
+//             animate={{ x: isInvestMenuOpen ? '-100%' : 0 }}
+//             transition={{ duration: 0.3 }}
+//           >
+//             <div className={styles.mobileMenuHeader}>
+//               <Link href="/" className={styles.logo}>
+//                 <div className="flex items-center space-x-2">
+//                   <div className="relative w-[30px] h-[30px]">
+//                     <Image src="/fenor-logo.png" alt="FENOR logo" layout="fill" objectFit="contain" />
+//                   </div>
+//                   <span>FENOR</span>
+//                 </div>
+//               </Link>
+//               <button
+//                 className={styles.closeButton}
+//                 onClick={() => {
+//                   setIsMobileMenuOpen(false);
+//                   setIsInvestMenuOpen(false);
+//                 }}
+//                 aria-label="Close menu"
+//               >
+//                 <FontAwesomeIcon icon={faTimes} />
+//               </button>
+//             </div>
+//             <div className={styles.mobileMenuItems}>
+//               {navLinks.map((link) => (
+//                 <React.Fragment key={link.href}>
+//                   {link.isDropdown ? (
+//                     <button
+//                       className={styles.mobileMenuItem}
+//                       onClick={() => setIsInvestMenuOpen(true)}
+//                     >
+//                       {link.label}{' '}
+//                       <FontAwesomeIcon icon={faChevronRight} className="ml-2" />
+//                     </button>
+//                   ) : (
+//                     <Link
+//                       href={link.href}
+//                       className={styles.mobileMenuItem}
+//                       onClick={() => setIsMobileMenuOpen(false)}
+//                     >
+//                       {link.label}
+//                     </Link>
+//                   )}
+//                 </React.Fragment>
+//               ))}
+//             </div>
+//             <div className="mt-4">
+//               <div className={styles.langButtons}>
+//                 {langDropdownItems.map((item) => (
+//                   <Link
+//                     key={item.locale}
+//                     href={item.href}
+//                     locale={item.locale}
+//                     className={`${styles.langButton} ${
+//                       currentLocale === item.locale ? styles.activeLang : ''
+//                     }`}
+//                     onClick={() => setIsMobileMenuOpen(false)}
+//                   >
+//                     {item.locale.toUpperCase()}
+//                   </Link>
+//                 ))}
+//               </div>
+//               {/* <button className="bg-gold text-btn-text text-base font-normal px-4 py-2 rounded-btn hover:bg-special transition-colors duration-200 mt-4 w-full">
+//                 Gold: $1,900/oz
+//               </button> */}
+       
+//               <GoldButton className="mt-4 w-full"/>
+//             </div>
+//           </motion.div>
+
+//           <motion.div
+//             className={styles.investMenu}
+//             initial={{ x: '100%' }}
+//             animate={{ x: isInvestMenuOpen ? 0 : '100%' }}
+//             transition={{ duration: 0.3 }}
+//           >
+//           <div className={styles.investMenuHeader}>
+//   <div className="flex items-center space-x-2">
+//     <Link href="/" className={styles.logo}>
+//       <div className="relative w-[30px] h-[30px]">
+//         <Image src="/fenor-logo.png" alt="FENOR logo" layout="fill" objectFit="contain" />
+//       </div>
+//     </Link>
+//     <span>Invest</span>
+//   </div>
+//   <button onClick={() => setIsInvestMenuOpen(false)}>
+//     <FontAwesomeIcon icon={faArrowLeft} />
+//   </button>
+// </div>
+//             <div className={styles.investMenuItems}>
+//               {investDropdownItems.map((item) => (
+//                 <Link
+//                   key={item.href}
+//                   href={item.href}
+//                   className={styles.mobileMenuItem}
+//                   onClick={() => {
+//                     setIsInvestMenuOpen(false);
+//                     setIsMobileMenuOpen(false);
+//                   }}
+//                 >
+//                   {item.label}
+//                 </Link>
+//               ))}
+//             </div>
+//           </motion.div>
+//         </div>
+//       )}
+//     </nav>
+//   );
+// };
+
+// export default Nav;
+
 
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
@@ -1348,17 +1628,105 @@ import {
 import { motion } from 'framer-motion';
 import styles from './nav.module.css';
 import GoldButton from '../GoldButton';
+
+// Default navigation items as fallback
+const DEFAULT_NAV_ITEMS = {
+  en: [
+    { label: 'Members', url: '/en/members', isDropdown: false },
+    { label: 'About Us', url: '/en/about-us', isDropdown: false },
+    { label: 'ESG', url: '/en/esg', isDropdown: false },
+    { label: 'Press', url: '/en/press', isDropdown: false },
+    { label: 'Contact Us', url: '/en/contact', isDropdown: false },
+    { label: 'Invest', url: '/en/invest', isDropdown: true },
+  ],
+  fr: [
+    { label: 'Membres', url: '/fr/members', isDropdown: false },
+    { label: 'À Propos', url: '/fr/about-us', isDropdown: false },
+    { label: 'ESG', url: '/fr/esg', isDropdown: false },
+    { label: 'Presse', url: '/fr/press', isDropdown: false },
+    { label: 'Contact', url: '/fr/contact', isDropdown: false },
+    { label: 'Investir', url: '/fr/invest', isDropdown: true },
+  ],
+  ar: [
+    { label: 'الأعضاء', url: '/ar/members', isDropdown: false },
+    { label: 'من نحن', url: '/ar/about-us', isDropdown: false },
+    { label: 'الحوكمة البيئية والاجتماعية', url: '/ar/esg', isDropdown: false },
+    { label: 'الصحافة', url: '/ar/press', isDropdown: false },
+    { label: 'اتصل بنا', url: '/ar/contact', isDropdown: false },
+    { label: 'استثمر', url: '/ar/invest', isDropdown: true },
+  ],
+};
+
+// Investment dropdown items per locale
+const INVEST_DROPDOWN_ITEMS = {
+  en: [
+    { href: '/en/invest/stocks', label: 'Stocks' },
+    { href: '/en/invest/bonds', label: 'Bonds' },
+    { href: '/en/invest/real-estate', label: 'Real Estate' },
+  ],
+  fr: [
+    { href: '/fr/invest/stocks', label: 'Actions' },
+    { href: '/fr/invest/bonds', label: 'Obligations' },
+    { href: '/fr/invest/real-estate', label: 'Immobilier' },
+  ],
+  ar: [
+    { href: '/ar/invest/stocks', label: 'الأسهم' },
+    { href: '/ar/invest/bonds', label: 'السندات' },
+    { href: '/ar/invest/real-estate', label: 'العقارات' },
+  ],
+};
+
+// Language dropdown items
+const LANG_DROPDOWN_ITEMS = [
+  { href: '/', label: 'English', locale: 'en' },
+  { href: '/', label: 'Français', locale: 'fr' },
+  { href: '/', label: 'العربية', locale: 'ar' },
+];
+
 const Nav = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isInvestOpen, setIsInvestOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isInvestMenuOpen, setIsInvestMenuOpen] = useState(false);
+  const [navItems, setNavItems] = useState([]);
   const router = useRouter();
   const currentLocale = router.locale || 'en';
 
   const investRef = useRef(null);
   const langRef = useRef(null);
 
+  // Fetch navigation items from Tina CMS or use fallback
+  useEffect(() => {
+    const fetchNavItems = async () => {
+      try {
+        // Try to dynamically import the client to prevent build errors
+        const { client } = await import('../../tina/__generated__/client');
+        
+        try {
+          const navData = await client.queries.navigation({
+            relativePath: `${currentLocale}.json`,
+          });
+          
+          if (navData?.data?.navigation?.items) {
+            setNavItems(navData.data.navigation.items);
+          } else {
+            // Use default items if query returns empty result
+            setNavItems(DEFAULT_NAV_ITEMS[currentLocale] || DEFAULT_NAV_ITEMS.en);
+          }
+        } catch (error) {
+          console.error('Error fetching navigation data:', error);
+          setNavItems(DEFAULT_NAV_ITEMS[currentLocale] || DEFAULT_NAV_ITEMS.en);
+        }
+      } catch (importError) {
+        console.error('Error importing Tina client:', importError);
+        setNavItems(DEFAULT_NAV_ITEMS[currentLocale] || DEFAULT_NAV_ITEMS.en);
+      }
+    };
+    
+    fetchNavItems();
+  }, [currentLocale]);
+
+  // Click outside to close dropdowns
   useEffect(() => {
     const handler = (e) => {
       if (investRef.current && !investRef.current.contains(e.target)) {
@@ -1376,31 +1744,13 @@ const Nav = () => {
     setIsInvestOpen((o) => !o);
     setIsLangOpen(false);
   };
+  
   const toggleLang = () => {
     setIsLangOpen((o) => !o);
     setIsInvestOpen(false);
   };
 
-  const navLinks = [
-    { href: '/members', label: 'Members' },
-    { href: '/about', label: 'About Us' },
-    { href: '/esg', label: 'ESG' },
-    { href: '/press', label: 'Press' },
-    { href: '/contact', label: 'Contact Us' },
-    { href: '/invest', label: 'Invest', isDropdown: true },
-  ];
-
-  const investDropdownItems = [
-    { href: '/invest/stocks', label: 'Stocks' },
-    { href: '/invest/bonds', label: 'Bonds' },
-    { href: '/invest/real-estate', label: 'Real Estate' },
-  ];
-
-  const langDropdownItems = [
-    { href: '/en', label: 'English', locale: 'en' },
-    { href: '/fr', label: 'French', locale: 'fr' },
-    { href: '/ar', label: 'Arabic', locale: 'ar' },
-  ];
+  const investDropdownItems = INVEST_DROPDOWN_ITEMS[currentLocale] || INVEST_DROPDOWN_ITEMS.en;
 
   return (
     <nav
@@ -1408,18 +1758,18 @@ const Nav = () => {
       className="bg-background text-text font-sans overflow-visible"
     >
       <div className="flex justify-between items-center py-4 overflow-visible">
-        <Link href="/" className={styles.logo}>
+        <Link href={`/${currentLocale}`} className={styles.logo}>
           <div className="flex items-center space-x-2">
             <div className="relative w-[30px] h-[30px] md:w-[54px] md:h-[54px]">
-              <Image src="/fenor-logo.png" alt="FENOR logo" layout="fill" objectFit="contain" />
+              <Image src="/fenor-logo.png" alt="FENOR logo" width={54} height={54} />
             </div>
             <span>FENOR</span>
           </div>
         </Link>
 
         <div className="hidden lg:flex items-center space-x-8 whitespace-nowrap overflow-visible">
-          {navLinks.map((link) => (
-            <div key={link.href} className="relative">
+          {navItems.map((link, index) => (
+            <div key={index} className="relative">
               {link.isDropdown ? (
                 <div ref={investRef} className="relative">
                   <button
@@ -1427,7 +1777,7 @@ const Nav = () => {
                     onClick={toggleInvest}
                     aria-expanded={isInvestOpen}
                   >
-                    Invest{' '}
+                    {link.label}{' '}
                     <FontAwesomeIcon icon={isInvestOpen ? faChevronUp : faChevronDown} />
                   </button>
                   <div className={`${styles.dropdown} ${isInvestOpen ? styles.show : ''}`}>
@@ -1445,9 +1795,9 @@ const Nav = () => {
                 </div>
               ) : (
                 <Link
-                  href={link.href}
+                  href={link.url}
                   className={`${styles.menuItem} ${
-                    router.pathname === link.href ? styles.active : ''
+                    router.pathname === link.url ? styles.active : ''
                   }`}
                 >
                   {link.label}
@@ -1466,10 +1816,10 @@ const Nav = () => {
               <FontAwesomeIcon icon={isLangOpen ? faChevronUp : faChevronDown} />
             </button>
             <div className={`${styles.dropdown} ${isLangOpen ? styles.show : ''}`}>
-              {langDropdownItems.map((item) => (
+              {LANG_DROPDOWN_ITEMS.map((item) => (
                 <Link
-                  key={item.href}
-                  href={item.href}
+                  key={item.locale}
+                  href={router.asPath}
                   locale={item.locale}
                   className={styles.dropdownItem}
                   onClick={() => setIsLangOpen(false)}
@@ -1480,7 +1830,7 @@ const Nav = () => {
             </div>
           </div>
 
-          <GoldButton/>
+          <GoldButton />
         </div>
 
         <button
@@ -1501,10 +1851,10 @@ const Nav = () => {
             transition={{ duration: 0.3 }}
           >
             <div className={styles.mobileMenuHeader}>
-              <Link href="/" className={styles.logo}>
+              <Link href={`/${currentLocale}`} className={styles.logo}>
                 <div className="flex items-center space-x-2">
                   <div className="relative w-[30px] h-[30px]">
-                    <Image src="/fenor-logo.png" alt="FENOR logo" layout="fill" objectFit="contain" />
+                    <Image src="/fenor-logo.png" alt="FENOR logo" width={30} height={30} />
                   </div>
                   <span>FENOR</span>
                 </div>
@@ -1521,8 +1871,8 @@ const Nav = () => {
               </button>
             </div>
             <div className={styles.mobileMenuItems}>
-              {navLinks.map((link) => (
-                <React.Fragment key={link.href}>
+              {navItems.map((link, index) => (
+                <React.Fragment key={index}>
                   {link.isDropdown ? (
                     <button
                       className={styles.mobileMenuItem}
@@ -1533,7 +1883,7 @@ const Nav = () => {
                     </button>
                   ) : (
                     <Link
-                      href={link.href}
+                      href={link.url}
                       className={styles.mobileMenuItem}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
@@ -1545,10 +1895,10 @@ const Nav = () => {
             </div>
             <div className="mt-4">
               <div className={styles.langButtons}>
-                {langDropdownItems.map((item) => (
+                {LANG_DROPDOWN_ITEMS.map((item) => (
                   <Link
                     key={item.locale}
-                    href={item.href}
+                    href={router.asPath}
                     locale={item.locale}
                     className={`${styles.langButton} ${
                       currentLocale === item.locale ? styles.activeLang : ''
@@ -1559,11 +1909,7 @@ const Nav = () => {
                   </Link>
                 ))}
               </div>
-              {/* <button className="bg-gold text-btn-text text-base font-normal px-4 py-2 rounded-btn hover:bg-special transition-colors duration-200 mt-4 w-full">
-                Gold: $1,900/oz
-              </button> */}
-       
-              <GoldButton className="mt-4 w-full"/>
+              <GoldButton className="mt-4 w-full" />
             </div>
           </motion.div>
 
@@ -1573,19 +1919,19 @@ const Nav = () => {
             animate={{ x: isInvestMenuOpen ? 0 : '100%' }}
             transition={{ duration: 0.3 }}
           >
-          <div className={styles.investMenuHeader}>
-  <div className="flex items-center space-x-2">
-    <Link href="/" className={styles.logo}>
-      <div className="relative w-[30px] h-[30px]">
-        <Image src="/fenor-logo.png" alt="FENOR logo" layout="fill" objectFit="contain" />
-      </div>
-    </Link>
-    <span>Invest</span>
-  </div>
-  <button onClick={() => setIsInvestMenuOpen(false)}>
-    <FontAwesomeIcon icon={faArrowLeft} />
-  </button>
-</div>
+            <div className={styles.investMenuHeader}>
+              <div className="flex items-center space-x-2">
+                <Link href={`/${currentLocale}`} className={styles.logo}>
+                  <div className="relative w-[30px] h-[30px]">
+                    <Image src="/fenor-logo.png" alt="FENOR logo" width={30} height={30} />
+                  </div>
+                </Link>
+                <span>Invest</span>
+              </div>
+              <button onClick={() => setIsInvestMenuOpen(false)}>
+                <FontAwesomeIcon icon={faArrowLeft} />
+              </button>
+            </div>
             <div className={styles.investMenuItems}>
               {investDropdownItems.map((item) => (
                 <Link

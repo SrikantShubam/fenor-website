@@ -26,7 +26,7 @@ export default function GoldButton({
 
     (async () => {
       try {
-        const { data } = await axios.get('https://www.gold-api.com/api/XAU/USD');
+        const { data } = await axios.get('https://api.gold-api.com/price/XAU');
         const price = data.price?.toFixed(2);
         if (price) {
           localStorage.setItem(KEY, price);

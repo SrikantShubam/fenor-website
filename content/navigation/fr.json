@@ -6,7 +6,7 @@
         "isDropdown": false
       },
       {
-        "label": "À propos de nous",
+        "label": "À Propos",
         "url": "/fr/about-us",
         "isDropdown": false
       },
@@ -21,7 +21,7 @@
         "isDropdown": false
       },
       {
-        "label": "Nous contacter",
+        "label": "Contact",
         "url": "/fr/contact",
         "isDropdown": false
       },

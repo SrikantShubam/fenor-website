@@ -411,6 +411,7 @@ export default defineConfig({
         label: "Navigation",
         path: "content/navigation",
         i18n: true,
+        format: "json", 
         fields: [
           {
             type: "object",

@@ -1,117 +1,131 @@
-import { useTina } from "tinacms/dist/react";
-import { client } from "../../tina/__generated__/client";
-import Image from "next/image";
-import Link from "next/link";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
-export default function Footer({ data, query, variables }) {
-  const { data: footerData } = useTina({
-    query,
-    variables,
-    data,
-  });
+// Mapping of social platform names to FontAwesome icons
+const socialIcons = {
+  linkedin: faLinkedin,
+  youtube: faYoutube,
+  // Add more mappings as needed
+};
 
-  const currentYear = new Date().getFullYear();
-
-  return (
-    <footer className="bg-black text-white py-8 font-poppins">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-8">
-          {/* Left Section */}
-          <div className="flex flex-col items-start">
-            <div className="flex items-center gap-2">
-              <Image src="/logo.png" alt="Fenor Logo" width={54} height={54} />
-              <span className="text-2xl font-bold">FENOR</span>
-            </div>
-            <p className="text-xs mt-2 max-w-xs">
-              {footerData.footer.description}
-            </p>
-          </div>
-
-          {/* Columns */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Quick Links */}
-            <div>
-              <h3 className="text-[19px] font-bold mb-2">QUICK LINKS</h3>
-              <ul className="space-y-1">
-                {footerData.footer.quickLinks.map((link, index) => (
-                  <li key={index}>
-                    <Link href={link.url} className="text-[19px]">
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* About Us */}
-            <div>
-              <h3 className="text-[19px] font-bold mb-2">About Us</h3>
-              <ul className="space-y-1">
-                {footerData.footer.aboutUs.map((link, index) => (
-                  <li key={index}>
-                    <Link href={link.url} className="text-[19px]">
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Important Links */}
-            <div>
-              <h3 className="text-[19px] font-bold mb-2">Important Links</h3>
-              <ul className="space-y-1">
-                {footerData.footer.importantLinks.map((link, index) => (
-                  <li key={index}>
-                    <Link href={link.url} className="text-[19px]">
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Social Media Icons */}
-          <div className="flex gap-4">
-            {footerData.footer.socials.map((social, index) => (
-              <a key={index} href={social.url} target="_blank" rel="noopener noreferrer">
-                <Image
-                  src={`/icons/${social.name}.svg`}
-                  alt={social.name}
-                  width={24}
-                  height={24}
-                />
-              </a>
-            ))}
+// Define the shape of the footer data (make fields optional)
+interface FooterData {
+  description?: string;
+  quickLinks?: { label: string; url: string }[];
+  aboutUs?: { label: string; url: string }[];
+  importantLinks?: { label: string; url: string }[];
+  socials?: { name: string; url: string }[];
+  copyrightText?: string;
+  madeByPrefix?: string;
+  agency?: { name: string; url: string };
+}
+console.log('Footer data:', data.footer);
+const Footer: React.FC<{ footerData?: FooterData }> = ({ footerData }) => {
+  // Fallback if footerData is undefined
+  if (!footerData) {
+    return (
+      <footer className="bg-gray-800 text-white py-8">
+        <div className="container mx-auto px-4">
+          <div className="mt-8 border-t border-gray-700 pt-4 flex justify-between items-center">
+            <p>Fenor © 2025. All rights reserved.</p>
+            <p>Made by Agency10169</p> {/* Default agency name */}
           </div>
         </div>
+      </footer>
+    );
+  }
 
-        {/* Copyright and Agency */}
-        <div className="mt-8 border-t border-gray-700 pt-4 flex flex-col md:flex-row justify-between items-center text-[16px] font-medium">
-          <p>Fenor © {currentYear}, ALL RIGHTS RESERVED.</p>
-          <div className="flex items-center gap-2">
-            <span>Made by AGENCY10169</span>
-            <a href="#" target="_blank" rel="noopener noreferrer">
-              <Image src="/icons/linkedin.svg" alt="LinkedIn" width={16} height={16} />
-            </a>
+  return (
+    <footer className="bg-gray-800 text-white py-8">
+      <div className="container mx-auto px-4">
+        {/* Main content area */}
+        <div className="flex flex-wrap justify-between">
+          {/* Left side: Logo, Brand, Description, Socials */}
+          <div className="w-full md:w-1/3 mb-6 md:mb-0">
+            <div className="flex items-center mb-4">
+              <img src="/logo.png" alt="FENOR Logo" className="h-8 mr-2" />
+              <h2 className="text-xl font-bold">FENOR</h2>
+            </div>
+            <p className="mb-4 text-start">{footerData.description || ''}</p>
+            <div className="flex space-x-4">
+              {(footerData.socials || []).map((social, index) => {
+                const icon = socialIcons[social.name.toLowerCase()];
+                if (icon) {
+                  return (
+                    <a
+                      key={index}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-gray-300"
+                    >
+                      <FontAwesomeIcon icon={icon} className="h-6 w-6" />
+                    </a>
+                  );
+                }
+                return null;
+              })}
+            </div>
           </div>
+          {/* Right side: Link Columns */}
+          <div className="w-full md:w-2/3 flex flex-wrap">
+            {/* Quick Links */}
+            <div className="w-1/3 mb-6">
+              <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
+              <ul>
+                {(footerData.quickLinks || []).map((link, index) => (
+                  <li key={index}>
+                    <a href={link.url} className="hover:underline">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* About Us */}
+            <div className="w-1/3 mb-6">
+              <h3 className="text-lg font-semibold mb-2">About Us</h3>
+              <ul>
+                {(footerData.aboutUs || []).map((link, index) => (
+                  <li key={index}>
+                    <a href={link.url} className="hover:underline">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* Important Links */}
+            <div className="w-1/3 mb-6">
+              <h3 className="text-lg font-semibold mb-2">Important Links</h3>
+              <ul>
+                {(footerData.importantLinks || []).map((link, index) => (
+                  <li key={index}>
+                    <a href={link.url} className="hover:underline">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {/* Bottom Section: Copyright and Agency */}
+        <div className="mt-8 border-t border-gray-700 pt-4 flex justify-between items-center">
+          <p>{footerData.copyrightText || 'Fenor © 2025. All rights reserved.'}</p>
+          <p>
+            {footerData.madeByPrefix || 'Made by'}{' '}
+            {footerData.agency ? (
+              <a href={footerData.agency.url} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                {footerData.agency.name} <FontAwesomeIcon icon={faLinkedin} className="h-4 w-4 inline" />
+              </a>
+            ) : 'Agency10169'} {/* Default agency name */}
+          </p>
         </div>
       </div>
     </footer>
   );
-}
+};
 
-export async function getStaticProps() {
-  const { data, query, variables } = await client.queries.footer({
-    relativePath: "footer.json",
-  });
-
-  return {
-    props: {
-      data,
-      query,
-      variables,
-    },
-  };
-}
+export default Footer;

@@ -1,0 +1,55 @@
+{
+    "description": "La Fédération Nationale des Usines d'Or (FENOR) est une entité qui représente les investisseurs et les parties prenantes du secteur de l'exploitation minière artisanale et semi-industrielle de l'or en Mauritanie.",
+    "quickLinks": [
+      {
+        "label": "Contactez-nous",
+        "url": "/fr/contact"
+      },
+      {
+        "label": "Centre des investisseurs",
+        "url": "/fr/investor"
+      },
+      {
+        "label": "Politique ESG",
+        "url": "/fr/esg"
+      },
+      {
+        "label": "Presse",
+        "url": "/fr/press"
+      }
+    ],
+    "aboutUs": [
+      {
+        "label": "Histoire",
+        "url": "/fr/history"
+      },
+      {
+        "label": "Notre direction",
+        "url": "/fr/management"
+      },
+      {
+        "label": "Message du président",
+        "url": "/fr/chairman"
+      }
+    ],
+    "importantLinks": [
+      {
+        "label": "Placeholder 1",
+        "url": "https://www.gold.org/"
+      },
+      {
+        "label": "Placeholder 2",
+        "url": "https://www.gold.org/"
+      }
+    ],
+    "socials": [
+      {
+        "name": "Linkedin",
+        "url": "https://www.gold.org/"
+      },
+      {
+        "name": "Youtube",
+        "url": "https://www.gold.org/"
+      }
+    ]
+  }

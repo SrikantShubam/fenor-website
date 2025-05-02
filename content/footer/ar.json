@@ -1,0 +1,55 @@
+{
+    "description": "الاتحاد الوطني لمصانع الذهب (FENOR) هو كيان يمثل المستثمرين وأصحاب المصلحة في قطاع تعدين الذهب الحرفي وشبه الصناعي في موريتانيا.",
+    "quickLinks": [
+      {
+        "label": "اتصل بنا",
+        "url": "/ar/contact"
+      },
+      {
+        "label": "مركز المستثمرين",
+        "url": "/ar/investor"
+      },
+      {
+        "label": "سياسة ESG",
+        "url": "/ar/esg"
+      },
+      {
+        "label": "الصحافة",
+        "url": "/ar/press"
+      }
+    ],
+    "aboutUs": [
+      {
+        "label": "التاريخ",
+        "url": "/ar/history"
+      },
+      {
+        "label": "إدارتنا",
+        "url": "/ar/management"
+      },
+      {
+        "label": "رسالة الرئيس",
+        "url": "/ar/chairman"
+      }
+    ],
+    "importantLinks": [
+      {
+        "label": "Placeholder 1",
+        "url": "https://www.gold.org/"
+      },
+      {
+        "label": "Placeholder 2",
+        "url": "https://www.gold.org/"
+      }
+    ],
+    "socials": [
+      {
+        "name": "Linkedin",
+        "url": "https://www.gold.org/"
+      },
+      {
+        "name": "Youtube",
+        "url": "https://www.gold.org/"
+      }
+    ]
+  }

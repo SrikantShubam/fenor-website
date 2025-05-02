@@ -1,0 +1,55 @@
+{
+  "description": "The National Federation of Gold Factories (FENOR) is an entity that represents investors and stakeholders in the artisanal and semi-industrial gold mining sector in Mauritania.",
+  "quickLinks": [
+    {
+      "label": "Contact Us",
+      "url": "/en/contact"
+    },
+    {
+      "label": "Investor Center",
+      "url": "/en/investor"
+    },
+    {
+      "label": "ESG Policy",
+      "url": "/en/esg"
+    },
+    {
+      "label": "Press",
+      "url": "/en/press"
+    }
+  ],
+  "aboutUs": [
+    {
+      "label": "History",
+      "url": "/en/history"
+    },
+    {
+      "label": "Our Management",
+      "url": "/en/management"
+    },
+    {
+      "label": "Chairman’s Message",
+      "url": "/en/chairman"
+    }
+  ],
+  "importantLinks": [
+    {
+      "label": "Placeholder 1",
+      "url": "https://www.gold.org/"
+    },
+    {
+      "label": "Placeholder 2",
+      "url": "https://www.gold.org/"
+    }
+  ],
+  "socials": [
+    {
+      "name": "Linkedin",
+      "url": "https://www.gold.org/"
+    },
+    {
+      "name": "Youtube",
+      "url": "https://www.gold.org/"
+    }
+  ]
+}

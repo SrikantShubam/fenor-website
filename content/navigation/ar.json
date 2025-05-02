@@ -1,0 +1,34 @@
+{
+    "items": [
+      {
+        "label": "الأعضاء",
+        "url": "/ar/members",
+        "isDropdown": false
+      },
+      {
+        "label": "معلومات عنا",
+        "url": "/ar/about-us",
+        "isDropdown": false
+      },
+      {
+        "label": "ESG",
+        "url": "/ar/esg",
+        "isDropdown": false
+      },
+      {
+        "label": "الصحافة",
+        "url": "/ar/press",
+        "isDropdown": false
+      },
+      {
+        "label": "اتصل بنا",
+        "url": "/ar/contact",
+        "isDropdown": false
+      },
+      {
+        "label": "استثمر",
+        "url": "/ar/invest",
+        "isDropdown": true
+      }
+    ]
+  }

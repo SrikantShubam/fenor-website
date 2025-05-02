@@ -1,0 +1,34 @@
+{
+    "items": [
+      {
+        "label": "Membres",
+        "url": "/fr/members",
+        "isDropdown": false
+      },
+      {
+        "label": "À propos de nous",
+        "url": "/fr/about-us",
+        "isDropdown": false
+      },
+      {
+        "label": "ESG",
+        "url": "/fr/esg",
+        "isDropdown": false
+      },
+      {
+        "label": "Presse",
+        "url": "/fr/press",
+        "isDropdown": false
+      },
+      {
+        "label": "Nous contacter",
+        "url": "/fr/contact",
+        "isDropdown": false
+      },
+      {
+        "label": "Investir",
+        "url": "/fr/invest",
+        "isDropdown": true
+      }
+    ]
+  }

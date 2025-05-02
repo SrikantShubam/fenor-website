@@ -1,9 +1,13 @@
 ---
 title: عن الشركة
+seo:
+  title: عن الشركة
 blocks:
-  - _template: text
-    content: تعرف على المزيد حول شركتنا.
-  - _template: image
-    src: /images/company.jpg
+  - content: |
+      تعرف على المزيد حول شركتنا.
+    _template: text
+  - src: /images/company.jpg
     alt: صورة الشركة
+    _template: image
 ---
+

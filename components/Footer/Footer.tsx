@@ -358,7 +358,7 @@ const socialIcons = {
 
 // Define the shape of the footer data (make fields optional)
 interface FooterData {
-  description?: string;
+  description?: string | null;
   quickLinks?: { label: string; url: string }[];
   aboutUs?: { label: string; url: string }[];
   importantLinks?: { label: string; url: string }[];

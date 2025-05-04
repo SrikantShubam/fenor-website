@@ -2272,7 +2272,7 @@
 
 
 
-
+"use client";
 
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
@@ -2291,14 +2291,21 @@ import { motion } from 'framer-motion';
 import styles from './nav.module.css';
 import GoldButton from '../GoldButton';
 
-// Define the shape of a navigation item
+type Locale = 'en' | 'fr' | 'ar';
+
 interface NavItem {
   label: string;
   url: string;
   isDropdown?: boolean;
 }
 
-const INVEST_DROPDOWN_ITEMS = {
+interface InvestItem {
+  href: string;
+  label: string;
+}
+
+// Now strongly typed: keys must be one of our Locale literals
+const INVEST_DROPDOWN_ITEMS: Record<Locale, InvestItem[]> = {
   en: [
     { href: '/en/invest/stocks', label: 'Stocks' },
     { href: '/en/invest/bonds', label: 'Bonds' },
@@ -2320,7 +2327,7 @@ const LANG_DROPDOWN_ITEMS = [
   { href: '/', label: 'English', locale: 'en' },
   { href: '/', label: 'Français', locale: 'fr' },
   { href: '/', label: 'العربية', locale: 'ar' },
-];
+] as const;
 
 const navVariants = {
   hidden: { opacity: 0, y: -20 },
@@ -2340,12 +2347,12 @@ const Nav: React.FC = () => {
   const [isInvestOpen, setIsInvestOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isInvestMenuOpen, setIsInvestMenuOpen] = useState(false);
-
-  // **Typed** state for navigation items
   const [navItems, setNavItems] = useState<NavItem[]>([]);
 
   const router = useRouter();
-  const currentLocale = router.locale || 'en';
+  // Narrow the locale into our allowed set; default to 'en' if it isn't one of them
+  const rawLocale = router.locale ?? 'en';
+  const currentLocale = (['en', 'fr', 'ar'].includes(rawLocale) ? rawLocale : 'en') as Locale;
 
   const investRef = useRef<HTMLDivElement>(null);
   const langRef = useRef<HTMLDivElement>(null);
@@ -2358,7 +2365,6 @@ const Nav: React.FC = () => {
         const navData = await client.queries.navigation({
           relativePath: `${currentLocale}.json`,
         });
-        // Filter out any nulls and cast to NavItem[]
         const items = (navData?.data?.navigation?.items || [])
           .filter(item => item !== null)
           .map(item => ({
@@ -2397,7 +2403,8 @@ const Nav: React.FC = () => {
     setIsInvestOpen(false);
   };
 
-  const investDropdownItems = INVEST_DROPDOWN_ITEMS[currentLocale] || INVEST_DROPDOWN_ITEMS.en;
+  // Index into our typed record with a Locale
+  const investDropdownItems = INVEST_DROPDOWN_ITEMS[currentLocale];
 
   return (
     <motion.nav

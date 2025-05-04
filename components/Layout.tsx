@@ -153,10 +153,6 @@
 
 
 
-
-
-
-
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { DefaultSeo } from 'next-seo'
@@ -185,16 +181,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         const clean: FooterData = {
           description: raw.description ?? undefined,
           quickLinks: raw.quickLinks
-            ?.filter((x): x is { label: string; url: string } => Boolean(x))
+            ?.filter((x): x is { __typename: "FooterQuickLinks"; label: string; url: string } => Boolean(x))
             .map(({ label, url }) => ({ label, url })),
           aboutUs: raw.aboutUs
-            ?.filter((x): x is { label: string; url: string } => Boolean(x))
+            ?.filter((x): x is { __typename: "FooterAboutUs"; label: string; url: string } => Boolean(x))
             .map(({ label, url }) => ({ label, url })),
           importantLinks: raw.importantLinks
-            ?.filter((x): x is { label: string; url: string } => Boolean(x))
+            ?.filter((x): x is { __typename: "FooterImportantLinks"; label: string; url: string } => Boolean(x))
             .map(({ label, url }) => ({ label, url })),
           socials: raw.socials
-            ?.filter((x): x is { name: string; url: string } => Boolean(x))
+            ?.filter((x): x is { __typename: "FooterSocials"; name: string; url: string } => Boolean(x))
             .map(({ name, url }) => ({ name, url })),
         }
 

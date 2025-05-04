@@ -466,7 +466,6 @@
 
 
 
-
 import { defineConfig } from "tinacms";
 
 // Your hosting provider likely exposes this as an environment variable
@@ -566,13 +565,17 @@ export default defineConfig({
         ],
         ui: {
           router: ({ document }) => {
-            if (document._sys.filename === "home") {
-              return `/${document._sys.locale}/`;
-            } else {
-              return `/${document._sys.locale}/${document._sys.filename}`;
-            }
+            // `relativePath` is something like "en/home.md" or "fr/about.md"
+            const [locale] = document._sys.relativePath.split('/');
+            const basename = document._sys.filename; // "home" or "about", etc.
+        
+            // special-case “home” to map to “/{locale}/” instead of “/{locale}/home”
+            return basename === 'home'
+              ? `/${locale}/`
+              : `/${locale}/${basename}`;
           },
         },
+        
       },
       {
         name: "navigation",

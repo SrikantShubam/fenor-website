@@ -2,17 +2,15 @@ import { GetStaticProps } from 'next';
 import { client } from '../tina/__generated__/client';
 import { NextSeo } from 'next-seo';
 
-// Describe exactly what TinaCMS returns for your page:
+// The shape your page component actually needs
 interface HomepageProps {
   content: {
     title: string;
-    // add the SEO sub-shape:
     seo?: {
       title?: string;
       description?: string;
       keywords?: string[];
     };
-    // …and any other fields you expect (e.g. body, heroImage, etc.)
   };
   locale: string;
 }
@@ -22,11 +20,24 @@ export const getStaticProps: GetStaticProps<HomepageProps> = async ({ locale }) 
     const res = await client.queries.pages({
       relativePath: `${locale}/home.md`,
     });
-    const content = res.data.pages;
+    const raw = res.data.pages;
+    // Now map into exactly the shape HomepageProps.content expects
+    const content = {
+      title: raw.title,
+      seo: raw.seo
+        ? {
+            title: raw.seo.title ?? undefined,
+            description: raw.seo.description ?? undefined,
+            // filter out any null keywords
+            keywords: raw.seo.keywords?.filter((kw): kw is string => Boolean(kw)) ?? undefined,
+          }
+        : undefined,
+    };
+
     return {
       props: {
         content,
-        locale: locale || 'en',
+        locale: locale ?? 'en',
       },
     };
   } catch (error) {
@@ -35,24 +46,30 @@ export const getStaticProps: GetStaticProps<HomepageProps> = async ({ locale }) 
       props: {
         content: {
           title: 'Error',
-          // optionally provide a minimal seo shape
-          seo: { title: 'Error' },
+          seo: { title: 'Error fetching content' },
         },
-        locale: locale || 'en',
+        locale: locale ?? 'en',
       },
     };
   }
 };
 
 const Homepage: React.FC<HomepageProps> = ({ content, locale }) => {
+  // Prepare a keywords string or undefined
+  const keywordsString = content.seo?.keywords?.join(', ');
+
   return (
     <>
       <NextSeo
-        // fallback to content.title if seo.title is missing
         title={content.seo?.title ?? content.title}
         description={content.seo?.description}
-        keywords={content.seo?.keywords?.join(', ')}
+        additionalMetaTags={
+          keywordsString
+            ? [{ name: 'keywords', content: keywordsString }]
+            : undefined
+        }
       />
+
       <div className="homepage" lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
         <h1>{content.title}</h1>
         <p>This is a placeholder homepage.</p>

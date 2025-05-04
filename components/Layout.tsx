@@ -8,7 +8,7 @@ import { client } from '../tina/__generated__/client'; // Adjust path based on y
 
 // Define the shape of the footer data
 interface FooterData {
-  description?: string;
+  description?: string | null; 
   quickLinks?: { label: string; url: string }[];
   aboutUs?: { label: string; url: string }[];
   importantLinks?: { label: string; url: string }[];

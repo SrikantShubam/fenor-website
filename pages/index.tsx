@@ -142,11 +142,16 @@ export const getStaticProps: GetStaticProps<HomepageProps> = async ({ locale }) 
 const Homepage: NextPage<HomepageProps> = ({ content, locale }) => {
   return (
     <>
-      <NextSeo
-        title={content.seo?.title ?? content.title}
-        description={content.seo?.description ?? undefined}
-        keywords={content.seo?.keywords?.join(', ') ?? undefined}
-      />
+     <NextSeo
+  title={content.seo?.title ?? content.title}
+  description={content.seo?.description ?? undefined}
+  additionalMetaTags={[
+    {
+      name: 'keywords',
+      content: content.seo?.keywords?.join(', ') || '',
+    },
+  ]}
+/>
       <div className="homepage" lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
         <h1>{content.title}</h1>
         <p>This is a placeholder homepage.</p>

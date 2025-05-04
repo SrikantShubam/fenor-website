@@ -90,30 +90,6 @@ interface LayoutProps {
   children: React.ReactNode
 }
 
-// Define the correct types based on the error message
-interface FooterQuickLink {
-  __typename: "FooterQuickLinks";
-  label: string;
-  url: string;
-}
-
-interface FooterAboutLink {
-  __typename: string;
-  label: string;
-  url: string;
-}
-
-interface FooterImportantLink {
-  __typename: string;
-  label: string;
-  url: string;
-}
-
-interface FooterSocial {
-  __typename: string;
-  name: string;
-  url: string;
-}
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [footerData, setFooterData] = useState<FooterData>()

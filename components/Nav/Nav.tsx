@@ -2274,9 +2274,6 @@
 
 
 
-
-
-
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -2294,7 +2291,13 @@ import { motion } from 'framer-motion';
 import styles from './nav.module.css';
 import GoldButton from '../GoldButton';
 
-// Investment dropdown items per locale (still hardcoded for this example)
+// Define the shape of a navigation item
+interface NavItem {
+  label: string;
+  url: string;
+  isDropdown?: boolean;
+}
+
 const INVEST_DROPDOWN_ITEMS = {
   en: [
     { href: '/en/invest/stocks', label: 'Stocks' },
@@ -2313,21 +2316,15 @@ const INVEST_DROPDOWN_ITEMS = {
   ],
 };
 
-// Language dropdown items
 const LANG_DROPDOWN_ITEMS = [
   { href: '/', label: 'English', locale: 'en' },
   { href: '/', label: 'Français', locale: 'fr' },
   { href: '/', label: 'العربية', locale: 'ar' },
 ];
 
-// Motion variants
 const navVariants = {
   hidden: { opacity: 0, y: -20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { when: 'beforeChildren', staggerChildren: 0.1 },
-  },
+  visible: { opacity: 1, y: 0, transition: { when: 'beforeChildren', staggerChildren: 0.1 } },
 };
 const itemVariants = {
   hidden: { opacity: 0, y: -10 },
@@ -2338,18 +2335,22 @@ const dropdownVariants = {
   visible: { opacity: 1, scale: 1, transition: { duration: 0.2 } },
 };
 
-const Nav = () => {
+const Nav: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isInvestOpen, setIsInvestOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isInvestMenuOpen, setIsInvestMenuOpen] = useState(false);
-  const [navItems, setNavItems] = useState([]);
+
+  // **Typed** state for navigation items
+  const [navItems, setNavItems] = useState<NavItem[]>([]);
+
   const router = useRouter();
   const currentLocale = router.locale || 'en';
 
-  const investRef = useRef(null);
-  const langRef = useRef(null);
+  const investRef = useRef<HTMLDivElement>(null);
+  const langRef = useRef<HTMLDivElement>(null);
 
+  // Fetch navigation items via TinaCMS GraphQL client
   useEffect(() => {
     const fetchNavItems = async () => {
       try {
@@ -2357,7 +2358,15 @@ const Nav = () => {
         const navData = await client.queries.navigation({
           relativePath: `${currentLocale}.json`,
         });
-        setNavItems(navData?.data?.navigation?.items || []);
+        // Filter out any nulls and cast to NavItem[]
+        const items = (navData?.data?.navigation?.items || [])
+          .filter(item => item !== null)
+          .map(item => ({
+            label: item!.label,
+            url: item!.url,
+            isDropdown: Boolean(item!.isDropdown),
+          })) as NavItem[];
+        setNavItems(items);
       } catch {
         setNavItems([]);
       }
@@ -2365,6 +2374,7 @@ const Nav = () => {
     fetchNavItems();
   }, [currentLocale]);
 
+  // Close dropdowns on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (investRef.current && !investRef.current.contains(e.target as Node)) {
@@ -2398,10 +2408,7 @@ const Nav = () => {
       variants={navVariants}
     >
       {/* Top bar */}
-      <motion.div
-        className="flex justify-between items-center py-4 overflow-visible"
-        variants={itemVariants}
-      >
+      <motion.div className="flex justify-between items-center py-4 overflow-visible" variants={itemVariants}>
         {/* Logo */}
         <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }}>
           <Link href={`/${currentLocale}`} className={styles.logo}>

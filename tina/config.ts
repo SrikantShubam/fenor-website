@@ -496,7 +496,7 @@ export default defineConfig({
         name: "pages",
         label: "Pages",
         path: "content/pages",
-        i18n: true,
+      
         fields: [
           {
             type: "string",
@@ -578,7 +578,7 @@ export default defineConfig({
         name: "navigation",
         label: "Navigation",
         path: "content/navigation",
-        i18n: true,
+     
         format: "json",
         fields: [
           {

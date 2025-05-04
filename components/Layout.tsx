@@ -7,15 +7,22 @@ import { useRouter } from 'next/router';
 import { client } from '../tina/__generated__/client'; // Adjust path based on your project structure
 
 // Define the shape of the footer data
+// interface FooterData {
+//   description?: string | null; 
+//   quickLinks?: { label: string; url: string }[];
+//   aboutUs?: { label: string; url: string }[];
+//   importantLinks?: { label: string; url: string }[];
+//   socials?: { name: string; url: string }[];
+//   copyrightText?: string;
+//   madeByPrefix?: string;
+//   agency?: { name: string; url: string };
+// }
 interface FooterData {
-  description?: string | null; 
-  quickLinks?: { label: string; url: string }[];
-  aboutUs?: { label: string; url: string }[];
-  importantLinks?: { label: string; url: string }[];
-  socials?: { name: string; url: string }[];
-  copyrightText?: string;
-  madeByPrefix?: string;
-  agency?: { name: string; url: string };
+  description?: string | null;
+  quickLinks?: ({ label: string; url: string } | null)[] | null;
+  aboutUs?:   ({ label: string; url: string } | null)[] | null;
+  importantLinks?: ({ label: string; url: string } | null)[] | null;
+  socials?:   ({ name: string; url: string } | null)[] | null;
 }
 
 interface LayoutProps {

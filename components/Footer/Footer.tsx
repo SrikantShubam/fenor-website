@@ -357,13 +357,20 @@ const socialIcons = {
 };
 
 // Define the shape of the footer data (make fields optional)
-interface FooterData {
-  description?: string | null;
-  quickLinks?: { label: string; url: string }[];
-  aboutUs?: { label: string; url: string }[];
-  importantLinks?: { label: string; url: string }[];
-  socials?: { name: string; url: string }[];
-}
+// interface FooterData {
+//   description?: string | null;
+//   quickLinks?: { label: string; url: string }[];
+//   aboutUs?: { label: string; url: string }[];
+//   importantLinks?: { label: string; url: string }[];
+//   socials?: { name: string; url: string }[];
+// }
+export interface FooterData {
+    description?: string | null;
+    quickLinks?: { label: string; url: string }[];
+    aboutUs?:    { label: string; url: string }[];
+    importantLinks?: { label: string; url: string }[];
+    socials?:    { name: string; url: string }[];
+  }
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },

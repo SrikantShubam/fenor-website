@@ -613,7 +613,7 @@ export default defineConfig({
         label: "Footer",
         path: "content/footer",
         format: "json",
-        i18n: true,
+
         fields: [
           {
             type: "string",

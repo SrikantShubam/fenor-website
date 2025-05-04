@@ -30,7 +30,7 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const [footerData, setFooterData] = useState<FooterData | null>(null);
+  const [footerData, setFooterData] = useState<FooterData | undefined>(undefined);
   const router = useRouter();
   const currentLocale = router.locale || 'en';
 

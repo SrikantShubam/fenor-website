@@ -1,5 +1,7 @@
 ---
-title: boys bitch
+title: Homepage fenor
+seo:
+  title: 'HomePage '
 blocks:
   - content: |
       Bienvenue sur notre site web.

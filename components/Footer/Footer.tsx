@@ -396,7 +396,7 @@ const Footer: React.FC<{ footerData?: FooterData }> = ({ footerData }) => {
       initial="hidden"
       animate="visible"
       variants={fadeIn}
-      className="text-white border-t border-[#EBBA7F]"
+      className="text-white border-t border-[#EBBA7F] mt-20"
     >
       {/* Top Section */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }} className="pt-4 mb-8">
@@ -420,7 +420,7 @@ const Footer: React.FC<{ footerData?: FooterData }> = ({ footerData }) => {
         <div className="grid grid-cols-1 md:grid-cols-[4fr_2fr_2fr_2fr] gap-10 mb-8">
           {/* Description */}
           <motion.div variants={fadeIn} className="text-left">
-            <p className="text-[13px] md:text-[19px] font-normal mb-4">{footerData.description || ''}</p>
+            <p className="text-[13px] md:text-[19px] font-normal mb-4 ">{footerData.description || ''}</p>
           </motion.div>
 
           {/* Quick Links */}

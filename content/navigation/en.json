@@ -1,35 +1,34 @@
-
 {
-    "items": [
-      {
-        "label": "Members",
-        "url": "/en/members",
-        "isDropdown": false
-      },
-      {
-        "label": "About Us",
-        "url": "/en/about-us",
-        "isDropdown": false
-      },
-      {
-        "label": "ESG",
-        "url": "/en/esg",
-        "isDropdown": false
-      },
-      {
-        "label": "Press",
-        "url": "/en/press",
-        "isDropdown": false
-      },
-      {
-        "label": "Contact Us",
-        "url": "/en/contact",
-        "isDropdown": false
-      },
-      {
-        "label": "Invest",
-        "url": "/en/invest",
-        "isDropdown": true
-      }
-    ]
-  }
+  "items": [
+    {
+      "label": "Members",
+      "url": "/en/members",
+      "isDropdown": false
+    },
+    {
+      "label": "About Us",
+      "url": "/about",
+      "isDropdown": false
+    },
+    {
+      "label": "ESG",
+      "url": "/en/esg",
+      "isDropdown": false
+    },
+    {
+      "label": "Press",
+      "url": "/en/press",
+      "isDropdown": false
+    },
+    {
+      "label": "Contact Us",
+      "url": "/en/contact",
+      "isDropdown": false
+    },
+    {
+      "label": "Invest",
+      "url": "/en/invest",
+      "isDropdown": true
+    }
+  ]
+}

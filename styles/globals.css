@@ -29,7 +29,22 @@
   --form-radius: 30px;
   --card-border-width: 3px;
 }
+.video-container {
+  width: 100%;
+}
+video {
+  width: 100%;
+}
+::selection {
+  background-color: #EBBA7F;
+  color: #021324;
+}
 
+/* Firefox needs its own prefix */
+::-moz-selection {
+  background-color: #EBBA7F;
+  color: #021324;
+}
 @layer base {
   body {
     @apply bg-background text-text font-sans;

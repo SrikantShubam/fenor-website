@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "cross-env TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev --turbopack\"",
-
     "build": "dotenv -e .env.local -- tinacms build && next build",
     "build:tina": "dotenv -e .env.local -- tinacms build",
     "start": "next start",
@@ -15,11 +14,14 @@
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/postcss": "^4.1.5",
     "@tinacms/cli": "^1.9.5",
     "axios": "^1.9.0",
     "font-awesome": "^4.7.0",
     "framer-motion": "^12.9.4",
+    "gsap": "^3.13.0",
+    "motion": "^12.9.4",
     "next": "15.3.1",
     "next-i18next": "^15.4.2",
     "next-seo": "^6.6.0",

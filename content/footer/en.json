@@ -3,7 +3,7 @@
   "quickLinks": [
     {
       "label": "Contact Us",
-      "url": "/en/contact"
+      "url": "contact"
     },
     {
       "label": "Investor Center",
@@ -21,7 +21,7 @@
   "aboutUs": [
     {
       "label": "History",
-      "url": "/en/history"
+      "url": "history"
     },
     {
       "label": "Our Management",

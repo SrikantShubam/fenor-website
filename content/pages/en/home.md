@@ -1,5 +1,5 @@
 ---
-title: boys bitch
+title: Home Page
 blocks:
   - bigHeading: Organization - Development - Sustainability
     smallHeading: >-

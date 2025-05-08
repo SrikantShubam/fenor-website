@@ -5,7 +5,8 @@ blocks:
     smallHeading: >-
       Years of leadership in organizing and developing the artisanal and
       semi-industrial mining sector in Mauritania
-    video: 'http://localhost:3000/draft homefront video .mp4'
+    video: >-
+      https://assets.tina.io/0f5ed42e-063d-477a-93a5-ca99a6aba7d7/draft%20homefront%20video%20.mp4
     _template: textwVideo
   - smallHeading: Who We Are
     bigHeading: The Backbone of a Structured and United Gold Industry

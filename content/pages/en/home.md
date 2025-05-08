@@ -35,7 +35,7 @@ blocks:
       FENOR has worked to establish its position as a key player in the
       artisanal and semi-industrial mining sector
     cards:
-      - image: /images__9_-removebg-preview 1.png
+      - image: /images__9_-removebg-preview%201.png
         alt: Mauritanides
       - image: /logo-joomany3 1.png
         alt: Joumany Mining

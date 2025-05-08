@@ -1,4 +1,3 @@
-
 import { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
@@ -7,6 +6,9 @@ const nextConfig: NextConfig = {
     defaultLocale: 'en',
   },
   reactStrictMode: true,
+  images: {
+    domains: ['assets.tina.io'],
+  },
 };
 
 export default nextConfig;

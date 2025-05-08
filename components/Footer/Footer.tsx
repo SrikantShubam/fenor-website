@@ -502,7 +502,7 @@ const Footer: React.FC<{ footerData?: FooterData }> = ({ footerData }) => {
         </p>
         <div className="flex items-center gap-3">
           <Link
-            href="https://agency10169.com"
+            href="https://api.whatsapp.com/send?phone=916202130675&text=Hey%20liked%20your%20work%20with%20FENOR%2C%20can%20we%20connect%20%3F"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[12px] md:text-[14px] font-medium text-gray-200 hover:text-[#EBBA7F] transition-colors duration-300 no-underline"

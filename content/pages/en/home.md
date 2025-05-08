@@ -1,7 +1,5 @@
 ---
-title: Home Page
-seo:
-  title: Homepage en
+title: boys bitch
 blocks:
   - bigHeading: Organization - Development - Sustainability
     smallHeading: >-

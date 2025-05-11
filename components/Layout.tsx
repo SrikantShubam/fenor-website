@@ -465,13 +465,35 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div className={`${styles.layoutContainer} flex flex-col min-h-screen`} dir={textDirection}>
-      <DefaultSeo
+     <DefaultSeo
         titleTemplate="%s | FENOR"
         defaultTitle="FENOR"
         description="Welcome to FENOR, the Fédération Nationale des Usines d'Or."
-        openGraph={{ type: 'website', locale: currentLocale, url: 'https://www.mywebsite.com', site_name: 'FENOR' }}
+        openGraph={{ type: 'website', locale: currentLocale, url: 'https://www.fenor.org/', site_name: 'FENOR' }}
+        additionalLinkTags={[
+          {
+            rel: 'icon',
+            href: '/favicon.ico', // Primary favicon
+          },
+          {
+            rel: 'apple-touch-icon',
+            href: '/apple-touch-icon.png',
+            sizes: '180x180',
+          },
+          {
+            rel: 'icon',
+            type: 'image/png',
+            href: '/icon-192x192.png',
+            sizes: '192x192',
+          },
+          {
+            rel: 'icon',
+            type: 'image/png',
+            href: '/icon-512x512.png',
+            sizes: '512x512',
+          },
+        ]}
       />
-
       {/* Static header/nav */}
       <div className="relative z-20">
         <Header />

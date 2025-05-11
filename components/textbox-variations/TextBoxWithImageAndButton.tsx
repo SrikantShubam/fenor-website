@@ -21,19 +21,26 @@ const TextBoxWithImageAndButton: React.FC<TextBoxWithImageAndButtonProps> = ({
   buttonText,
   buttonUrl,
 }) => {
-  // Animation variants for text and button
+  // Animation variants for text elements
   const textVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut', delay: i * 0.2 },
+    }),
   };
 
   // Animation variants for image
   const imageVariants = {
-    hidden: { opacity: 0, x: 20 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: 'easeOut', delay: 0.2 } },
+    hidden: { opacity: 0, x: 20, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: { duration: 0.6, ease: 'easeOut', delay: 0.6 },
+    },
   };
-
-
 
   // Split smallHeading into words and handle last word coloring
   const renderSmallHeading = (text: string) => {
@@ -74,13 +81,12 @@ const TextBoxWithImageAndButton: React.FC<TextBoxWithImageAndButtonProps> = ({
           sm:basis-[58.3333%] /* 7fr of 12fr */
         "
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
         variants={{
-          hidden: { opacity: 0 },
           visible: {
-            opacity: 1,
             transition: {
-              staggerChildren: 0.2, // Stagger animations for children
+              staggerChildren: 0.2,
             },
           },
         }}
@@ -89,6 +95,7 @@ const TextBoxWithImageAndButton: React.FC<TextBoxWithImageAndButtonProps> = ({
           <motion.h3
             className="text-[19px] sm:text-[33px] font-bold"
             variants={textVariants}
+            custom={0}
           >
             {renderSmallHeading(smallHeading)}
           </motion.h3>
@@ -98,6 +105,7 @@ const TextBoxWithImageAndButton: React.FC<TextBoxWithImageAndButtonProps> = ({
           <motion.h2
             className="text-[28px] sm:text-[48px] font-semibold"
             variants={textVariants}
+            custom={1}
           >
             {bigHeading}
           </motion.h2>
@@ -107,13 +115,14 @@ const TextBoxWithImageAndButton: React.FC<TextBoxWithImageAndButtonProps> = ({
           <motion.div
             className="text-[13px] sm:text-[19px]"
             variants={textVariants}
+            custom={2}
           >
             <TinaMarkdown content={paragraph} />
           </motion.div>
         )}
 
         {buttonText && buttonUrl && (
-          <motion.div >
+          <motion.div variants={textVariants} custom={3}>
             <Button href={buttonUrl} className="w-[132px] text-center">
               {buttonText}
             </Button>
@@ -131,7 +140,8 @@ const TextBoxWithImageAndButton: React.FC<TextBoxWithImageAndButtonProps> = ({
             justify-end         /* push the img to the right edge */
           "
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
           variants={imageVariants}
         >
           <Image

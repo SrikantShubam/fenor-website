@@ -9,724 +9,6 @@
 
 // export default defineConfig({
 //   branch,
-
-//   // Get this from tina.io
-//   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-//   // Get this from tina.io
-//   token: process.env.TINA_TOKEN,
-
-//   build: {
-//     outputFolder: "admin",
-//     publicFolder: "public",
-//   },
-//   media: {
-//     tina: {
-//       mediaRoot: "",
-//       publicFolder: "public",
-//     },
-//   },
-//   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
-//   schema: {
-//     collections: [
-//       {
-//         name: "post",
-//         label: "Posts",
-//         path: "content/posts",
-//         fields: [
-//           {
-//             type: "string",
-//             name: "title",
-//             label: "Title",
-//             isTitle: true,
-//             required: true,
-//           },
-//           {
-//             type: "rich-text",
-//             name: "body",
-//             label: "Body",
-//             isBody: true,
-//           },
-//         ],
-//         ui: {
-//           // This is an DEMO router. You can remove this to fit your site
-//           router: ({ document }) => `/demo/blog/${document._sys.filename}`,
-//         },
-//       },
-//     ],
-//   },
-// });
-
-
-
-// import { defineConfig } from "tinacms";
-
-// // Your hosting provider likely exposes this as an environment variable
-// const branch =
-//   process.env.GITHUB_BRANCH ||
-//   process.env.VERCEL_GIT_COMMIT_REF ||
-//   process.env.HEAD ||
-//   "main";
-
-// export default defineConfig({
-//   branch,
-
-//   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-//   token:  process.env.TINA_TOKEN,
-
-//   build: {
-//     outputFolder: "admin",
-//     publicFolder: "public",
-//   },
-//   media: {
-//     tina: {
-//       mediaRoot: "",
-//       publicFolder: "public",
-//     },
-//   },
-//   schema: {
-//     collections: [
-//       {
-//         name: "pages",
-//         label: "Pages",
-//         path: "content/pages",
-//         i18n: true,
-//         fields: [
-//           {
-//             type: "string",
-//             name: "title",
-//             label: "Title",
-//             isTitle: true,
-//             required: true,
-//           },
-//           {
-//             type: "object",
-//             name: "blocks",
-//             label: "Page Blocks",
-//             list: true,
-//             templates: [
-//               {
-//                 name: "text",
-//                 label: "Text Block",
-//                 fields: [
-//                   {
-//                     type: "rich-text",
-//                     name: "content",
-//                     label: "Content",
-//                   },
-//                 ],
-//               },
-//               {
-//                 name: "image",
-//                 label: "Image Block",
-//                 fields: [
-//                   {
-//                     type: "image",
-//                     name: "src",
-//                     label: "Image",
-//                   },
-//                   {
-//                     type: "string",
-//                     name: "alt",
-//                     label: "Alt Text",
-//                   },
-//                 ],
-//               },
-//             ],
-//           },
-//         ],
-//         ui: {
-//           router: ({ document }) => {
-//             if (document._sys.filename === "home") {
-//               return `/${document._sys.locale}/`;
-//             } else {
-//               return `/${document._sys.locale}/${document._sys.filename}`;
-//             }
-//           },
-//         },
-//       },
-//     ],
-//   },
-// });
-
-
-
-
-
-
-
-
-
-
-// import { defineConfig } from "tinacms";
-
-// // Your hosting provider likely exposes this as an environment variable
-// const branch =
-//   process.env.GITHUB_BRANCH ||
-//   process.env.VERCEL_GIT_COMMIT_REF ||
-//   process.env.HEAD ||
-//   "main";
-
-// export default defineConfig({
-//   branch,
-
-//   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-//   token: process.env.TINA_TOKEN,
-
-//   build: {
-//     outputFolder: "admin",
-//     publicFolder: "public",
-//   },
-//   media: {
-//     tina: {
-//       mediaRoot: "",
-//       publicFolder: "public",
-//     },
-//   },
-//   schema: {
-//     collections: [
-//       {
-//         name: "pages",
-//         label: "Pages",
-//         path: "content/pages",
-//         i18n: true,
-//         fields: [
-//           {
-//             type: "string",
-//             name: "title",
-//             label: "Title",
-//             isTitle: true,
-//             required: true,
-//           },
-//           {
-//             type: "object",
-//             name: "seo",
-//             label: "SEO Settings",
-//             fields: [
-//               {
-//                 type: "string",
-//                 name: "title",
-//                 label: "Meta Title",
-//               },
-//               {
-//                 type: "string",
-//                 name: "description",
-//                 label: "Meta Description",
-//               },
-//               {
-//                 type: "string",
-//                 name: "keywords",
-//                 label: "Meta Keywords",
-//                 list: true,
-//               },
-//             ],
-//           },
-//           {
-//             type: "object",
-//             name: "blocks",
-//             label: "Page Blocks",
-//             list: true,
-//             templates: [
-//               {
-//                 name: "text",
-//                 label: "Text Block",
-//                 fields: [
-//                   {
-//                     type: "rich-text",
-//                     name: "content",
-//                     label: "Content",
-//                   },
-//                 ],
-//               },
-//               {
-//                 name: "image",
-//                 label: "Image Block",
-//                 fields: [
-//                   {
-//                     type: "image",
-//                     name: "src",
-//                     label: "Image",
-//                   },
-//                   {
-//                     type: "string",
-//                     name: "alt",
-//                     label: "Alt Text",
-//                   },
-//                 ],
-//               },
-//             ],
-//           },
-//         ],
-//         ui: {
-//           router: ({ document }) => {
-//             if (document._sys.filename === "home") {
-//               return `/${document._sys.locale}/`;
-//             } else {
-//               return `/${document._sys.locale}/${document._sys.filename}`;
-//             }
-//           },
-//         },
-//       },
-//     ],
-//   },
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { defineConfig } from "tinacms";
-
-// // Your hosting provider likely exposes this as an environment variable
-// const branch =
-//   process.env.GITHUB_BRANCH ||
-//   process.env.VERCEL_GIT_COMMIT_REF ||
-//   process.env.HEAD ||
-//   "main";
-
-// export default defineConfig({
-//   branch,
-
-//   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-//   token: process.env.TINA_TOKEN,
-
-//   build: {
-//     outputFolder: "admin",
-//     publicFolder: "public",
-//   },
-//   media: {
-//     tina: {
-//       mediaRoot: "",
-//       publicFolder: "public",
-//     },
-//   },
-//   schema: {
-//     collections: [
-//       {
-//         name: "pages",
-//         label: "Pages",
-//         path: "content/pages",
-//         i18n: true,
-//         fields: [
-//           {
-//             type: "string",
-//             name: "title",
-//             label: "Title",
-//             isTitle: true,
-//             required: true,
-//           },
-//           {
-//             type: "object",
-//             name: "seo",
-//             label: "SEO Settings",
-//             fields: [
-//               {
-//                 type: "string",
-//                 name: "title",
-//                 label: "Meta Title",
-//               },
-//               {
-//                 type: "string",
-//                 name: "description",
-//                 label: "Meta Description",
-//               },
-//               {
-//                 type: "string",
-//                 name: "keywords",
-//                 label: "Meta Keywords",
-//                 list: true,
-//               },
-//             ],
-//           },
-//           {
-//             type: "object",
-//             name: "blocks",
-//             label: "Page Blocks",
-//             list: true,
-//             templates: [
-//               {
-//                 name: "text",
-//                 label: "Text Block",
-//                 fields: [
-//                   {
-//                     type: "rich-text",
-//                     name: "content",
-//                     label: "Content",
-//                   },
-//                 ],
-//               },
-//               {
-//                 name: "image",
-//                 label: "Image Block",
-//                 fields: [
-//                   {
-//                     type: "image",
-//                     name: "src",
-//                     label: "Image",
-//                   },
-//                   {
-//                     type: "string",
-//                     name: "alt",
-//                     label: "Alt Text",
-//                   },
-//                 ],
-//               },
-//             ],
-//           },
-//         ],
-//         ui: {
-//           router: ({ document }) => {
-//             if (document._sys.filename === "home") {
-//               return `/${document._sys.locale}/`;
-//             } else {
-//               return `/${document._sys.locale}/${document._sys.filename}`;
-//             }
-//           },
-//         },
-//       },
-//       {
-//         name: "navigation",
-//         label: "Navigation",
-//         path: "content/navigation",
-//         i18n: true,
-//         format: "json", 
-//         fields: [
-//           {
-//             type: "object",
-//             name: "items",
-//             label: "Menu Items",
-//             list: true,
-//             fields: [
-//               {
-//                 type: "string",
-//                 name: "label",
-//                 label: "Label",
-//                 required: true,
-//               },
-//               {
-//                 type: "string",
-//                 name: "url",
-//                 label: "URL",
-//                 required: true,
-//               },
-//               {
-//                 type: "boolean",
-//                 name: "isDropdown",
-//                 label: "Is Dropdown",
-//               },
-//             ],
-//           },
-//         ],
-//       },
-//     ],
-//   },
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//works for footer and nav
-
-
-
-
-
-// import { defineConfig } from "tinacms";
-
-// // Your hosting provider likely exposes this as an environment variable
-// const branch =
-//   process.env.GITHUB_BRANCH ||
-//   process.env.VERCEL_GIT_COMMIT_REF ||
-//   process.env.HEAD ||
-//   "main";
-
-// export default defineConfig({
-//   branch,
-//   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-//   token: process.env.TINA_TOKEN,
-//   build: {
-//     outputFolder: "admin",
-//     publicFolder: "public",
-//   },
-//   media: {
-//     tina: {
-//       mediaRoot: "",
-//       publicFolder: "public",
-//     },
-//   },
-//   schema: {
-//     collections: [
-//       {
-//         name: "pages",
-//         label: "Pages",
-//         path: "content/pages",
-      
-//         fields: [
-//           {
-//             type: "string",
-//             name: "title",
-//             label: "Title",
-//             isTitle: true,
-//             required: true,
-//           },
-//           {
-//             type: "object",
-//             name: "seo",
-//             label: "SEO Settings",
-//             fields: [
-//               {
-//                 type: "string",
-//                 name: "title",
-//                 label: "Meta Title",
-//               },
-//               {
-//                 type: "string",
-//                 name: "description",
-//                 label: "Meta Description",
-//               },
-//               {
-//                 type: "string",
-//                 name: "keywords",
-//                 label: "Meta Keywords",
-//                 list: true,
-//               },
-//             ],
-//           },
-//           {
-//             type: "object",
-//             name: "blocks",
-//             label: "Page Blocks",
-//             list: true,
-//             templates: [
-//               {
-//                 name: "text",
-//                 label: "Text Block",
-//                 fields: [
-//                   {
-//                     type: "rich-text",
-//                     name: "content",
-//                     label: "Content",
-//                   },
-//                 ],
-//               },
-//               {
-//                 name: "image",
-//                 label: "Image Block",
-//                 fields: [
-//                   {
-//                     type: "image",
-//                     name: "src",
-//                     label: "Image",
-//                   },
-//                   {
-//                     type: "string",
-//                     name: "alt",
-//                     label: "Alt Text",
-//                   },
-//                 ],
-//               },
-//             ],
-//           },
-//         ],
-//         ui: {
-//           router: ({ document }) => {
-//             // `relativePath` is something like "en/home.md" or "fr/about.md"
-//             const [locale] = document._sys.relativePath.split('/');
-//             const basename = document._sys.filename; // "home" or "about", etc.
-        
-//             // special-case “home” to map to “/{locale}/” instead of “/{locale}/home”
-//             return basename === 'home'
-//               ? `/${locale}/`
-//               : `/${locale}/${basename}`;
-//           },
-//         },
-        
-//       },
-//       {
-//         name: "navigation",
-//         label: "Navigation",
-//         path: "content/navigation",
-     
-//         format: "json",
-//         fields: [
-//           {
-//             type: "object",
-//             name: "items",
-//             label: "Menu Items",
-//             list: true,
-//             fields: [
-//               {
-//                 type: "string",
-//                 name: "label",
-//                 label: "Label",
-//                 required: true,
-//               },
-//               {
-//                 type: "string",
-//                 name: "url",
-//                 label: "URL",
-//                 required: true,
-//               },
-//               {
-//                 type: "boolean",
-//                 name: "isDropdown",
-//                 label: "Is Dropdown",
-//               },
-//             ],
-//           },
-//         ],
-//       },
-//       {
-//         name: "footer",
-//         label: "Footer",
-//         path: "content/footer",
-//         format: "json",
-
-//         fields: [
-//           {
-//             type: "string",
-//             name: "description",
-//             label: "Description",
-//             ui: {
-//               component: "textarea",
-//             },
-//           },
-//           {
-//             type: "object",
-//             name: "quickLinks",
-//             label: "Quick Links",
-//             list: true,
-//             fields: [
-//               {
-//                 type: "string",
-//                 name: "label",
-//                 label: "Label",
-//                 required: true,
-//               },
-//               {
-//                 type: "string",
-//                 name: "url",
-//                 label: "URL",
-//                 required: true,
-//               },
-//             ],
-//           },
-//           {
-//             type: "object",
-//             name: "aboutUs",
-//             label: "About Us Links",
-//             list: true,
-//             fields: [
-//               {
-//                 type: "string",
-//                 name: "label",
-//                 label: "Label",
-//                 required: true,
-//               },
-//               {
-//                 type: "string",
-//                 name: "url",
-//                 label: "URL",
-//                 required: true,
-//               },
-//             ],
-//           },
-//           {
-//             type: "object",
-//             name: "importantLinks",
-//             label: "Important Links",
-//             list: true,
-//             fields: [
-//               {
-//                 type: "string",
-//                 name: "label",
-//                 label: "Label",
-//                 required: true,
-//               },
-//               {
-//                 type: "string",
-//                 name: "url",
-//                 label: "URL",
-//                 required: true,
-//               },
-//             ],
-//           },
-//           {
-//             type: "object",
-//             name: "socials",
-//             label: "Social Media",
-//             list: true,
-//             fields: [
-//               {
-//                 type: "string",
-//                 name: "name",
-//                 label: "Platform Name",
-//                 required: true,
-//               },
-//               {
-//                 type: "string",
-//                 name: "url",
-//                 label: "URL",
-//                 required: true,
-//               },
-//             ],
-//           },
-//         ],
-//       },
-//     ],
-//   },
-// });
-
-
-
-// tina/config.js
-
-// import { defineConfig } from "tinacms";
-
-// // Your hosting provider likely exposes this as an environment variable
-// const branch =
-//   process.env.GITHUB_BRANCH ||
-//   process.env.VERCEL_GIT_COMMIT_REF ||
-//   process.env.HEAD ||
-//   "main";
-
-// export default defineConfig({
-//   branch,
 //   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
 //   token: process.env.TINA_TOKEN,
 //   build: {
@@ -854,6 +136,28 @@
 //                 ],
 //               },
 //               {
+//                 name: "textImageCenter",
+//                 label: "Text Image Center",
+//                 fields: [
+//                   {
+//                     type: "image",
+//                     name: "image",
+//                     label: "Image",
+//                     description: "Upload or provide a URL to an image",
+//                   },
+//                   {
+//                     type: "string",
+//                     name: "bigHeading",
+//                     label: "Big Heading",
+//                   },
+//                   {
+//                     type: "rich-text",
+//                     name: "paragraph",
+//                     label: "Paragraph",
+//                   },
+//                 ],
+//               },
+//               {
 //                 name: "textBoxWithButton",
 //                 label: "Text Box with Button",
 //                 fields: [
@@ -901,43 +205,41 @@
 //                 ],
 //               },
 //               {
-          
-//                 label: 'Text with Image Background',
-//                 name: 'textWithImageBG',
+//                 label: "Text with Image Background",
+//                 name: "textWithImageBG",
 //                 fields: [
 //                   {
-//                     type: 'string',
-//                     label: 'Small Heading',
-//                     name: 'smallHeading',
+//                     type: "string",
+//                     label: "Small Heading",
+//                     name: "smallHeading",
 //                   },
 //                   {
-//                     type: 'string',
-//                     label: 'Big Heading',
-//                     name: 'bigHeading',
+//                     type: "string",
+//                     label: "Big Heading",
+//                     name: "bigHeading",
 //                   },
 //                   {
-//                     type: 'rich-text',
-//                     label: 'Paragraph',
-//                     name: 'paragraph',
+//                     type: "rich-text",
+//                     label: "Paragraph",
+//                     name: "paragraph",
 //                   },
 //                   {
-//                     type: 'string',
-//                     label: 'Button Text',
-//                     name: 'buttonText',
+//                     type: "string",
+//                     label: "Button Text",
+//                     name: "buttonText",
 //                   },
 //                   {
-//                     type: 'string',
-//                     label: 'Button URL',
-//                     name: 'buttonUrl',
+//                     type: "string",
+//                     label: "Button URL",
+//                     name: "buttonUrl",
 //                   },
 //                   {
-//                     type: 'image',
-//                     label: 'Background Image',
-//                     name: 'backgroundImage',
+//                     type: "image",
+//                     label: "Background Image",
+//                     name: "backgroundImage",
 //                   },
 //                 ],
 //               },
-              
 //               {
 //                 name: "textBoxWithList",
 //                 label: "Text Box with List",
@@ -1049,15 +351,134 @@
 //                     ],
 //                   },
 //                 ],
-//               }
+//               },
+//               {
+//                 name: "textwVideo",
+//                 label: "Text with Video",
+//                 fields: [
+//                   {
+//                     type: "string",
+//                     name: "bigHeading",
+//                     label: "Big Heading",
+//                   },
+//                   {
+//                     type: "string",
+//                     name: "smallHeading",
+//                     label: "Small Heading",
+//                   },
+//                   {
+//                     type: "string",
+//                     name: "video",
+//                     label: "Video",
+//                   },
+//                 ],
+//               },
+//               {
+//                 name: "contactUs",
+//                 label: "Contact Us Section",
+//                 fields: [
+//                   {
+//                     type: "string",
+//                     name: "header",
+//                     label: "Header",
+//                     description: "The main title, e.g., 'Contact Us'",
+//                   },
+//                   {
+//                             type: "string",
+//                     name: "paragraph",
+//                     label: "Paragraph",
+//                     description: "Introductory text, e.g., 'We’re here to help!'",
+//                        ui: { component: "textarea" }
+//                   },
+//                   {
+//                     type: "string",
+//                     name: "contactEmailLabel",
+//                     label: "Contact Email Label",
+//                     description: "Label for email, e.g., 'Email'",
+//                   },
+//                   {
+//                     type: "string",
+//                     name: "contactEmail",
+//                     label: "Contact Email",
+//                     description: "The email address, e.g., 'support@yourwebsite.com'",
+//                   },
+//                   {
+//                     type: "string",
+//                     name: "phoneLabel",
+//                     label: "Phone Label",
+//                     description: "Label for phone, e.g., 'Phone'",
+//                   },
+//                   {
+//                     type: "string",
+//                     name: "phoneNumber",
+//                     label: "Phone Number",
+//                     description: "The phone number, e.g., '+1-800-123-4567'",
+//                   },
+//                   {
+//                     type: "string",
+//                     name: "tagline",
+//                     label: "Tagline",
+//                     description: "A catchy phrase, e.g., 'We’ve got your back'",
+//                   },
+//                   {
+//                     type: "object",
+//                     name: "form",
+//                     label: "Form",
+//                     fields: [
+//                       {
+//                         type: "string",
+//                         name: "fullNameLabel",
+//                         label: "Full Name Label",
+//                         description: "e.g., 'Full Name'",
+//                       },
+//                       {
+//                         type: "string",
+//                         name: "fullNamePlaceholder",
+//                         label: "Full Name Placeholder",
+//                         description: "e.g., 'Enter your name'",
+//                       },
+//                       {
+//                         type: "string",
+//                         name: "emailLabel",
+//                         label: "Email Label",
+//                         description: "e.g., 'Email'",
+//                       },
+//                       {
+//                         type: "string",
+//                         name: "emailPlaceholder",
+//                         label: "Email Placeholder",
+//                         description: "e.g., 'Enter your email'",
+//                       },
+//                       {
+//                         type: "string",
+//                         name: "messageLabel",
+//                         label: "Message Label",
+//                         description: "e.g., 'How can we help you?'",
+//                       },
+//                       {
+//                         type: "string",
+//                         name: "messagePlaceholder",
+//                         label: "Message Placeholder",
+//                         description: "e.g., 'Type your message here'",
+//                       },
+//                       {
+//                         type: "string",
+//                         name: "sendButton",
+//                         label: "Send Button",
+//                         description: "e.g., 'Send'",
+//                       },
+//                     ],
+//                   },
+//                 ],
+//               },
 //             ],
 //           },
 //         ],
 //         ui: {
 //           router: ({ document }) => {
-//             const [locale] = document._sys.relativePath.split('/');
+//             const [locale] = document._sys.relativePath.split("/");
 //             const basename = document._sys.filename;
-//             return basename === 'home'
+//             return basename === "home"
 //               ? `/${locale}/`
 //               : `/${locale}/${basename}`;
 //           },
@@ -1096,7 +517,6 @@
 //           },
 //         ],
 //       },
-      
 //       {
 //         name: "footer",
 //         label: "Footer",
@@ -1196,6 +616,14 @@
 //     ],
 //   },
 // });
+
+
+
+
+
+
+
+
 
 
 
@@ -1336,30 +764,28 @@ export default defineConfig({
                   },
                 ],
               },
-                // Add TextImageCenter template
-                {
-                  name: 'textImageCenter',
-                  label: 'Text Image Center',
-                  fields: [
-                    {
-                      type: 'image',
-                      name: 'image',
-                      label: 'Image',
-                      
-                      description: 'Upload or provide a URL to an image',
-                    },
-                    {
-                      type: 'string',
-                      name: 'bigHeading',
-                      label: 'Big Heading',
-                    },
-                    {
-                      type: 'rich-text',
-                      name: 'paragraph',
-                      label: 'Paragraph',
-                    },
-                  ],
-                },
+              {
+                name: "textImageCenter",
+                label: "Text Image Center",
+                fields: [
+                  {
+                    type: "image",
+                    name: "image",
+                    label: "Image",
+                    description: "Upload or provide a URL to an image",
+                  },
+                  {
+                    type: "string",
+                    name: "bigHeading",
+                    label: "Big Heading",
+                  },
+                  {
+                    type: "rich-text",
+                    name: "paragraph",
+                    label: "Paragraph",
+                  },
+                ],
+              },
               {
                 name: "textBoxWithButton",
                 label: "Text Box with Button",
@@ -1570,10 +996,107 @@ export default defineConfig({
                     label: "Small Heading",
                   },
                   {
-                    type: "string",  // Store video path as a string
+                    type: "string",
                     name: "video",
                     label: "Video",
-                  
+                  },
+                ],
+              },
+              {
+                name: "contactUs",
+                label: "Contact Us Section",
+                fields: [
+                  {
+                    type: "string",
+                    name: "header",
+                    label: "Header",
+                    description: "The main title, e.g., 'Contact Us'",
+                  },
+                  {
+                    type: "string",
+                    name: "introText",
+                    label: "Introductory Text",
+                    description: "Introductory text, e.g., 'We’re here to help!'",
+                    ui: { component: "textarea" }
+                  },
+                  {
+                    type: "string",
+                    name: "contactEmailLabel",
+                    label: "Contact Email Label",
+                    description: "Label for email, e.g., 'Email'",
+                  },
+                  {
+                    type: "string",
+                    name: "contactEmail",
+                    label: "Contact Email",
+                    description: "The email address, e.g., 'support@yourwebsite.com'",
+                  },
+                  {
+                    type: "string",
+                    name: "phoneLabel",
+                    label: "Phone Label",
+                    description: "Label for phone, e.g., 'Phone'",
+                  },
+                  {
+                    type: "string",
+                    name: "phoneNumber",
+                    label: "Phone Number",
+                    description: "The phone number, e.g., '+1-800-123-4567'",
+                  },
+                  {
+                    type: "string",
+                    name: "tagline",
+                    label: "Tagline",
+                    description: "A catchy phrase, e.g., 'We’ve got your back'",
+                  },
+                  {
+                    type: "object",
+                    name: "form",
+                    label: "Form",
+                    fields: [
+                      {
+                        type: "string",
+                        name: "fullNameLabel",
+                        label: "Full Name Label",
+                        description: "e.g., 'Full Name'",
+                      },
+                      {
+                        type: "string",
+                        name: "fullNamePlaceholder",
+                        label: "Full Name Placeholder",
+                        description: "e.g., 'Enter your name'",
+                      },
+                      {
+                        type: "string",
+                        name: "emailLabel",
+                        label: "Email Label",
+                        description: "e.g., 'Email'",
+                      },
+                      {
+                        type: "string",
+                        name: "emailPlaceholder",
+                        label: "Email Placeholder",
+                        description: "e.g., 'Enter your email'",
+                      },
+                      {
+                        type: "string",
+                        name: "messageLabel",
+                        label: "Message Label",
+                        description: "e.g., 'How can we help you?'",
+                      },
+                      {
+                        type: "string",
+                        name: "messagePlaceholder",
+                        label: "Message Placeholder",
+                        description: "e.g., 'Type your message here'",
+                      },
+                      {
+                        type: "string",
+                        name: "sendButton",
+                        label: "Send Button",
+                        description: "e.g., 'Send'",
+                      },
+                    ],
                   },
                 ],
               },

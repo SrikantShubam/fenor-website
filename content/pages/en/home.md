@@ -5,8 +5,7 @@ blocks:
     smallHeading: >-
       Years of leadership in organizing and developing the artisanal and
       semi-industrial mining sector in Mauritania
-    video: >-
-      https://assets.tina.io/0f5ed42e-063d-477a-93a5-ca99a6aba7d7/draft%20homefront%20video%20.mp4
+    video: 'http://localhost:3000/Sequence 02.mp4'
     _template: textwVideo
   - smallHeading: Who We Are
     bigHeading: The Backbone of a Structured and United Gold Industry
@@ -90,5 +89,23 @@ blocks:
     buttonUrl: /en/invest
     backgroundImage: /unsplash_Mk2ls9UBO2E.png
     _template: textWithImageBG
+  - header: Get in - touch with us
+    introText: >-
+      Have questions or want to learn more about FENOR? Reach out to us—we’re
+      here to help
+    contactEmailLabel: 'Email:'
+    contactEmail: info@fenor.org
+    phoneLabel: 'Phone :'
+    phoneNumber: '22650000'
+    tagline: 'Available Monday to Friday , 9 AM - 5 PM GMT'
+    form:
+      fullNameLabel: Full Name
+      fullNamePlaceholder: Enter your full name
+      emailLabel: Email
+      emailPlaceholder: Enter your email address
+      messageLabel: How can we help you ?
+      messagePlaceholder: Enter your message........
+      sendButton: Send Message
+    _template: contactUs
 ---
 

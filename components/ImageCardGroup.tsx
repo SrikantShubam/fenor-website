@@ -427,6 +427,124 @@
 
 
 
+// import React, { useState, useEffect } from 'react';
+// import { motion } from 'framer-motion';
+// import Image from 'next/image';
+
+// const containerVariants = {
+//   hidden: { opacity: 0 },
+//   visible: {
+//     opacity: 1,
+//     transition: { staggerChildren: 0.2 },
+//   },
+// };
+
+// const cardVariants = {
+//   hidden: { opacity: 0, y: 20 },
+//   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+// };
+
+// const ImageCardGroup = ({ heading, cards }) => {
+//   const [isMobile, setIsMobile] = useState(false);
+//   const [currentIndex, setCurrentIndex] = useState(0);
+//   const [isClient, setIsClient] = useState(false);
+
+//   useEffect(() => {
+//     setIsClient(true);
+//   }, []);
+
+//   useEffect(() => {
+//     const handleResize = () => setIsMobile(window.innerWidth < 640);
+//     handleResize();
+//     window.addEventListener('resize', handleResize);
+//     return () => window.removeEventListener('resize', handleResize);
+//   }, []);
+
+//   useEffect(() => {
+//     if (isMobile && cards.length > 1) {
+//       const interval = setInterval(() => {
+//         setCurrentIndex((prevIndex) => (prevIndex + 1) % cards.length);
+//       }, 3000);
+//       return () => clearInterval(interval);
+//     }
+//   }, [isMobile, cards]);
+
+//   if (!cards || cards.length === 0 || !isClient) return null;
+
+//   return (
+//     <div>
+//       <h2 className="text-[19px] md:text-[33px] text-center md:mx-20 mx-2 font-medium md:mb-[40px] mb-[30px]">
+//         {heading}
+//       </h2>
+
+//       {isMobile ? (
+//         <div className="relative w-full flex flex-col items-center">
+//           <div className="h-[170px] flex justify-center items-center">
+//             <div className="bg-[#000B18] border-[3px] border-[#FFD550] rounded-[20px] p-[15px] w-[170px] h-[170px] flex items-center justify-center">
+//               <div className="relative w-[120px] h-[120px]">
+//                 <Image
+//                   src={cards[currentIndex].image}
+//                   alt={cards[currentIndex].alt}
+//                   fill
+//                   priority
+//                   className="object-cover"
+//                   onError={() => console.error('Image failed to load:', cards[currentIndex].image)}
+//                 />
+//               </div>
+//             </div>
+//           </div>
+//           {cards.length > 1 && (
+//             <div className="mt-4 flex justify-center space-x-2">
+//               {cards.map((_, index) => (
+//                 <button
+//                   key={index}
+//                   className={`w-2 h-2 rounded-full ${currentIndex === index ? 'bg-[#FFD550]' : 'bg-gray-400'}`}
+//                   onClick={() => setCurrentIndex(index)}
+//                   aria-label={`Go to slide ${index + 1}`}
+//                 />
+//               ))}
+//             </div>
+//           )}
+//         </div>
+//       ) : (
+//         <motion.div
+//           className="flex flex-col sm:flex-row sm:justify-center gap-[22px] sm:gap-[128px]"
+//           variants={containerVariants}
+//           initial="hidden"
+//           animate="visible"
+//         >
+//           {cards.map((card, index) => (
+//             <motion.div
+//               key={index}
+//               className="bg-[#000B18] border-[3px] border-[#FFD550] rounded-[20px] p-[15px] sm:p-[20px] w-[170px] h-[170px] flex items-center justify-center"
+//               variants={cardVariants}
+//             >
+//               <div className="relative w-[120px] h-[120px]">
+//                 <Image
+//                   src={card.image}
+//                   alt={card.alt}
+//                   fill
+//                   sizes="120px"
+//                   className="object-cover"
+//                 />
+//               </div>
+//             </motion.div>
+//           ))}
+//         </motion.div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default ImageCardGroup;
+
+
+
+
+
+
+
+
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -471,16 +589,45 @@ const ImageCardGroup = ({ heading, cards }) => {
 
   if (!cards || cards.length === 0 || !isClient) return null;
 
-  return (
-    <div>
-      <h2 className="text-[19px] md:text-[33px] text-center md:mx-20 mx-2 font-medium md:mb-[40px] mb-[30px]">
-        {heading}
-      </h2>
+  // Heading animation variants for the entire heading
+  const headingVariants = {
+    hidden: { opacity: 0, y: 30, filter: 'blur(12px)' },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] },
+    },
+  };
 
+  return (
+    <div className="relative">
+      {/* Heading with Cinematic Animation */}
+      {heading && (
+        <motion.h2
+          variants={headingVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="text-[19px] md:text-[33px] text-center md:mx-20 mx-2 font-medium md:mb-[40px] mb-[30px] relative"
+        >
+          {heading}
+        
+        </motion.h2>
+      )}
+
+      {/* Mobile View: Carousel */}
       {isMobile ? (
         <div className="relative w-full flex flex-col items-center">
           <div className="h-[170px] flex justify-center items-center">
-            <div className="bg-[#000B18] border-[3px] border-[#FFD550] rounded-[20px] p-[15px] w-[170px] h-[170px] flex items-center justify-center">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.5 }}
+              className="bg-[#000B18] border-[3px] border-[#FFD550] rounded-[20px] p-[15px] w-[170px] h-[170px] flex items-center justify-center"
+            >
               <div className="relative w-[120px] h-[120px]">
                 <Image
                   src={cards[currentIndex].image}
@@ -491,7 +638,7 @@ const ImageCardGroup = ({ heading, cards }) => {
                   onError={() => console.error('Image failed to load:', cards[currentIndex].image)}
                 />
               </div>
-            </div>
+            </motion.div>
           </div>
           {cards.length > 1 && (
             <div className="mt-4 flex justify-center space-x-2">
@@ -507,6 +654,7 @@ const ImageCardGroup = ({ heading, cards }) => {
           )}
         </div>
       ) : (
+        /* Desktop View: Card Grid */
         <motion.div
           className="flex flex-col sm:flex-row sm:justify-center gap-[22px] sm:gap-[128px]"
           variants={containerVariants}
@@ -518,6 +666,7 @@ const ImageCardGroup = ({ heading, cards }) => {
               key={index}
               className="bg-[#000B18] border-[3px] border-[#FFD550] rounded-[20px] p-[15px] sm:p-[20px] w-[170px] h-[170px] flex items-center justify-center"
               variants={cardVariants}
+              whileHover={{ scale: 1.05, boxShadow: '0 0 15px rgba(255, 213, 80, 0.5)' }}
             >
               <div className="relative w-[120px] h-[120px]">
                 <Image
@@ -531,6 +680,7 @@ const ImageCardGroup = ({ heading, cards }) => {
             </motion.div>
           ))}
         </motion.div>
+        
       )}
     </div>
   );

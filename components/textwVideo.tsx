@@ -24,7 +24,7 @@ const TextWithVideo: React.FC<TextWithVideoProps> = ({ bigHeading, smallHeading,
       {video && (
         <video
           ref={videoRef}
-          className="w-[373px] h-[206px] md:w-[727px] md:h-[350px] lg:w-[1181px] lg:h-[452px] rounded-[20px] mt-10 object-cover"
+          className="w-[370px] h-[206px] md:w-[727px] md:h-[350px] lg:w-[1200px] lg:h-[500px] rounded-[20px] mt-10 object-cover"
           loop
           muted
           playsInline

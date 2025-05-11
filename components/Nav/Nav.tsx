@@ -2271,6 +2271,431 @@
 
 
 
+// not sticky nav ( down below )
+
+
+
+
+
+// "use client";
+
+// import React, { useState, useRef, useEffect } from 'react';
+// import Link from 'next/link';
+// import { useRouter } from 'next/router';
+// import Image from 'next/image';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import {
+//   faBars,
+//   faTimes,
+//   faChevronDown,
+//   faChevronUp,
+//   faArrowLeft,
+//   faChevronRight,
+// } from '@fortawesome/free-solid-svg-icons';
+// import { motion } from 'framer-motion';
+// import styles from './nav.module.css';
+// import GoldButton from '../GoldButton';
+
+// type Locale = 'en' | 'fr' | 'ar';
+
+// interface NavItem {
+//   label: string;
+//   url: string;
+//   isDropdown?: boolean;
+// }
+
+// interface InvestItem {
+//   href: string;
+//   label: string;
+// }
+
+// // Now strongly typed: keys must be one of our Locale literals
+// const INVEST_DROPDOWN_ITEMS: Record<Locale, InvestItem[]> = {
+//   en: [
+//     { href: '/en/invest/stocks', label: 'Stocks' },
+//     { href: '/en/invest/bonds', label: 'Bonds' },
+//     { href: '/en/invest/real-estate', label: 'Real Estate' },
+//   ],
+//   fr: [
+//     { href: '/fr/invest/stocks', label: 'Actions' },
+//     { href: '/fr/invest/bonds', label: 'Obligations' },
+//     { href: '/fr/invest/real-estate', label: 'Immobilier' },
+//   ],
+//   ar: [
+//     { href: '/ar/invest/stocks', label: 'الأسهم' },
+//     { href: '/ar/invest/bonds', label: 'السندات' },
+//     { href: '/ar/invest/real-estate', label: 'العقارات' },
+//   ],
+// };
+
+// const LANG_DROPDOWN_ITEMS = [
+//   { href: '/', label: 'English', locale: 'en' },
+//   { href: '/', label: 'Français', locale: 'fr' },
+//   { href: '/', label: 'العربية', locale: 'ar' },
+// ] as const;
+
+// const navVariants = {
+//   hidden: { opacity: 0, y: -20 },
+//   visible: { opacity: 1, y: 0, transition: { when: 'beforeChildren', staggerChildren: 0.1 } },
+// };
+// const itemVariants = {
+//   hidden: { opacity: 0, y: -10 },
+//   visible: { opacity: 1, y: 0 },
+// };
+// const dropdownVariants = {
+//   hidden: { opacity: 0, scale: 0.95 },
+//   visible: { opacity: 1, scale: 1, transition: { duration: 0.2 } },
+// };
+
+// const Nav: React.FC = () => {
+//   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+//   const [isInvestOpen, setIsInvestOpen] = useState(false);
+//   const [isLangOpen, setIsLangOpen] = useState(false);
+//   const [isInvestMenuOpen, setIsInvestMenuOpen] = useState(false);
+//   const [navItems, setNavItems] = useState<NavItem[]>([]);
+
+//   const router = useRouter();
+//   // Narrow the locale into our allowed set; default to 'en' if it isn't one of them
+//   const rawLocale = router.locale ?? 'en';
+//   const currentLocale = (['en', 'fr', 'ar'].includes(rawLocale) ? rawLocale : 'en') as Locale;
+
+//   const investRef = useRef<HTMLDivElement>(null);
+//   const langRef = useRef<HTMLDivElement>(null);
+
+//   // Fetch navigation items via TinaCMS GraphQL client
+//   useEffect(() => {
+//     const fetchNavItems = async () => {
+//       try {
+//         const { client } = await import('../../tina/__generated__/client');
+//         const navData = await client.queries.navigation({
+//           relativePath: `${currentLocale}.json`,
+//         });
+//         const items = (navData?.data?.navigation?.items || [])
+//           .filter(item => item !== null)
+//           .map(item => ({
+//             label: item!.label,
+//             url: item!.url,
+//             isDropdown: Boolean(item!.isDropdown),
+//           })) as NavItem[];
+//         setNavItems(items);
+//       } catch {
+//         setNavItems([]);
+//       }
+//     };
+//     fetchNavItems();
+//   }, [currentLocale]);
+
+//   // Close dropdowns on outside click
+//   useEffect(() => {
+//     const handler = (e: MouseEvent) => {
+//       if (investRef.current && !investRef.current.contains(e.target as Node)) {
+//         setIsInvestOpen(false);
+//       }
+//       if (langRef.current && !langRef.current.contains(e.target as Node)) {
+//         setIsLangOpen(false);
+//       }
+//     };
+//     document.addEventListener('mousedown', handler);
+//     return () => document.removeEventListener('mousedown', handler);
+//   }, []);
+
+//   const toggleInvest = () => {
+//     setIsInvestOpen(o => !o);
+//     setIsLangOpen(false);
+//   };
+//   const toggleLang = () => {
+//     setIsLangOpen(o => !o);
+//     setIsInvestOpen(false);
+//   };
+
+//   // Index into our typed record with a Locale
+//   const investDropdownItems = INVEST_DROPDOWN_ITEMS[currentLocale];
+
+//   return (
+//     <motion.nav
+//       dir={currentLocale === 'ar' ? 'rtl' : 'ltr'}
+//       className="bg-background text-text font-sans overflow-visible"
+//       initial="hidden"
+//       animate="visible"
+//       variants={navVariants}
+//     >
+//       {/* Top bar */}
+//       <motion.div className="flex justify-between items-center py-4 overflow-visible" variants={itemVariants}>
+//         {/* Logo */}
+//         <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }}>
+//           <Link href={`/${currentLocale}`} className={styles.logo}>
+//             <div className="flex items-center space-x-2">
+//               <div className="relative w-[30px] h-[30px] md:w-[54px] md:h-[54px]">
+//                 <Image src="/fenor-logo.png" alt="FENOR logo" width={54} height={54} />
+//               </div>
+//               <span>FENOR</span>
+//             </div>
+//           </Link>
+//         </motion.div>
+
+//         {/* Desktop nav items */}
+//         <motion.div className="hidden lg:flex items-center space-x-8 whitespace-nowrap overflow-visible">
+//           {navItems.map((link, idx) => (
+//             <motion.div key={idx} variants={itemVariants} whileHover={{ y: -2 }}>
+//               {link.isDropdown ? (
+//                 <div ref={investRef} className="relative">
+//                   <button
+//                     className={styles.menuItem}
+//                     onClick={toggleInvest}
+//                     aria-expanded={isInvestOpen}
+//                   >
+//                     {link.label}{' '}
+//                     <FontAwesomeIcon icon={isInvestOpen ? faChevronUp : faChevronDown} />
+//                   </button>
+//                   <motion.div
+//                     className={`${styles.dropdown} ${isInvestOpen ? styles.show : ''}`}
+//                     initial="hidden"
+//                     animate={isInvestOpen ? 'visible' : 'hidden'}
+//                     variants={dropdownVariants}
+//                   >
+//                     {investDropdownItems.map(item => (
+//                       <Link
+//                         key={item.href}
+//                         href={item.href}
+//                         className={styles.dropdownItem}
+//                         onClick={() => setIsInvestOpen(false)}
+//                       >
+//                         {item.label}
+//                       </Link>
+//                     ))}
+//                   </motion.div>
+//                 </div>
+//               ) : (
+//                 <Link
+//                   href={link.url}
+//                   className={`${styles.menuItem} ${
+//                     router.pathname === link.url ? styles.active : ''
+//                   }`}
+//                 >
+//                   {link.label}
+//                 </Link>
+//               )}
+//             </motion.div>
+//           ))}
+
+//           {/* Language selector */}
+//           <motion.div ref={langRef} variants={itemVariants} whileHover={{ y: -2 }}>
+//             <button
+//               className={`${styles.menuItem} ${styles.selected}`}
+//               onClick={toggleLang}
+//               aria-expanded={isLangOpen}
+//             >
+//               {currentLocale.toUpperCase()}{' '}
+//               <FontAwesomeIcon icon={isLangOpen ? faChevronUp : faChevronDown} />
+//             </button>
+//             <motion.div
+//               className={`${styles.dropdown} ${isLangOpen ? styles.show : ''}`}
+//               initial="hidden"
+//               animate={isLangOpen ? 'visible' : 'hidden'}
+//               variants={dropdownVariants}
+//             >
+//               {LANG_DROPDOWN_ITEMS.map(item => (
+//                 <Link
+//                   key={item.locale}
+//                   href={router.asPath}
+//                   locale={item.locale}
+//                   className={styles.dropdownItem}
+//                   onClick={() => setIsLangOpen(false)}
+//                 >
+//                   {item.label}
+//                 </Link>
+//               ))}
+//             </motion.div>
+//           </motion.div>
+
+//           {/* CTA button */}
+//           <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }}>
+//             <GoldButton />
+//           </motion.div>
+//         </motion.div>
+
+//         {/* Mobile menu toggle */}
+//         <motion.button
+//           className="block lg:hidden text-text focus:outline-none"
+//           onClick={() => setIsMobileMenuOpen(true)}
+//           aria-label="Toggle menu"
+//           variants={itemVariants}
+//           whileHover={{ scale: 1.1 }}
+//         >
+//           <FontAwesomeIcon icon={faBars} />
+//         </motion.button>
+//       </motion.div>
+
+//       {/* Mobile overlay */}
+//       {isMobileMenuOpen && (
+//         <div className={styles.mobileMenuOverlay}>
+//           {/* Main mobile menu */}
+//           <motion.div
+//             className={styles.mainMenu}
+//             initial={{ x: '-100%' }}
+//             animate={{ x: 0 }}
+//             transition={{ duration: 0.3 }}
+//           >
+//             <div className={styles.mobileMenuHeader}>
+//               <Link href={`/${currentLocale}`} className={styles.logo}>
+//                 <div className="flex items-center space-x-2">
+//                   <div className="relative w-[30px] h-[30px]">
+//                     <Image src="/fenor-logo.png" alt="FENOR logo" width={30} height={30} />
+//                   </div>
+//                   <span>FENOR</span>
+//                 </div>
+//               </Link>
+//               <button
+//                 className={styles.closeButton}
+//                 onClick={() => {
+//                   setIsMobileMenuOpen(false);
+//                   setIsInvestMenuOpen(false);
+//                 }}
+//                 aria-label="Close menu"
+//               >
+//                 <FontAwesomeIcon icon={faTimes} />
+//               </button>
+//             </div>
+//             <div className={styles.mobileMenuItems}>
+//               {navItems.map((link, idx) => (
+//                 <React.Fragment key={idx}>
+//                   {link.isDropdown ? (
+//                     <button
+//                       className={styles.mobileMenuItem}
+//                       onClick={() => setIsInvestMenuOpen(true)}
+//                     >
+//                       {link.label}{' '}
+//                       <FontAwesomeIcon icon={faChevronRight} className="ml-2" />
+//                     </button>
+//                   ) : (
+//                     <Link
+//                       href={link.url}
+//                       className={styles.mobileMenuItem}
+//                       onClick={() => setIsMobileMenuOpen(false)}
+//                     >
+//                       {link.label}
+//                     </Link>
+//                   )}
+//                 </React.Fragment>
+//               ))}
+//             </div>
+//             <div className="mt-4">
+//               <div className={styles.langButtons}>
+//                 {LANG_DROPDOWN_ITEMS.map(item => (
+//                   <Link
+//                     key={item.locale}
+//                     href={router.asPath}
+//                     locale={item.locale}
+//                     className={`${styles.langButton} ${
+//                       currentLocale === item.locale ? styles.activeLang : ''
+//                     }`}
+//                     onClick={() => setIsMobileMenuOpen(false)}
+//                   >
+//                     {item.locale.toUpperCase()}
+//                   </Link>
+//                 ))}
+//               </div>
+//               <GoldButton className="mt-4 w-full" />
+//             </div>
+//           </motion.div>
+
+//           {/* Invest submenu */}
+//           <motion.div
+//             className={styles.investMenu}
+//             initial={{ x: '100%' }}
+//             animate={{ x: isInvestMenuOpen ? 0 : '100%' }}
+//             transition={{ duration: 0.3 }}
+//           >
+//             <div className={styles.investMenuHeader}>
+//               <div className="flex items-center space-x-2">
+//                 <Link href={`/${currentLocale}`} className={styles.logo}>
+//                   <div className="relative w-[30px] h-[30px]">
+//                     <Image src="/fenor-logo.png" alt="FENOR logo" width={30} height={30} />
+//                   </div>
+//                 </Link>
+//                 <span>Invest</span>
+//               </div>
+//               <button onClick={() => setIsInvestMenuOpen(false)}>
+//                 <FontAwesomeIcon icon={faArrowLeft} />
+//               </button>
+//             </div>
+//             <div className={styles.investMenuItems}>
+//               {investDropdownItems.map(item => (
+//                 <Link
+//                   key={item.href}
+//                   href={item.href}
+//                   className={styles.mobileMenuItem}
+//                   onClick={() => {
+//                     setIsInvestMenuOpen(false);
+//                     setIsMobileMenuOpen(false);
+//                   }}
+//                 >
+//                   {item.label}
+//                 </Link>
+//               ))}
+//             </div>
+//           </motion.div>
+//         </div>
+//       )}
+//     </motion.nav>
+//   );
+// };
+
+// export default Nav;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 "use client";
 
@@ -2304,7 +2729,6 @@ interface InvestItem {
   label: string;
 }
 
-// Now strongly typed: keys must be one of our Locale literals
 const INVEST_DROPDOWN_ITEMS: Record<Locale, InvestItem[]> = {
   en: [
     { href: '/en/invest/stocks', label: 'Stocks' },
@@ -2348,16 +2772,15 @@ const Nav: React.FC = () => {
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isInvestMenuOpen, setIsInvestMenuOpen] = useState(false);
   const [navItems, setNavItems] = useState<NavItem[]>([]);
+  const [isSticky, setIsSticky] = useState(false);
 
   const router = useRouter();
-  // Narrow the locale into our allowed set; default to 'en' if it isn't one of them
   const rawLocale = router.locale ?? 'en';
   const currentLocale = (['en', 'fr', 'ar'].includes(rawLocale) ? rawLocale : 'en') as Locale;
 
   const investRef = useRef<HTMLDivElement>(null);
   const langRef = useRef<HTMLDivElement>(null);
 
-  // Fetch navigation items via TinaCMS GraphQL client
   useEffect(() => {
     const fetchNavItems = async () => {
       try {
@@ -2380,7 +2803,6 @@ const Nav: React.FC = () => {
     fetchNavItems();
   }, [currentLocale]);
 
-  // Close dropdowns on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (investRef.current && !investRef.current.contains(e.target as Node)) {
@@ -2394,6 +2816,14 @@ const Nav: React.FC = () => {
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const toggleInvest = () => {
     setIsInvestOpen(o => !o);
     setIsLangOpen(false);
@@ -2403,20 +2833,17 @@ const Nav: React.FC = () => {
     setIsInvestOpen(false);
   };
 
-  // Index into our typed record with a Locale
   const investDropdownItems = INVEST_DROPDOWN_ITEMS[currentLocale];
 
   return (
     <motion.nav
       dir={currentLocale === 'ar' ? 'rtl' : 'ltr'}
-      className="bg-background text-text font-sans overflow-visible"
+      className={`${styles.nav} ${isSticky ? styles.sticky : ''}`}
       initial="hidden"
       animate="visible"
       variants={navVariants}
     >
-      {/* Top bar */}
       <motion.div className="flex justify-between items-center py-4 overflow-visible" variants={itemVariants}>
-        {/* Logo */}
         <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }}>
           <Link href={`/${currentLocale}`} className={styles.logo}>
             <div className="flex items-center space-x-2">
@@ -2428,7 +2855,6 @@ const Nav: React.FC = () => {
           </Link>
         </motion.div>
 
-        {/* Desktop nav items */}
         <motion.div className="hidden lg:flex items-center space-x-8 whitespace-nowrap overflow-visible">
           {navItems.map((link, idx) => (
             <motion.div key={idx} variants={itemVariants} whileHover={{ y: -2 }}>
@@ -2463,9 +2889,7 @@ const Nav: React.FC = () => {
               ) : (
                 <Link
                   href={link.url}
-                  className={`${styles.menuItem} ${
-                    router.pathname === link.url ? styles.active : ''
-                  }`}
+                  className={`${styles.menuItem} ${router.pathname === link.url ? styles.active : ''}`}
                 >
                   {link.label}
                 </Link>
@@ -2473,7 +2897,6 @@ const Nav: React.FC = () => {
             </motion.div>
           ))}
 
-          {/* Language selector */}
           <motion.div ref={langRef} variants={itemVariants} whileHover={{ y: -2 }}>
             <button
               className={`${styles.menuItem} ${styles.selected}`}
@@ -2503,13 +2926,11 @@ const Nav: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* CTA button */}
           <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }}>
             <GoldButton />
           </motion.div>
         </motion.div>
 
-        {/* Mobile menu toggle */}
         <motion.button
           className="block lg:hidden text-text focus:outline-none"
           onClick={() => setIsMobileMenuOpen(true)}
@@ -2521,10 +2942,8 @@ const Nav: React.FC = () => {
         </motion.button>
       </motion.div>
 
-      {/* Mobile overlay */}
       {isMobileMenuOpen && (
         <div className={styles.mobileMenuOverlay}>
-          {/* Main mobile menu */}
           <motion.div
             className={styles.mainMenu}
             initial={{ x: '-100%' }}
@@ -2581,9 +3000,7 @@ const Nav: React.FC = () => {
                     key={item.locale}
                     href={router.asPath}
                     locale={item.locale}
-                    className={`${styles.langButton} ${
-                      currentLocale === item.locale ? styles.activeLang : ''
-                    }`}
+                    className={`${styles.langButton} ${currentLocale === item.locale ? styles.activeLang : ''}`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.locale.toUpperCase()}
@@ -2594,7 +3011,6 @@ const Nav: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Invest submenu */}
           <motion.div
             className={styles.investMenu}
             initial={{ x: '100%' }}

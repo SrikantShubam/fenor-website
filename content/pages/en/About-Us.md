@@ -1,5 +1,7 @@
 ---
 title: About Us
+seo:
+  title: About Us
 blocks:
   - smallHeading: About Us
     bigHeading: Empowering Mauritania’s Gold Mining Pioneers

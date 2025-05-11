@@ -217,7 +217,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     `;
 
     // Send the email using Brevo's API
-    const response = await apiInstance.sendTransacEmail(sendSmtpEmail);
+     await apiInstance.sendTransacEmail(sendSmtpEmail);
     // console.log('Brevo API Response:', response);
     return res.status(200).json({ message: 'Email sent successfully' });
   } catch (error) {

@@ -95,7 +95,7 @@ blocks:
       Have questions or want to learn more about FENOR? Reach out to us—we’re
       here to help
     contactEmailLabel: 'Email:'
-    contactEmail: info@fenor.org
+    contactEmail: contact@fenor.org
     phoneLabel: 'Phone :'
     phoneNumber: '22650000'
     tagline: 'Available Monday to Friday , 9 AM - 5 PM GMT'

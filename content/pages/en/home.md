@@ -90,7 +90,7 @@ blocks:
     buttonUrl: /en/invest
     backgroundImage: /unsplash_Mk2ls9UBO2E.png
     _template: textWithImageBG
-  - header: Get in - touch with us
+  - header: Get in - touch with
     introText: >-
       Have questions or want to learn more about FENOR? Reach out to us—we’re
       here to help

@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   },
   reactStrictMode: true,
   images: {
-    domains: ['assets.tina.io'],
+    domains: ['assets.tina.io','images.ctfassets.net'],
   },
 };
 

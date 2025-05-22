@@ -29,6 +29,14 @@ blocks:
       responsible practices that ensure a sustainable future for the industry
       and its communities.
     _template: textImageCenter
+  - image: /ChatGPT_Image_May_13__2025__11_31_08_PM-removebg-preview.png
+    bigHeading: Our Vision
+    paragraph: >
+      To be the leading force in transforming Mauritania’s artisanal and
+      semi-industrial gold mining sector into a globally recognized,
+      sustainable, and inclusive industry that drives economic prosperity and
+      environmental stewardship
+    _template: textImageCenter
   - smallHeading: Our History
     bigHeading: Pioneering Progress in Gold Mining
     paragraph: >

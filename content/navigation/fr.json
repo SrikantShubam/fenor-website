@@ -1,34 +1,48 @@
 {
-    "items": [
-      {
-        "label": "Membres",
-        "url": "/fr/members",
-        "isDropdown": false
-      },
-      {
-        "label": "À Propos",
-        "url": "/fr/about-us",
-        "isDropdown": false
-      },
-      {
-        "label": "ESG",
-        "url": "/fr/esg",
-        "isDropdown": false
-      },
-      {
-        "label": "Presse",
-        "url": "/fr/press",
-        "isDropdown": false
-      },
-      {
-        "label": "Contact",
-        "url": "/fr/contact",
-        "isDropdown": false
-      },
-      {
-        "label": "Investir",
-        "url": "/fr/invest",
-        "isDropdown": true
-      }
-    ]
-  }
+  "items": [
+    {
+      "label": "Membres",
+      "url": "/fr/members",
+      "isDropdown": false
+    },
+    {
+      "label": "À propos",
+      "url": "/fr/about",
+      "isDropdown": false
+    },
+    {
+      "label": "ESG",
+      "url": "/fr/esg",
+      "isDropdown": false
+    },
+    {
+      "label": "Presse",
+      "url": "/fr/press",
+      "isDropdown": false
+    },
+    {
+      "label": "Contactez-nous",
+      "url": "/fr/contact",
+      "isDropdown": false
+    },
+    {
+      "label": "Investir",
+      "url": "/fr/invest",
+      "isDropdown": true,
+      "dropdownLinks": [
+        {
+          "label": "Centre d'investissement",
+          "url": "/fr/invest"
+        },
+        {
+          "label": "Placeholder 1",
+          "url": "https://www.youtube.com/watch?v=Aa__yr-ieQ8"
+        },
+        {
+          "label": "Placeholder 2",
+          "url": "https://www.youtube.com/watch?v=Aa__yr-ieQ8"
+        }
+      ]
+    }
+  ]
+}

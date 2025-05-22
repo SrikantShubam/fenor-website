@@ -32,8 +32,8 @@ const Button: React.FC<ButtonProps> = ({ children, to, href, onClick, type = 'bu
 
   if (to) {
     return (
-      <Link href={to} passHref>
-        <a className={baseStyles}>{children}</a>
+      <Link href={to} passHref className={baseStyles}>
+        {children}
       </Link>
     );
   } else if (href) {

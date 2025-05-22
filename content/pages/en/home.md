@@ -5,7 +5,7 @@ blocks:
     smallHeading: >-
       Years of leadership in organizing and developing the artisanal and
       semi-industrial mining sector in Mauritania
-    video: 'http://localhost:3000/Sequence 02.mp4'
+    video: 'http://localhost:3000/Sequence 02 optimized.mp4'
     _template: textwVideo
   - smallHeading: Who We Are
     bigHeading: The Backbone of a Structured and United Gold Industry
@@ -14,7 +14,7 @@ blocks:
       represents investors and stakeholders in the artisanal and semi-industrial
       gold mining sector in Mauritania. It is a member of the National Union of
       Mauritanian Employers and is headquartered in Nouakchott.
-    image: /gold-nugget.png
+    image: /gold-nugget.webp
     buttonText: 'about us '
     buttonUrl: en/about/
     layout: style-2
@@ -87,14 +87,25 @@ blocks:
       providing them with administrative and technical support.
     buttonText: 'invest now '
     buttonUrl: /en/invest
-    backgroundImage: /unsplash_Mk2ls9UBO2E.png
+    backgroundImage: /unsplash_Mk2ls9UBO2E.webp
     _template: textWithImageBG
-  - header: Get in - touch with us
+  - smallHeading: News
+    bigHeading: 'Read the Latest News '
+    paragraph: >
+      Stay updated with the latest news and updates from FENOR and the gold
+      mining industry
+    _template: simpleTextBox
+  - sectionTitle: ''
+    _template: newsSection
+  - header: |
+      Get in - 
+
+      touch with us
     introText: >-
       Have questions or want to learn more about FENOR? Reach out to us—we’re
       here to help
     contactEmailLabel: 'Email:'
-    contactEmail: info@fenor.org
+    contactEmail: contact@fenor.org
     phoneLabel: 'Phone :'
     phoneNumber: '22650000'
     tagline: 'Available Monday to Friday , 9 AM - 5 PM GMT'
@@ -103,9 +114,13 @@ blocks:
       fullNamePlaceholder: Enter your full name
       emailLabel: Email
       emailPlaceholder: Enter your email address
-      messageLabel: How can we help you ?
+      messageLabel: 'How can we help you ? '
       messagePlaceholder: Enter your message........
       sendButton: Send Message
+      successMessage: >-
+        We have received your message and will get back to you as soon as
+        possible.
+      errorMessage: 'Hey check your inputs , something went wrong'
     _template: contactUs
 ---
 

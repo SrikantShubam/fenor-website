@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 @import "tailwindcss";
 :root {
   --color-background: #021324;
@@ -29,11 +29,19 @@
   --form-radius: 30px;
   --card-border-width: 3px;
 }
+
 .video-container {
   width: 100%;
 }
 video {
   width: 100%;
+}
+.spacy{
+  margin-top: 3rem!important;
+  margin-bottom: 3rem!important;
+}
+.history-page p {
+  margin-bottom: 2rem;
 }
 ::selection {
   background-color: #EBBA7F;
@@ -64,4 +72,58 @@ video {
   .border-card {
     border-width: var(--card-border-width);
   }
+}
+
+
+.timeline-item-grid {
+  display: grid;
+  align-items: start;
+  margin-bottom: 6rem; /* lg:mb-12 */
+  grid-template-columns:
+    1fr    /* left gutter */
+    2fr    /* date */
+    1fr    /* line */
+    5fr    /* content */
+    2fr;   /* right gutter */
+}
+
+/* Tablet only: collapse gutters */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .timeline-item-grid {
+    grid-template-columns:
+      0fr
+      2fr
+      1fr
+      5fr
+      0fr;
+    margin-bottom: 2rem; /* md:mb-8 */
+  }
+}
+
+/* Mobile: hide all-grid layout (we use flex in JSX instead) */
+@media (max-width: 767px) {
+  .timeline-item-grid {
+    display: none;
+  }
+}
+
+
+
+
+@import 'nprogress/nprogress.css';
+
+/* Gold progress bar */
+#nprogress .bar {
+  background: gold !important;
+}
+
+/* Make the “peg” glow gold, too */
+#nprogress .peg {
+  box-shadow: 0 0 10px gold, 0 0 5px gold !important;
+}
+
+/* And if you’ve enabled the spinner */
+#nprogress .spinner-icon {
+  border-top-color: gold !important;
+  border-left-color: gold !important;
 }

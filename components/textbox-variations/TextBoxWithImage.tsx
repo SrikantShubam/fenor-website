@@ -1,3 +1,150 @@
+// import React from 'react';
+// import Image from 'next/image';
+// import { TinaMarkdown, TinaMarkdownContent } from 'tinacms/dist/rich-text';
+// import { motion } from 'framer-motion';
+
+// interface TextBoxWithImage {
+//   smallHeading?: string;
+//   bigHeading?: string;
+//   paragraph?: TinaMarkdownContent;
+//   image?: string;
+// }
+
+// const TextBoxWithImageAndButton: React.FC<TextBoxWithImage> = ({
+//   smallHeading,
+//   bigHeading,
+//   paragraph,
+//   image,
+// }) => {
+//   // Animation variants for text and button
+//   const textVariants = {
+//     hidden: { opacity: 0, y: 20 },
+//     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+//   };
+
+//   // Animation variants for image
+//   const imageVariants = {
+//     hidden: { opacity: 0, x: 20 },
+//     visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: 'easeOut', delay: 0.2 } },
+//   };
+
+//   // Split smallHeading into words and handle last word coloring
+//   const renderSmallHeading = (text: string) => {
+//     const words = text.split(' ');
+//     const lastWord = words.pop();
+//     const precedingWords = words.join(' ');
+
+//     return (
+//       <span>
+//         {precedingWords && (
+//           <span className="text-white">{precedingWords} </span>
+//         )}
+//         {lastWord && (
+//           <span className="text-[#FFDA66]">{lastWord}</span>
+//         )}
+//       </span>
+//     );
+//   };
+
+//   return (
+//     <div
+//       className="
+//         flex 
+//         flex-col 
+//         sm:flex-row 
+//         sm:justify-between
+//         sm:items-center
+//       "
+//     >
+//       {/* TEXT + BUTTON COLUMN */}
+//       <motion.div
+//         className="
+//           flex 
+//           flex-col 
+//           space-y-[42px]      /* 42px gap on mobile */
+//           md:space-y-[72px]   /* 72px gap from md-up */
+//           w-full
+//           sm:basis-[58.3333%]
+//         "
+//         initial="hidden"
+//         animate="visible"
+//         variants={{
+//           hidden: { opacity: 0 },
+//           visible: {
+//             opacity: 1,
+//             transition: {
+//               staggerChildren: 0.2,
+//             },
+//           },
+//         }}
+//       >
+//         {/* Group smallHeading and bigHeading together */}
+//         {(smallHeading || bigHeading) && (
+//           <div className="space-y-[10px] md:space-y-[30px]">
+//             {smallHeading && (
+//               <motion.h3
+//                 className="text-[19px] sm:text-[33px] font-bold"
+//                 variants={textVariants}
+//               >
+//                 {renderSmallHeading(smallHeading)}
+//               </motion.h3>
+//             )}
+//             {bigHeading && (
+//               <motion.h2
+//                 className="text-[28px] sm:text-[48px] font-semibold"
+//                 variants={textVariants}
+//               >
+//                 {bigHeading}
+//               </motion.h2>
+//             )}
+//           </div>
+//         )}
+
+//         {paragraph && (
+//           <motion.div
+//             className="text-[13px] sm:text-[19px]"
+//             variants={textVariants}
+//           >
+//             <TinaMarkdown content={paragraph} />
+//           </motion.div>
+//         )}
+//       </motion.div>
+
+//       {/* IMAGE COLUMN */}
+//       {image && (
+//         <motion.div
+//           className="
+//             hidden 
+//             sm:flex 
+//             sm:basis-[41.6667%]
+//             justify-end
+//           "
+//           initial="hidden"
+//           animate="visible"
+//           variants={imageVariants}
+//         >
+//           <Image
+//             src={image}
+//             alt={bigHeading || smallHeading || 'Image'}
+//             width={334}
+//             height={248}
+//             className="object-cover"
+//           />
+//         </motion.div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default TextBoxWithImageAndButton;
+
+
+
+
+
+
+
+
 import React from 'react';
 import Image from 'next/image';
 import { TinaMarkdown, TinaMarkdownContent } from 'tinacms/dist/rich-text';
@@ -16,16 +163,16 @@ const TextBoxWithImageAndButton: React.FC<TextBoxWithImage> = ({
   paragraph,
   image,
 }) => {
-  // Animation variants for text and button
+  // Animation variants for text
   const textVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] } },
   };
 
   // Animation variants for image
   const imageVariants = {
-    hidden: { opacity: 0, x: 20 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: 'easeOut', delay: 0.2 } },
+    hidden: { opacity: 0, scale: 0.98 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1], delay: 0.2 } },
   };
 
   // Split smallHeading into words and handle last word coloring
@@ -54,9 +201,11 @@ const TextBoxWithImageAndButton: React.FC<TextBoxWithImage> = ({
         sm:flex-row 
         sm:justify-between
         sm:items-center
+        overflow-x-hidden
+        overflow-y-hidden
       "
     >
-      {/* TEXT + BUTTON COLUMN */}
+      {/* TEXT COLUMN */}
       <motion.div
         className="
           flex 
@@ -65,9 +214,12 @@ const TextBoxWithImageAndButton: React.FC<TextBoxWithImage> = ({
           md:space-y-[72px]   /* 72px gap from md-up */
           w-full
           sm:basis-[58.3333%]
+          max-h-full
+          will-change-transform-opacity
         "
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
         variants={{
           hidden: { opacity: 0 },
           visible: {
@@ -102,7 +254,7 @@ const TextBoxWithImageAndButton: React.FC<TextBoxWithImage> = ({
 
         {paragraph && (
           <motion.div
-            className="text-[13px] sm:text-[19px]"
+            className="text-[13px] sm:text-[19px] space-y-8"
             variants={textVariants}
           >
             <TinaMarkdown content={paragraph} />
@@ -118,9 +270,11 @@ const TextBoxWithImageAndButton: React.FC<TextBoxWithImage> = ({
             sm:flex 
             sm:basis-[41.6667%]
             justify-end
+            will-change-transform-opacity
           "
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
           variants={imageVariants}
         >
           <Image
@@ -128,7 +282,7 @@ const TextBoxWithImageAndButton: React.FC<TextBoxWithImage> = ({
             alt={bigHeading || smallHeading || 'Image'}
             width={334}
             height={248}
-            className="object-cover"
+            className="object-cover max-w-full"
           />
         </motion.div>
       )}

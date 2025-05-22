@@ -7,11 +7,11 @@
     },
     {
       "label": "من نحن",
-      "url": "/ar/about-us",
+      "url": "/ar/about",
       "isDropdown": false
     },
     {
-      "label": "الحوكمة البيئية والاجتماعية",
+      "label": "ESG",
       "url": "/ar/esg",
       "isDropdown": false
     },
@@ -28,7 +28,21 @@
     {
       "label": "استثمر",
       "url": "/ar/invest",
-      "isDropdown": true
+      "isDropdown": true,
+      "dropdownLinks": [
+        {
+          "label": "مركز المستثمرين",
+          "url": "/ar/invest"
+        },
+        {
+          "label": "عنصر نائب 1",
+          "url": "https://www.youtube.com/watch?v=Aa__yr-ieQ8"
+        },
+        {
+          "label": "عنصر نائب 2",
+          "url": "https://www.youtube.com/watch?v=Aa__yr-ieQ8"
+        }
+      ]
     }
   ]
 }

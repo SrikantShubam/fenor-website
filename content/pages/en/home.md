@@ -5,12 +5,7 @@ blocks:
     smallHeading: >-
       Years of leadership in organizing and developing the artisanal and
       semi-industrial mining sector in Mauritania
-<<<<<<< HEAD
     video: 'http://localhost:3000/Sequence 02 optimized.mp4'
-=======
-    video: >-
-      https://assets.tina.io/0f5ed42e-063d-477a-93a5-ca99a6aba7d7/Sequence%2002.mp4
->>>>>>> 773980364dd2aaf1e3c2f387531d25c125f5f678
     _template: textwVideo
   - smallHeading: Who We Are
     bigHeading: The Backbone of a Structured and United Gold Industry
@@ -94,7 +89,6 @@ blocks:
     buttonUrl: /en/invest
     backgroundImage: /unsplash_Mk2ls9UBO2E.webp
     _template: textWithImageBG
-<<<<<<< HEAD
   - smallHeading: News
     bigHeading: 'Read the Latest News '
     paragraph: >
@@ -107,9 +101,6 @@ blocks:
       Get in - 
 
       touch with us
-=======
-  - header: Get in - touch with
->>>>>>> 773980364dd2aaf1e3c2f387531d25c125f5f678
     introText: >-
       Have questions or want to learn more about FENOR? Reach out to us—we’re
       here to help

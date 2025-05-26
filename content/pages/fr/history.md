@@ -4,27 +4,15 @@ seo:
   title: Histoire
 blocks:
   - smallHeading: Notre Histoire
-    bigHeading: Pionniers du Progrès dans l'Extraction d'Or
+    bigHeading: Leadership dans le développement du secteur minier aurifère
     paragraph: >
-      La Fédération Nationale des Usines d'Or est une organisation qui réunit
-      les investisseurs et les parties prenantes du secteur de l'extraction d'or
-      artisanale et semi-industrielle. Elle est membre de l'Union Nationale des
-      Employeurs Mauritaniens et a son siège dans la capitale, Nouakchott.
-
-
-
-      La Fédération s'engage à protéger les intérêts matériels et moraux de ses
-      membres, à les représenter auprès de divers organismes et à soutenir leurs
-      investissements par la fourniture de conseils techniques et
-      administratifs.
-
-
-
-      Parmi ses priorités, la Fédération vise également à attirer les
-      investissements étrangers, à améliorer l'environnement de travail dans le
-      secteur minier artisanal et semi-industriel, et à organiser le secteur
-      pour en améliorer le développement et augmenter sa contribution à
-      l'économie nationale.
+      L’Assemblée générale fondatrice a été établie le 3 janvier 2021 et a
+      rejoint l’Union Nationale des Patrons le 16 février 2023. Le 16 mai 2023,
+      l’Assemblée générale fondatrice a élu le premier Conseil exécutif de la
+      fédération, présidé par l’homme d’affaires Ingénieur Sidi Mohamed Kaem, en
+      présence du Ministre du Commerce, du Président de l’Union Nationale des
+      Patrons Mauritaniens, des membres de son bureau exécutif, et du Directeur
+      général de l’Agence Nationale Maaden Mauritania.
     image: '/ChatGPT Image Apr 24, 2025, 08_59_01 PM 1.png'
     _template: textBoxWithImageAndButton
   - sectionHeader: Chronologie de Notre Parcours

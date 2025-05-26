@@ -1,6 +1,10 @@
 {
   "items": [
     {
+      "label": "الصفحة الرئيسية",
+      "url": "/"
+    },
+    {
       "label": "الأعضاء",
       "url": "/ar/members",
       "isDropdown": false
@@ -35,12 +39,16 @@
           "url": "/ar/invest"
         },
         {
-          "label": "عنصر نائب 1",
-          "url": "https://www.youtube.com/watch?v=Aa__yr-ieQ8"
+          "label": " معادن موريتانيا ",
+          "url": "https://maaden.mr "
         },
         {
-          "label": "عنصر نائب 2",
-          "url": "https://www.youtube.com/watch?v=Aa__yr-ieQ8"
+          "label": "الاتحاد الوطني لأرباب العمل الموريتانيين  (UNPM)",
+          "url": "http://www.unpm.mr"
+        },
+        {
+          "label": "الوكالة الموريتانية لترقية الاستثمارات (APIM)",
+          "url": "https://apim.gov.mr"
         }
       ]
     }

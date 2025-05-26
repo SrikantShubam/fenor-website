@@ -127,3 +127,9 @@ video {
   border-top-color: gold !important;
   border-left-color: gold !important;
 }
+
+
+
+.about-us p {
+  padding-top: 2rem!important;
+}

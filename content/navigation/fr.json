@@ -1,14 +1,42 @@
 {
   "items": [
     {
-      "label": "Membres",
-      "url": "/fr/members",
-      "isDropdown": false
+      "label": "Qui nous sommes",
+      "url": "/about",
+      "isDropdown": true,
+      "dropdownLinks": [
+        {
+          "label": "À propos",
+          "url": "/about"
+        },
+        {
+          "label": "Membres",
+          "url": "/members"
+        }
+      ]
     },
     {
-      "label": "À propos",
-      "url": "/fr/about",
-      "isDropdown": false
+      "label": "Investir",
+      "url": "/fr/invest",
+      "isDropdown": true,
+      "dropdownLinks": [
+        {
+          "label": "Centre d'investissement",
+          "url": "/fr/invest"
+        },
+        {
+          "label": "Maaden Mauritania ",
+          "url": "https://maaden.mr"
+        },
+        {
+          "label": "Union Nationale des Patrons Mauritaniens (UNPM)",
+          "url": "http://www.unpm.mr"
+        },
+        {
+          "label": "Agence Mauritanienne de Promotion des Investissements (APIM) ",
+          "url": "https://apim.gov.mr"
+        }
+      ]
     },
     {
       "label": "ESG",
@@ -24,25 +52,6 @@
       "label": "Contactez-nous",
       "url": "/fr/contact",
       "isDropdown": false
-    },
-    {
-      "label": "Investir",
-      "url": "/fr/invest",
-      "isDropdown": true,
-      "dropdownLinks": [
-        {
-          "label": "Centre d'investissement",
-          "url": "/fr/invest"
-        },
-        {
-          "label": "Placeholder 1",
-          "url": "https://www.youtube.com/watch?v=Aa__yr-ieQ8"
-        },
-        {
-          "label": "Placeholder 2",
-          "url": "https://www.youtube.com/watch?v=Aa__yr-ieQ8"
-        }
-      ]
     }
   ]
 }

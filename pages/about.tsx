@@ -5,7 +5,7 @@ import { PagesBlocks } from '../tina/__generated__/types';
 import TextBoxWithImage from '../components/textbox-variations/TextBoxWithImage';
 import TextBoxWithButton from '../components/textbox-variations/TextBoxWithButton';
 import TextImageCenter from '@/components/textbox-variations/TextImageCenter';
-
+import TextBoxWithList from '@/components/textbox-variations/TextBoxWithList';
 type SEO = {
   title?: string;
   description?: string;
@@ -75,10 +75,34 @@ const about: NextPage<AboutUsProps> = ({ content, locale }) => {
     switch (block.__typename) {
       case 'PagesBlocksTextBoxWithImage':
         return <TextBoxWithImage key={index} {...block} />;
+     case 'PagesBlocksTextBoxWithList':
+  const image = typeof block.image === 'string'
+    ? { src: block.image, alt: block.smallHeading || 'List Section Image' }
+    : block.image;
+
+  const listItems = block.listItems?.map(item => ({
+    text: item.text || '',
+    icon: item.icon || '',
+    button: item.button ? {
+      text: item.button.text || '',
+      url: item.button.url || '#',
+    } : undefined,
+  })) || [];
+
+  return (
+    <TextBoxWithList
+      key={index}
+      {...block}
+      image={image}
+      listItems={listItems}
+    />
+  );
+
       case 'PagesBlocksTextImageCenter':
         return <TextImageCenter key={index} {...block} />;
       case 'PagesBlocksTextBoxWithButton':
         return <TextBoxWithButton key={index} {...block} />;
+     
       default:
         console.warn(`Unsupported block type: ${block.__typename}`);
         return null;

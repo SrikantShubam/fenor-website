@@ -1,10 +1,8 @@
 ---
 title: Home Page
 blocks:
-  - bigHeading: Organization - Development - Sustainability
-    smallHeading: >-
-      Years of leadership in organizing and developing the artisanal and
-      semi-industrial mining sector in Mauritania
+  - bigHeading: 'Organization , Development ,Sustainability'
+    smallHeading: Empowering Gold. Enabling Growth. Protecting the Future
     video: 'http://localhost:3000/Sequence 02 optimized.mp4'
     _template: textwVideo
   - smallHeading: Who We Are

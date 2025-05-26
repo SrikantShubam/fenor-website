@@ -9,7 +9,7 @@ blocks:
       and semi-industrial gold mining sector. Representing over 35 companies,
       FENOR is committed to organizing, developing, and sustaining this vital
       industry, ensuring a stable and rewarding environment for investment.
-    image: /gold-nugget.png
+    image: /gold-nugget.webp
     _template: textBoxWithImage
   - smallHeading: Why Partner with FENOR?
     bigHeading: Trusted Advocacy

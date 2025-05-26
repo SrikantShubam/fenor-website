@@ -1,14 +1,46 @@
 {
   "items": [
     {
-      "label": "Members",
-      "url": "/en/members",
-      "isDropdown": false
+      "label": "Home",
+      "url": "/en/"
     },
     {
-      "label": "About Us",
+      "label": "Who we are",
       "url": "/about",
-      "isDropdown": false
+      "isDropdown": true,
+      "dropdownLinks": [
+        {
+          "label": "About Us",
+          "url": "/en/about"
+        },
+        {
+          "label": "Members",
+          "url": "/members"
+        }
+      ]
+    },
+    {
+      "label": "Invest",
+      "url": "/en/invest",
+      "isDropdown": true,
+      "dropdownLinks": [
+        {
+          "label": "Investor Center",
+          "url": "/en/invest"
+        },
+        {
+          "label": "Maaden Mauritania",
+          "url": "https://maaden.mr"
+        },
+        {
+          "label": "National Union of Mauritanian Employers (UNPM)",
+          "url": "http://www.unpm.mr"
+        },
+        {
+          "label": "Investment Promotion Agency in Mauritania (APIM)",
+          "url": " https://apim.gov.mr"
+        }
+      ]
     },
     {
       "label": "ESG",
@@ -24,25 +56,6 @@
       "label": "Contact Us",
       "url": "/en/contact",
       "isDropdown": false
-    },
-    {
-      "label": "Invest",
-      "url": "/en/invest",
-      "isDropdown": true,
-      "dropdownLinks": [
-        {
-          "label": "Investor Center",
-          "url": "/en/invest"
-        },
-        {
-          "label": "Placeholder 1",
-          "url": "https://www.youtube.com/watch?v=Aa__yr-ieQ8"
-        },
-        {
-          "label": "Placeholder 2 ",
-          "url": "https://www.youtube.com/watch?v=Aa__yr-ieQ8"
-        }
-      ]
     }
   ]
 }

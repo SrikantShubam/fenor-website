@@ -8,7 +8,7 @@ import 'nprogress/nprogress.css'
 import { Poppins } from 'next/font/google'
 import Layout from '../components/Layout'
 import '../styles/globals.css'
-
+import BackToTop from '../components/BackToTop'
 // Extend NextPage to include optional noLayout flag
 type PageWithLayout = NextPage & {
   noLayout?: boolean
@@ -48,6 +48,7 @@ export default function App({
   const content = (
     <main className={`${poppins.variable} font-sans`}>
       <Component {...pageProps} />
+      <BackToTop/>
     </main>
   )
 

@@ -1,5 +1,11 @@
 ---
 title: Page d'accueil
+seo:
+  title: Page d'accueil
+  description: >-
+    Bienvenue chez FENOR, la Fédération Nationale des Usines d'Or. Découvrez
+    notre mission, nos actualités et notre leadership industriel. Rejoignez-nous
+    !
 blocks:
   - bigHeading: 'Organisation, Développement, Durabilité'
     smallHeading: >-

@@ -2,6 +2,9 @@
 title: History
 seo:
   title: History
+  description: >-
+    Explore FENOR’s rich history as the National Federation of Gold Factories.
+    Learn about our legacy and milestones. Dive in now!
 blocks:
   - smallHeading: Our History
     bigHeading: Pioneering Progress in Gold Mining

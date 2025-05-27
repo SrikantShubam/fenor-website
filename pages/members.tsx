@@ -268,7 +268,6 @@
 
 
 import { GetStaticProps, NextPage } from 'next';
-import { NextSeo } from 'next-seo';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { createClient } from 'contentful';
@@ -276,7 +275,7 @@ import { client } from '../tina/__generated__/client';
 import { PagesBlocks } from '../tina/__generated__/types';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import SEOComponent from '../components/SEOComponent';
 // Dynamically import TextBoxWithImage component
 const TextBoxWithImage = dynamic(() => import('../components/textbox-variations/TextBoxWithImage'), { ssr: true });
 
@@ -291,10 +290,16 @@ interface MemberOrg {
   memberName: string;
   memberLogo: string | null;
 }
+type SEO = {
+  title?: string;
+  description?: string;
+};
+
 
 interface MembersPageProps {
   content: {
     title: string;
+    seo: SEO | null; // Allow null for cases where SEO data is absent
     blocks: PagesBlocks[];
   };
   memberOrgs: MemberOrg[];
@@ -365,6 +370,7 @@ export const getStaticProps: GetStaticProps<MembersPageProps> = async ({ locale 
     props: {
       content: {
         title: rawContent.title || 'Members',
+        seo: rawContent.seo || null,
         blocks: rawContent.blocks || [],
       },
       memberOrgs,
@@ -377,7 +383,18 @@ export const getStaticProps: GetStaticProps<MembersPageProps> = async ({ locale 
 const MembersPage: NextPage<MembersPageProps> = ({ content, memberOrgs, locale }) => {
   const [selectedMember, setSelectedMember] = useState<MemberOrg | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: content.seo?.title || content.title || 'Members',
+    description: content.seo?.description || 'Meet the member organizations of FENOR.',
+    publisher: {
+      '@type': 'Organization',
+      name: 'FENOR',
+      url: 'https://www.fenor.org',
+      logo: 'https://www.fenor.org/images/logo.jpg',
+    },
+  };
   // Handle card click to open modal
   const handleCardClick = (member: MemberOrg) => {
     setSelectedMember(member);
@@ -420,9 +437,13 @@ const MembersPage: NextPage<MembersPageProps> = ({ content, memberOrgs, locale }
 
   return (
     <>
-      <NextSeo
-        title={content.title || 'Members'}
-        description="Meet our team members and partner organizations"
+      <SEOComponent
+        title={content.seo?.title || content.title || 'Members'}
+        description={
+          content.seo?.description || 'Meet the member organizations of FENOR, the National Federation of Gold Factories.'
+        }
+        canonicalPath={`/${locale}/members`}
+        structuredData={structuredData}
       />
       <div className="members-page" lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
         <div className="container mx-auto px-4 py-12">

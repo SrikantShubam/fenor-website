@@ -793,14 +793,13 @@
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { GetStaticProps, NextPage } from 'next';
-import { NextSeo } from 'next-seo';
 import { client } from '../tina/__generated__/client';
 import type { PagesBlocks } from '../tina/__generated__/types';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Button from '../components/Button';
 import TextBoxWithImageAndButton from '../components/textbox-variations/TextBoxWithImageAndButton';
-
+import SEOComponent from '@/components/SEOComponent';
 // --- Font Awesome Setup ---
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
@@ -813,10 +812,13 @@ const TinaMarkdown = dynamic(
   () => import('tinacms/dist/rich-text').then(mod => mod.TinaMarkdown),
   { ssr: false }
 );
-
+type SEO = {
+  title?: string;
+  description?: string;
+}
 interface ChairmanContent {
   title: string;
-  seo?: { title?: string; description?: string; keywords?: string[] } | null;
+  seo: SEO | null;
   blocks: PagesBlocks[];
 }
 
@@ -985,11 +987,13 @@ const Chairman: NextPage<ChairmanProps> = ({ content, locale }) => {
 
   return (
     <div className="chairman" lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <NextSeo
-        title={content.seo?.title ?? content.title}
-        description={content.seo?.description ?? ''}
-        additionalMetaTags={[{ name: 'keywords', content: content.seo?.keywords?.join(', ') || '' }]}
-      />
+      <SEOComponent
+  title={content.seo?.title || content.title || 'Chairman'}
+  description={
+    content.seo?.description || 'Meet our Chairman for FENOR industries.'
+  }
+  canonicalPath={`/${locale}/chairman`}
+/>
       <div className="container mx-auto text-[13px] sm:text-[16px] lg:text-[19px] py-[20px]  md:py-[60px] overflow-hidden">
         {content.blocks.length > 0 ? (
           content.blocks.map((block, idx) => renderBlock(block, idx, isMounted))

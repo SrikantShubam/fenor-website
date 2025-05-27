@@ -1,5 +1,10 @@
 ---
 title: Invest
+seo:
+  title: Investor Center
+  description: >-
+    Invest in FENOR, the National Federation of Gold Factories. Explore
+    opportunities to support the gold industry. Join us today!
 blocks:
   - smallHeading: Investor Center
     bigHeading: Partnering for Growth in Mauritania’s Gold Mining Sector

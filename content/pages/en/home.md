@@ -1,5 +1,10 @@
 ---
 title: Home Page
+seo:
+  title: Home Page
+  description: >-
+    Welcome to FENOR, the National Federation of Gold Factories. Discover our
+    mission, latest news, and industry leadership. Join us today!
 blocks:
   - bigHeading: 'Organization , Development ,Sustainability'
     smallHeading: Empowering Gold. Enabling Growth. Protecting the Future

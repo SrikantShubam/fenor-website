@@ -2,6 +2,9 @@
 title: Histoire
 seo:
   title: Histoire
+  description: >-
+    Explorez la riche histoire de FENOR en tant que Fédération Nationale des
+    Usines d'Or. Découvrez notre héritage et nos jalons. Plongez-y maintenant !
 blocks:
   - smallHeading: Notre Histoire
     bigHeading: Leadership dans le développement du secteur minier aurifère

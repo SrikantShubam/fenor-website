@@ -1,5 +1,5 @@
 import { GetStaticProps, NextPage } from 'next';
-import { NextSeo } from 'next-seo';
+import SEOComponent from '../components/SEOComponent';
 import { client } from '../tina/__generated__/client';
 import { PagesBlocks } from '../tina/__generated__/types';
 import TextBoxWithImage from '../components/textbox-variations/TextBoxWithImage';
@@ -9,7 +9,7 @@ import TextBoxWithList from '@/components/textbox-variations/TextBoxWithList';
 type SEO = {
   title?: string;
   description?: string;
-  keywords?: string[];
+
 };
 
 interface Content {
@@ -21,6 +21,7 @@ interface Content {
 interface AboutUsProps {
   content: Content;
   locale: string;
+  
 }
 
 export const getStaticProps: GetStaticProps<AboutUsProps> = async ({ locale }) => {
@@ -34,12 +35,7 @@ export const getStaticProps: GetStaticProps<AboutUsProps> = async ({ locale }) =
     if (rawContent.seo) {
       if (rawContent.seo.title) seoTemp.title = rawContent.seo.title;
       if (rawContent.seo.description) seoTemp.description = rawContent.seo.description;
-      if (Array.isArray(rawContent.seo.keywords)) {
-        const filteredKeywords = rawContent.seo.keywords.filter(
-          (kw): kw is string => typeof kw === 'string'
-        );
-        if (filteredKeywords.length > 0) seoTemp.keywords = filteredKeywords;
-      }
+    
     }
     const seo = Object.keys(seoTemp).length > 0 ? seoTemp : null;
 
@@ -53,6 +49,7 @@ export const getStaticProps: GetStaticProps<AboutUsProps> = async ({ locale }) =
       props: {
         content,
         locale: locale || 'en',
+        seo: rawContent.seo || null
       },
     };
   } catch (error) {
@@ -111,15 +108,13 @@ const about: NextPage<AboutUsProps> = ({ content, locale }) => {
 
   return (
     <>
-      <NextSeo
-        title={content.seo?.title ?? content.title}
-        description={content.seo?.description ?? undefined}
-        additionalMetaTags={[
-          {
-            name: 'keywords',
-            content: content.seo?.keywords?.join(', ') || '',
-          },
-        ]}
+   <SEOComponent
+        title={content.seo?.title || content.title || 'Members'}
+        description={
+          content.seo?.description || 'Meet the member organizations of FENOR, the National Federation of Gold Factories.'
+        }
+        canonicalPath={`/${locale}/members`}
+       
       />
       <div className="about-us" lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
         <div className="space-y-[120px] md:space-y-[200px]">

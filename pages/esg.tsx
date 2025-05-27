@@ -1,5 +1,5 @@
 import { GetStaticProps, NextPage } from 'next';
-import { NextSeo } from 'next-seo';
+import SEOComponent from '@/components/SEOComponent';
 import { client } from '../tina/__generated__/client';
 import { PagesBlocks } from '../tina/__generated__/types';
 import TextBoxWithImage from '../components/textbox-variations/TextBoxWithImage';
@@ -8,7 +8,7 @@ import TextBoxWithList from '../components/textbox-variations/TextBoxWithList';
 type SEO = {
   title?: string;
   description?: string;
-  keywords?: string[];
+
 };
 
 interface Content {
@@ -33,10 +33,7 @@ export const getStaticProps: GetStaticProps<EsgPageProps> = async ({ locale }) =
     if (rawContent.seo) {
       if (rawContent.seo.title) seoTemp.title = rawContent.seo.title;
       if (rawContent.seo.description) seoTemp.description = rawContent.seo.description;
-      if (Array.isArray(rawContent.seo.keywords)) {
-        const filtered = rawContent.seo.keywords.filter((kw): kw is string => typeof kw === 'string');
-        if (filtered.length) seoTemp.keywords = filtered;
-      }
+   
     }
     const seo = Object.keys(seoTemp).length ? seoTemp : null;
 
@@ -95,10 +92,12 @@ const EsgPage: NextPage<EsgPageProps> = ({ content, locale }) => {
 
   return (
     <div className="esg-page" lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <NextSeo
-        title={content.seo?.title ?? content.title}
-        description={content.seo?.description ?? undefined}
-        additionalMetaTags={[{ name: 'keywords', content: content.seo?.keywords?.join(', ') || '' }]}
+      <SEOComponent
+        title={content.seo?.title || content.title || 'ESG'}
+        description={
+          content.seo?.description || 'Learn more about our ESG Policies'
+        }
+        canonicalPath={`/${locale}/esg`}
       />
       <div className="space-y-20 md:space-y-[200px]">
         {content.blocks?.map(renderBlock)}

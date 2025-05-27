@@ -430,7 +430,7 @@
 import React, { useState } from 'react';
 import { motion, Variants, AnimatePresence } from 'framer-motion';
 import { GetStaticProps, NextPage } from 'next';
-import { NextSeo } from 'next-seo';
+import SEOComponent from '@/components/SEOComponent';
 import Image from 'next/image';
 import { client } from '../tina/__generated__/client';
 import { TinaMarkdown, TinaMarkdownContent } from 'tinacms/dist/rich-text';
@@ -502,10 +502,13 @@ type ContactBlock = {
   followLabel?: string;
   socialMedia?: { platform: string; link: string }[];
 };
-
+type SEO = {
+  title?: string;
+  description?: string;
+};
 interface Content {
   title: string;
-  seo: { title?: string; description?: string; keywords?: string[] } | null;
+  seo: SEO | null;
   blocks?: { __typename: string }[];
 }
 
@@ -523,10 +526,7 @@ export const getStaticProps: GetStaticProps<ContactProps> = async ({ locale }) =
     if (raw.seo) {
       if (raw.seo.title) seoTemp.title = raw.seo.title;
       if (raw.seo.description) seoTemp.description = raw.seo.description;
-      if (Array.isArray(raw.seo.keywords)) {
-        const kws = raw.seo.keywords.filter((kw): kw is string => typeof kw === 'string');
-        if (kws.length) seoTemp.keywords = kws;
-      }
+     
     }
     const seo = Object.keys(seoTemp).length ? seoTemp : null;
 
@@ -609,12 +609,12 @@ const ContactPage: NextPage<ContactProps> = ({ content, locale }) => {
 
   return (
     <>
-      <NextSeo
-        title={content.seo?.title ?? content.title}
-        description={content.seo?.description ?? undefined}
-        additionalMetaTags={[
-          { name: 'keywords', content: content.seo?.keywords?.join(', ') ?? '' },
-        ]}
+     <SEOComponent
+        title={content.seo?.title || content.title || 'Contact Us'}
+        description={
+          content.seo?.description || 'Contact us FENOR, the National Federation of Gold Factories.'
+        }
+        canonicalPath={`/${locale}/contact`}
       />
 
       <div className="contact-page text-white" lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>

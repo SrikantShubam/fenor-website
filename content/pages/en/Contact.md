@@ -2,6 +2,9 @@
 title: Contact
 seo:
   title: Contact Us
+  description: >-
+    Contact FENOR, the National Federation of Gold Factories. Reach out for
+    inquiries, partnerships, or support. Connect with us now!
 blocks:
   - bigHeader: |
       Get in -

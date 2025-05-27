@@ -2,6 +2,9 @@
 title: Press
 seo:
   title: Press
+  description: >-
+    Stay updated with FENOR’s latest press releases and news in the gold
+    industry. Discover our stories and announcements now!
 blocks:
   - smallHeading: Press
     bigHeading: Staying Connected with FENOR’s Impact

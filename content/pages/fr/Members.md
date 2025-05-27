@@ -2,6 +2,10 @@
 title: Membres
 seo:
   title: Membres
+  description: >-
+    Rencontrez les organisations membres de FENOR, acteurs clés de l'industrie
+    de l'or. Explorez notre communauté d'usines d'or. Rejoignez-nous aujourd'hui
+    !
 blocks:
   - smallHeading: Nos Membres
     bigHeading: 'Au cœur de notre mission, la réussite de nos membres'

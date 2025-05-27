@@ -2,6 +2,9 @@
 title: اتصل بنا
 seo:
   title: اتصل بنا
+  description: >-
+    اتصلوا بـ FENOR، الاتحاد الوطني لمصانع الذهب. تواصلوا للاستفسارات أو
+    الشراكات أو الدعم. اتصلوا بنا الآن!
 blocks:
   - bigHeader: |
       تواصل معنا
@@ -18,7 +21,7 @@ blocks:
     mapLink: 'https://maps.app.goo.gl/ihSmixNuQsKsG9ZY8'
     address:
       label: 'العنوان:'
-      text: 'ZRA 718 Tavragh Zeina / نواكشوط، موريتانيا'
+      text: ZRA 718 Tavragh Zeina / نواكشوط، موريتانيا
     email:
       label: 'البريد الإلكتروني:'
       text: contact@fenor.org
@@ -27,7 +30,7 @@ blocks:
       text: '22650000'
     contactTimings:
       label: 'مواعيد العمل:'
-      text: 'متوفر من الاثنين إلى الجمعة، 9 صباحًا - 5 مساءً GMT'
+      text: متوفر من الاثنين إلى الجمعة، 9 صباحًا - 5 مساءً GMT
     followLabel: تابعنا
     socialMedia:
       - platform: linkedin
@@ -42,3 +45,4 @@ blocks:
         link: 'https://www.youtube.com/watch?v=NyzJQsT9Lo4'
     _template: contact
 ---
+

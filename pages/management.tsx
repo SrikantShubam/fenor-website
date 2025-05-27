@@ -359,7 +359,7 @@
 
 import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
-import { NextSeo } from 'next-seo';
+import SEOComponent from '@/components/SEOComponent';
 import { client } from '../tina/__generated__/client';
 import { PagesBlocks } from '../tina/__generated__/types';
 import { createClient } from 'contentful';
@@ -380,7 +380,7 @@ const containerVariants = {
   visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
 };
 
-type SEO = { title?: string; description?: string; keywords?: string[] };
+type SEO = { title?: string; description?: string;  };
 
 interface Content {
   title: string;
@@ -425,10 +425,7 @@ export const getStaticProps: GetStaticProps<ManagementProps> = async ({ locale }
     if (rawContent.seo) {
       if (rawContent.seo.title) seoTemp.title = rawContent.seo.title;
       if (rawContent.seo.description) seoTemp.description = rawContent.seo.description;
-      if (Array.isArray(rawContent.seo.keywords)) {
-        const kws = rawContent.seo.keywords.filter((kw): kw is string => typeof kw === 'string');
-        if (kws.length) seoTemp.keywords = kws;
-      }
+     
     }
     tinaContent = {
       title: rawContent.title || 'Management',
@@ -505,10 +502,12 @@ const Management: NextPage<ManagementProps> = ({ content, managementEntries, loc
 
   return (
     <div className="management" lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <NextSeo
-        title={content.seo?.title ?? content.title}
-        description={content.seo?.description ?? ''}
-        additionalMetaTags={[{ name: 'keywords', content: content.seo?.keywords?.join(', ') || '' }]}
+      <SEOComponent
+        title={content.seo?.title || content.title || 'Management'}
+        description={
+          content.seo?.description || 'Learn more about the menagament of FENOR, the National Federation of Gold Factories.'
+        }
+        canonicalPath={`/${locale}/about-us`}
       />
       <div className="container mx-auto py-[60px] md:py-[100px]">
         <div className="space-y-[120px] md:space-y-[200px]">{content.blocks?.map(renderBlock)}</div>

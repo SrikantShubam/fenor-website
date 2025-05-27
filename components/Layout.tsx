@@ -429,7 +429,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const router = useRouter();
   const currentLocale = router.locale || 'en';
-
+  const baseUrl = 'https://www.fenor.org';
   // Fetch footer JSON based on locale
   useEffect(() => {
     client.queries.footer({ relativePath: `${currentLocale}.json` })
@@ -466,32 +466,21 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className={`${styles.layoutContainer} flex flex-col min-h-screen`} dir={textDirection}>
      <DefaultSeo
-        titleTemplate="%s | FENOR"
+        titleTemplate="%s | FENOR" // Page-specific titles append to this
         defaultTitle="FENOR"
         description="Welcome to FENOR, the Fédération Nationale des Usines d'Or."
-        openGraph={{ type: 'website', locale: currentLocale, url: 'https://www.fenor.org/', site_name: 'FENOR' }}
+        openGraph={{
+          type: 'website',
+          locale: currentLocale,
+          url: baseUrl,
+          site_name: 'FENOR',
+           images: [{ url: '/fenor-website/public/android-chrome-192x192.png' }]
+        }}
         additionalLinkTags={[
-          {
-            rel: 'icon',
-            href: '/favicon.ico', // Primary favicon
-          },
-          {
-            rel: 'apple-touch-icon',
-            href: '/apple-touch-icon.png',
-            sizes: '180x180',
-          },
-          {
-            rel: 'icon',
-            type: 'image/png',
-            href: '/icon-192x192.png',
-            sizes: '192x192',
-          },
-          {
-            rel: 'icon',
-            type: 'image/png',
-            href: '/icon-512x512.png',
-            sizes: '512x512',
-          },
+          { rel: 'icon', href: '/favicon.ico' },
+          { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' },
+          { rel: 'icon', type: 'image/png', href: '/android-chrome-192x192.png', sizes: '192x192' },
+          { rel: 'icon', type: 'image/png', href: '/android-chrome-512x512.png', sizes: '512x512' },
         ]}
       />
       {/* Static header/nav */}

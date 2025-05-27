@@ -2,8 +2,11 @@
 title: esg
 seo:
   title: ESG
+  description: >-
+    Discover FENOR’s ESG commitment. Learn how we drive sustainability and
+    responsibility in the gold industry. Explore our initiatives!
 blocks:
-  - smallHeading: 'Environmental, Social, and Governance (ESG)'
+  - smallHeading: Our ESG Policies
     bigHeading: Committing to a Sustainable Future
     paragraph: >
       At the National Federation of Gold Factories (FENOR), we are dedicated to

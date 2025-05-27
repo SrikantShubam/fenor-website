@@ -2,6 +2,9 @@
 title: Management
 seo:
   title: Our Management
+  description: >-
+    Meet FENOR’s leadership team, driving the National Federation of Gold
+    Factories forward. Discover their expertise and vision!
 blocks:
   - smallHeading: Our Management
     bigHeading: Leadership That Drives Excellence

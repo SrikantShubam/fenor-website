@@ -2,6 +2,9 @@
 title: Contact
 seo:
   title: Contactez-nous
+  description: >-
+    Contactez FENOR, la Fédération Nationale des Usines d'Or. Envoyez vos
+    questions, partenariats ou demandes de soutien. Contactez-nous maintenant !
 blocks:
   - bigHeader: |
       Prenez contact
@@ -43,3 +46,4 @@ blocks:
         link: 'https://www.youtube.com/watch?v=NyzJQsT9Lo4'
     _template: contact
 ---
+

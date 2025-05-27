@@ -1,5 +1,11 @@
 ---
 title: Investir
+seo:
+  title: Investir
+  description: >-
+    Investissez dans FENOR, la Fédération Nationale des Usines d'Or. Explorez
+    les opportunités de soutenir l'industrie de l'or. Rejoignez-nous aujourd'hui
+    ! (
 blocks:
   - smallHeading: Centre des Investisseurs
     bigHeading: Investissez dans le secteur aurifère en Mauritanie
@@ -10,7 +16,6 @@ blocks:
       riches ressources naturelles, nous offrons un environnement
       d’investissement attractif combinant croissance économique et durabilité
       environnementale.
-
 
 
       Nous soutenons nos partenaires en fournissant des services

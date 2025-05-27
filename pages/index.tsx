@@ -1528,14 +1528,14 @@
 
 
 import { GetStaticProps, NextPage } from 'next';
-import { NextSeo } from 'next-seo';
+
 import { client } from '../tina/__generated__/client';
 import { PagesBlocks } from '../tina/__generated__/types';
 import { createClient } from 'contentful';
 import { RichTextBodyFormat } from 'contentful-management/dist/typings/entities/comment';
 import dynamic from 'next/dynamic';
 import { SlugMapProvider } from '../lib/SlugMapContext';
-
+import SEOComponent from '../components/SEOComponent';
 // Dynamically import components with SSR disabled for client-side rendering
 const TextBoxWithImageAndButton = dynamic(
   () => import('../components/textbox-variations/TextBoxWithImageAndButton'),
@@ -1564,7 +1564,7 @@ const contentfulClient = createClient({
 type SEO = {
   title?: string;
   description?: string;
-  keywords?: string[];
+
 };
 
 interface Content {
@@ -1662,10 +1662,7 @@ export const getStaticProps: GetStaticProps<HomepageProps> = async ({ locale }) 
     if (rawContent.seo) {
       if (rawContent.seo.title) seoTemp.title = rawContent.seo.title;
       if (rawContent.seo.description) seoTemp.description = rawContent.seo.description;
-      if (Array.isArray(rawContent.seo.keywords)) {
-        const filtered = rawContent.seo.keywords.filter((kw): kw is string => typeof kw === 'string');
-        if (filtered.length) seoTemp.keywords = filtered;
-      }
+     
     }
     const seo = Object.keys(seoTemp).length ? seoTemp : null;
 
@@ -1723,11 +1720,19 @@ const Homepage: NextPage<HomepageProps> = ({ content, locale, newsArticles, slug
 
   return (
     <SlugMapProvider slugMap={slugMap}>
-      <NextSeo
-        title={content.seo?.title ?? content.title}
-        description={content.seo?.description ?? undefined}
-        additionalMetaTags={[{ name: 'keywords', content: content.seo?.keywords?.join(', ') || '' }]}
-      />
+      <SEOComponent
+  title={content.seo?.title ?? content.title}
+  description={content.seo?.description ?? 'Welcome to FENOR, the National Federation of Gold Factories.'}
+  canonicalPath={`/${locale}`}
+  
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'FENOR',
+    url: 'https://www.fenor.org',
+    logo: '/fenor-website/public/favicon-32x32.png',
+  }}
+/>
       <div className="homepage" lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
         <div className="space-y-20 md:space-y-[200px]">
           {content.blocks?.map(renderBlock)}

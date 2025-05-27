@@ -2,6 +2,9 @@
 title: About Us
 seo:
   title: About Us
+  description: >-
+    Learn about FENOR, the leading National Federation of Gold Factories.
+    Explore our vision, values, and impact in the gold industry.
 blocks:
   - smallHeading: About Us
     bigHeading: The Backbone of a Structured and United Gold Industry

@@ -2,6 +2,9 @@
 title: Members
 seo:
   title: 'Members '
+  description: >-
+    Meet FENOR’s member organizations, key players in the gold industry. Explore
+    our community of gold factories. Join us today!
 blocks:
   - smallHeading: Our Members
     bigHeading: Welcome to FENOR's Member Community

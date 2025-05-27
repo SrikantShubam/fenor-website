@@ -2,6 +2,10 @@
 title: esg
 seo:
   title: ESG
+  description: >-
+    Découvrez l'engagement ESG de FENOR. Apprenez comment nous promouvons la
+    durabilité et la responsabilité dans l'industrie de l'or. Explorez nos
+    initiatives !
 blocks:
   - smallHeading: 'Environnement, Social et Gouvernance (ESG)'
     bigHeading: Ouverts à la collaboration avec toutes les parties pour le bien du secteur

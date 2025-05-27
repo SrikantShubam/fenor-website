@@ -1,7 +1,10 @@
 ---
-title: Message
+title: Message du Président
 seo:
   title: Message du Président
+  description: >-
+    Rencontrez le Président de FENOR, à la tête de la Fédération Nationale des
+    Usines d'Or avec vision et expertise. Découvrez son impact dès aujourd'hui !
 blocks:
   - smallHeading: Message du Président
     bigHeading: Ambition pour un avenir durable
@@ -12,7 +15,7 @@ blocks:
       À la Fédération Nationale des Usines d’Or (FENOR), nous construisons un
       secteur minier aurifère qui non seulement stimule la croissance économique
       de notre pays, mais veille aussi à protéger notre environnement et à
-      améliorer nos communautés pour les générations futures. 
+      améliorer nos communautés pour les générations futures.
     content: >
       Chers membres respectés, chers partenaires, chers intéressés,
 
@@ -26,17 +29,14 @@ blocks:
       et l’autonomisation des acteurs.
 
 
-
       Nous nous efforçons continuellement d’apporter assistance et appui à nos
       membres, y compris les investisseurs et acteurs, en leur fournissant les
       services et informations nécessaires au développement de leurs activités
       et au renforcement de leur leadership.
 
 
-
       Nous travaillons également avec diligence à trouver un équilibre entre les
       exigences du développement économique et la durabilité environnementale.
-
 
 
       Nous nous engageons à poursuivre nos efforts pour promouvoir la prospérité

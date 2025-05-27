@@ -2,6 +2,9 @@
 title: À propos de nous
 seo:
   title: À propos de nous
+  description: >-
+    Découvrez FENOR, la Fédération Nationale leader des Usines d'Or. Explorez
+    notre vision, nos valeurs et notre impact dans l'industrie de l'or.
 blocks:
   - smallHeading: À propos de nous
     bigHeading: 'Le garant d’un secteur minier fort, organisé et durable'
@@ -11,12 +14,10 @@ blocks:
       artisanal et semi-industriel en Mauritanie.
 
 
-
       Notre mission est de renforcer le rôle des acteurs locaux en promouvant
       des pratiques durables, en soutenant le renforcement des capacités, en
       facilitant l’accès aux marchés, et en encourageant l’innovation ainsi que
       le respect des normes environnementales.
-
 
 
       Nous nous engageons à soutenir une croissance responsable de l’industrie
@@ -24,7 +25,9 @@ blocks:
       environnement naturel.
 
 
-       Nous sommes également membres de l’Union Nationale des Patrons Mauritaniens (UNPM), ce qui renforce notre rôle en tant qu’acteur clé dans le paysage économique national et représentant engagé du secteur privé.
+      Nous sommes également membres de l’Union Nationale des Patrons
+      Mauritaniens (UNPM), ce qui renforce notre rôle en tant qu’acteur clé dans
+      le paysage économique national et représentant engagé du secteur privé.
     image: /gold-nugget.webp
     _template: textBoxWithImage
   - smallHeading: 'Mission '

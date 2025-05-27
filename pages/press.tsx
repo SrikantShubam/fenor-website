@@ -848,7 +848,6 @@
 
 
 import { GetStaticProps, NextPage } from 'next';
-import { NextSeo } from 'next-seo';
 import { createClient } from 'contentful';
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
 import Link from 'next/link';
@@ -859,7 +858,7 @@ import { PagesBlocks } from '../tina/__generated__/types';
 import TextBoxWithImage from '../components/textbox-variations/TextBoxWithImage';
 import { RichTextBodyFormat } from 'contentful-management/dist/typings/entities/comment';
 import { SlugMapProvider } from '../lib/SlugMapContext';
-
+import SEOComponent from '../components/SEOComponent';
 interface NewsArticleFields {
   titleEn?: string;
   titleFr?: string;
@@ -983,7 +982,7 @@ export const getStaticProps: GetStaticProps<PressPageProps> = async ({ locale })
         slugMap: {},
         locale: locale || 'en',
       },
-      revalidate: 60, // Still revalidate even on error to retry fetching
+      revalidate: 300, // Still revalidate even on error to retry fetching
     };
   }
 };
@@ -998,12 +997,29 @@ const PressPage: NextPage<PressPageProps> = ({ content, newsArticles, slugMap, l
 
   const highlightedArticle = newsArticles.find((article) => article.isHighlighted);
   const regularArticles = newsArticles.filter((article) => !article.isHighlighted);
+  const seoTitle = highlightedArticle?.title || content.title || 'Press & News';
+  const seoDescription =
+    highlightedArticle?.excerpt ||
+    'Latest news and press releases from FENOR, the National Federation of Gold Factories.';
 
+  const structuredData = highlightedArticle
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'NewsArticle',
+        headline: highlightedArticle.title,
+        image: highlightedArticle.featuredImage,
+        datePublished: highlightedArticle.publishedDate,
+        description: highlightedArticle.excerpt,
+      }
+    : undefined;
   return (
     <SlugMapProvider slugMap={slugMap}>
-      <NextSeo
-        title={content.title || 'Press & News'}
-        description="Latest news and press releases"
+     <SEOComponent
+        title={seoTitle}
+        description={seoDescription}
+        canonicalPath={`/${locale}/press`}
+
+        structuredData={structuredData}
       />
       <div className="press-page" lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
         <div className="container mx-auto px-4 py-12">

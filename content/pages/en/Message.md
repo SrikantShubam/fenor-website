@@ -2,6 +2,9 @@
 title: Message
 seo:
   title: Chairman's Message
+  description: >-
+    Meet FENOR’s Chairman, leading the National Federation of Gold Factories
+    with vision and expertise. Discover their impact today!
 blocks:
   - smallHeading: Chairman’s Message
     bigHeading: A Vision for a Sustainable Future

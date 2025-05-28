@@ -22,6 +22,12 @@
       "url": "/en/press"
     }
   ],
+  "labels": {
+    "quickLinks": "Quick Links",
+    "aboutUs": "About Us",
+    "importantLinks": "Important Links",
+    "ourSocials": "Our Socials"
+  },
   "aboutUs": [
     {
       "label": "History",

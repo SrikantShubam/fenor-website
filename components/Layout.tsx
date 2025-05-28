@@ -449,6 +449,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           socials: raw.socials
             ?.filter((x): x is { __typename: 'FooterSocials'; name: string; url: string } => Boolean(x))
             .map(({ name, url }) => ({ name, url })),
+            labels: raw.labels ?? {},
         };
         setFooterData(clean);
       })

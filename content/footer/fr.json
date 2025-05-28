@@ -18,6 +18,12 @@
       "url": "/fr/press"
     }
   ],
+  "labels": {
+    "quickLinks": "Liens rapides",
+    "aboutUs": "À propos de nous",
+    "importantLinks": "Liens importants",
+    "ourSocials": "Nos réseaux sociaux"
+  },
   "aboutUs": [
     {
       "label": "Histoire",

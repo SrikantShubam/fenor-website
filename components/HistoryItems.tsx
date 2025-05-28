@@ -337,6 +337,204 @@
 
 
 
+// import React, { useEffect, useState } from 'react';
+// import Image from 'next/image';
+// import { useTranslation } from 'next-i18next';
+
+// interface TimelineItem {
+//   date: string;
+//   icon: string;
+//   paragraph_for_history: string;
+//   image_for_tags?: string;
+// }
+
+// interface HistoryItemsProps {
+//   sectionHeader?: unknown;
+//   timelineItems: TimelineItem[];
+// }
+
+// const HistoryItems: React.FC<HistoryItemsProps> = ({
+//   sectionHeader,
+//   timelineItems,
+// }) => {
+//   const { t, i18n } = useTranslation('common');
+//   const locale = i18n.language;
+ 
+//   const isRTL = locale === 'ar';
+
+//   // State to hold formatted dates, initialized as empty
+//   const [formattedDates, setFormattedDates] = useState<string[]>([]);
+
+//   // Format dates only on the client side
+//   useEffect(() => {
+//     const dates = timelineItems.map(item =>
+//       new Intl.DateTimeFormat(locale, {
+//         year: 'numeric',
+//         month: 'long',
+//         day: 'numeric',
+//       }).format(new Date(item.date))
+//     );
+//     setFormattedDates(dates);
+//   }, [timelineItems, locale]);
+
+//   // Coerce header to string and split into words
+//   const headerText = `${sectionHeader || ''}`.trim();
+//   const words = headerText.split(/\s+/);
+//   const lastWord = words.pop() || '';
+//   const rest = words.join(' ');
+// console.log('Locale:', locale, 'isRTL:', isRTL);
+//   return (
+//     <>
+//       <h2 className="text-[33px] md:text-[28px] sm:text-[23px] font-bold text-white mb-6 md:mb-8">
+//         {rest && <>{rest} </>}
+//         <span className="text-[#FFDA66]">{lastWord}</span>
+//       </h2>
+
+//       <div className="relative md:px-0" dir={isRTL ? 'rtl' : 'ltr'}>
+//         {/* Desktop/Tablet full-height line */}
+//         <div
+//           className="hidden md:block absolute inset-y-0 w-px bg-[#EBBA7F]"
+//           style={{ [isRTL ? 'right' : 'left']: '33.3%' }}
+//         />
+
+//         {/* Mobile continuous line */}
+//         <div
+//           className="md:hidden absolute inset-y-0 w-px bg-[#EBBA7F]"
+//           style={{ [isRTL ? 'right' : 'left']: '1rem' }}
+//         />
+
+//         {timelineItems.map((item, idx) => {
+//           // Use formatted date if available, otherwise empty string
+//           const dateDisplay = formattedDates[idx] || '';
+
+//           return (
+//             <div key={idx} className="my-20">
+//               {/* Desktop/Tablet */}
+//               <div className="hidden md:flex items-start">
+//                 <div
+//                   className={`w-1/3 pr-6 ${isRTL ? 'order-3 text-left' : 'order-1 text-right'}`}
+//                 >
+//                   <span className="text-[23px] md:text-[19px] sm:text-[16px] font-semibold text-white">
+//                     {dateDisplay}
+//                   </span>
+//                 </div>
+//                 <div className="relative w-0 order-2">
+//                   <div
+//                     className="absolute w-4 h-4 rounded-full bg-[#EBBA7F]"
+//                     style={{
+//                       [isRTL ? 'right' : 'left']: '-0.5rem',
+//                       top: '0.4rem',
+//                     }}
+//                   />
+//                 </div>
+//                 <div
+//                   className={`w-2/3 ${isRTL ? 'order-1 pr-6' : 'order-3 pl-6'} space-y-4`}
+//                 >
+//           <div className={`flex items-start ${!isRTL ? 'space-x-4' : ''}`}>
+//   {/* Only show icon if not RTL */}
+//   {!isRTL && (
+//     <Image
+//       src={item.icon}
+//       alt="Timeline icon"
+//       width={24}
+//       height={24}
+//       className="object-contain rounded-[20px]"
+//     />
+//   )}
+//   <p className="text-[19px] md:text-[16px] sm:text-[13px] text-white leading-normal">
+//     {t(item.paragraph_for_history)}
+//   </p>
+// </div>
+
+//                   {item.image_for_tags && (
+//                     <Image
+//                       src={item.image_for_tags}
+//                       alt={`Timeline item ${idx + 1}`}
+//                       width={300}
+//                       height={200}
+//                       className="object-cover rounded-[20px] w-full max-w-xs"
+//                       sizes="(max-width: 768px) 100vw, 300px"
+//                     />
+//                   )}
+//                 </div>
+//               </div>
+
+//               {/* Mobile */}
+//               <div
+//                 className="md:hidden relative mb-6"
+//                 style={{
+//                   paddingInlineStart: isRTL ? '0' : '2rem',
+//                   paddingInlineEnd: isRTL ? '2rem' : '0',
+//                 }}
+//               >
+//                 <div
+//                   className="absolute w-4 h-4 rounded-full bg-[#EBBA7F]"
+//                   style={{
+//                     [isRTL ? 'right' : 'left']: '1rem',
+//                     transform: isRTL ? 'translateX(50%)' : 'translateX(-50%)',
+//                     top: '0.5rem',
+//                   }}
+//                 />
+//                 <div
+//                   style={{
+//                     paddingInlineStart: '0.5rem',
+//                     marginBottom: '0.5rem',
+//                   }}
+//                 >
+//                   <span className="text-[16px] font-semibold text-white">
+//                     {dateDisplay}
+//                   </span>
+//                 </div>
+//                 <div
+//                   className="flex items-start space-x-4"
+//                   style={{ paddingInlineStart: '0.5rem' }}
+//                 >
+//                   <p className="text-[16px] text-white">
+//                     {t(item.paragraph_for_history)}
+//                   </p>
+//                 </div>
+//                 {item.image_for_tags && (
+//                   <Image
+//                     src={item.image_for_tags}
+//                     alt={`Timeline item ${idx + 1}`}
+//                     width={300}
+//                     height={200}
+//                     className="object-cover rounded-[20px] w-full max-w-xs mt-2"
+//                     sizes="(max-width: 768px) 100vw, 300px"
+//                   />
+//                 )}
+//               </div>
+//             </div>
+//           );
+//         })}
+//       </div>
+//     </>
+//   );
+// };
+
+// export default HistoryItems;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
@@ -351,20 +549,19 @@ interface TimelineItem {
 interface HistoryItemsProps {
   sectionHeader?: unknown;
   timelineItems: TimelineItem[];
+  pageLocale?: string;
 }
 
 const HistoryItems: React.FC<HistoryItemsProps> = ({
   sectionHeader,
   timelineItems,
+  pageLocale,
 }) => {
   const { t, i18n } = useTranslation('common');
-  const locale = i18n.language;
-  const isRTL = locale === 'ar';
+  const locale = pageLocale || i18n.language || 'en';
+  const isRTL = locale.startsWith('ar');
 
-  // State to hold formatted dates, initialized as empty
   const [formattedDates, setFormattedDates] = useState<string[]>([]);
-
-  // Format dates only on the client side
   useEffect(() => {
     const dates = timelineItems.map(item =>
       new Intl.DateTimeFormat(locale, {
@@ -376,7 +573,7 @@ const HistoryItems: React.FC<HistoryItemsProps> = ({
     setFormattedDates(dates);
   }, [timelineItems, locale]);
 
-  // Coerce header to string and split into words
+  // Header formatting
   const headerText = `${sectionHeader || ''}`.trim();
   const words = headerText.split(/\s+/);
   const lastWord = words.pop() || '';
@@ -389,47 +586,40 @@ const HistoryItems: React.FC<HistoryItemsProps> = ({
         <span className="text-[#FFDA66]">{lastWord}</span>
       </h2>
 
-      <div className="relative md:px-0" dir={isRTL ? 'rtl' : 'ltr'}>
-        {/* Desktop/Tablet full-height line */}
+      {/* Desktop/Tablet */}
+      <div className="relative w-full hidden md:block" dir={isRTL ? 'rtl' : 'ltr'}>
         <div
-          className="hidden md:block absolute inset-y-0 w-px bg-[#EBBA7F]"
-          style={{ [isRTL ? 'right' : 'left']: '33.3%' }}
+          className="absolute top-0 bottom-0 w-px bg-[#EBBA7F] z-0"
+          style={{
+            left: isRTL ? 'calc(100% - 66.7%)' : '28.750%',
+            right: isRTL ? '28.750%' : undefined,
+          }}
         />
-
-        {/* Mobile continuous line */}
-        <div
-          className="md:hidden absolute inset-y-0 w-px bg-[#EBBA7F]"
-          style={{ [isRTL ? 'right' : 'left']: '1rem' }}
-        />
-
         {timelineItems.map((item, idx) => {
-          // Use formatted date if available, otherwise empty string
           const dateDisplay = formattedDates[idx] || '';
-
           return (
-            <div key={idx} className="my-20">
-              {/* Desktop/Tablet */}
-              <div className="hidden md:flex items-start">
-                <div
-                  className={`w-1/3 pr-6 ${isRTL ? 'order-3 text-left' : 'order-1 text-right'}`}
-                >
-                  <span className="text-[23px] md:text-[19px] sm:text-[16px] font-semibold text-white">
-                    {dateDisplay}
-                  </span>
-                </div>
-                <div className="relative w-0 order-2">
-                  <div
-                    className="absolute w-4 h-4 rounded-full bg-[#EBBA7F]"
-                    style={{
-                      [isRTL ? 'right' : 'left']: '-0.5rem',
-                      top: '0.4rem',
-                    }}
-                  />
-                </div>
-                <div
-                  className={`w-2/3 ${isRTL ? 'order-1 pr-6' : 'order-3 pl-6'} space-y-4`}
-                >
-                  <div className="flex items-start space-x-4">
+            <div
+              key={idx}
+              className="grid grid-cols-12 gap-x-6 items-start my-20 relative"
+              style={{
+                direction: isRTL ? 'rtl' : 'ltr'
+              }}
+            >
+              {/* Date */}
+              <div className={`col-span-3 flex items-center ${isRTL ? 'pl-6 text-left justify-start' : 'pr-6 text-right justify-end'}`}>
+                <span className="text-[23px] md:text-[19px] sm:text-[16px] font-semibold text-white">
+                  {dateDisplay}
+                </span>
+              </div>
+              {/* Dot (center col) */}
+              <div className="col-span-1 flex flex-col items-center relative z-10">
+                <div className="w-4 h-4 rounded-full bg-[#EBBA7F] mt-1" />
+              </div>
+              {/* Content */}
+              <div className={`col-span-8 ${isRTL ? 'pr-6' : 'pl-6'} flex flex-col space-y-4`}>
+                <div className="flex items-start gap-4">
+                  {/* Timeline icon: only on desktop LTR */}
+                  {!isRTL && (
                     <Image
                       src={item.icon}
                       alt="Timeline icon"
@@ -437,54 +627,8 @@ const HistoryItems: React.FC<HistoryItemsProps> = ({
                       height={24}
                       className="object-contain rounded-[20px]"
                     />
-                    <p className="text-[19px] md:text-[16px] sm:text-[13px] text-white leading-normal">
-                      {t(item.paragraph_for_history)}
-                    </p>
-                  </div>
-                  {item.image_for_tags && (
-                    <Image
-                      src={item.image_for_tags}
-                      alt={`Timeline item ${idx + 1}`}
-                      width={300}
-                      height={200}
-                      className="object-cover rounded-[20px] w-full max-w-xs"
-                      sizes="(max-width: 768px) 100vw, 300px"
-                    />
                   )}
-                </div>
-              </div>
-
-              {/* Mobile */}
-              <div
-                className="md:hidden relative mb-6"
-                style={{
-                  paddingInlineStart: isRTL ? '0' : '2rem',
-                  paddingInlineEnd: isRTL ? '2rem' : '0',
-                }}
-              >
-                <div
-                  className="absolute w-4 h-4 rounded-full bg-[#EBBA7F]"
-                  style={{
-                    [isRTL ? 'right' : 'left']: '1rem',
-                    transform: isRTL ? 'translateX(50%)' : 'translateX(-50%)',
-                    top: '0.5rem',
-                  }}
-                />
-                <div
-                  style={{
-                    paddingInlineStart: '0.5rem',
-                    marginBottom: '0.5rem',
-                  }}
-                >
-                  <span className="text-[16px] font-semibold text-white">
-                    {dateDisplay}
-                  </span>
-                </div>
-                <div
-                  className="flex items-start space-x-4"
-                  style={{ paddingInlineStart: '0.5rem' }}
-                >
-                  <p className="text-[16px] text-white">
+                  <p className="text-[19px] md:text-[16px] sm:text-[13px] text-white leading-normal">
                     {t(item.paragraph_for_history)}
                   </p>
                 </div>
@@ -494,11 +638,65 @@ const HistoryItems: React.FC<HistoryItemsProps> = ({
                     alt={`Timeline item ${idx + 1}`}
                     width={300}
                     height={200}
-                    className="object-cover rounded-[20px] w-full max-w-xs mt-2"
+                    className="object-cover rounded-[20px] w-full max-w-xs"
                     sizes="(max-width: 768px) 100vw, 300px"
                   />
                 )}
               </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Mobile */}
+      <div className="md:hidden relative w-full" dir={isRTL ? 'rtl' : 'ltr'}>
+        {/* Vertical line runs full height */}
+        <div
+          className="absolute top-0 bottom-0 w-px bg-[#EBBA7F] z-0"
+          style={{
+            [isRTL ? 'right' : 'left']: '.5rem',
+          }}
+        />
+        {timelineItems.map((item, idx) => {
+          const dateDisplay = formattedDates[idx] || '';
+          return (
+            <div
+              key={idx}
+              className="relative mb-12"
+              style={{
+                paddingInlineStart: isRTL ? '20px' : '1.5rem',
+                paddingInlineEnd: isRTL ? '20px' : '0',
+              }}
+            >
+              <div
+                className="absolute w-4 h-4 rounded-full bg-[#EBBA7F] z-10"
+                style={{
+                  [isRTL ? 'right' : 'left']: '.5rem',
+                  transform: isRTL ? 'translateX(50%)' : 'translateX(-50%)',
+                  top: '0.5rem',
+                }}
+              />
+              <div style={{ paddingInlineStart: '0.5rem', marginBottom: '0.5rem' }}>
+                <span className="text-[16px] font-semibold text-white">
+                  {dateDisplay}
+                </span>
+              </div>
+              {/* REMOVE timeline icon here */}
+              <div className="flex items-start" style={{ paddingInlineStart: '0.5rem' }}>
+                <p className="text-[16px] text-white">
+                  {t(item.paragraph_for_history)}
+                </p>
+              </div>
+              {item.image_for_tags && (
+                <Image
+                  src={item.image_for_tags}
+                  alt={`Timeline item ${idx + 1}`}
+                  width={300}
+                  height={200}
+                  className="object-cover rounded-[20px] w-full max-w-xs mt-2"
+                  sizes="(max-width: 768px) 100vw, 300px"
+                />
+              )}
             </div>
           );
         })}

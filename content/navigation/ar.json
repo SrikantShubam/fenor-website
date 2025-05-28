@@ -5,14 +5,19 @@
       "url": "/"
     },
     {
-      "label": "الأعضاء",
-      "url": "/ar/members",
-      "isDropdown": false
-    },
-    {
       "label": "من نحن",
-      "url": "/ar/about",
-      "isDropdown": false
+      "url": "/",
+      "isDropdown": true,
+      "dropdownLinks": [
+        {
+          "label": "معلومات عنا",
+          "url": "/ar/about"
+        },
+        {
+          "label": "أعضاء",
+          "url": "/ar/members"
+        }
+      ]
     },
     {
       "label": "ESG",

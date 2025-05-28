@@ -11,7 +11,8 @@ blocks:
     smallHeading: >-
       Des années de leadership dans l’organisation et le développement de
       l’exploitation minière artisanale et semi-industrielle en Mauritanie.
-    video: 'http://localhost:3000/Sequence 02.mp4'
+    video: >-
+      https://assets.tina.io/0f5ed42e-063d-477a-93a5-ca99a6aba7d7/Sequence%2002.mp4
     _template: textwVideo
   - smallHeading: Qui nous sommes
     bigHeading: L'épine dorsale d'une industrie aurifère structurée et unie
@@ -37,8 +38,9 @@ blocks:
     buttonUrl: /fr/membres
     _template: textBoxWithButton
   - heading: >-
-      La FENOR s’est imposée comme un acteur clé du secteur minier artisanal et
-      semi-industriel
+      Nous œuvrons à la Fédération Nationale des Usines d’Or pour affirmer la
+      position de la fédération en tant qu’acteur principal du secteur minier
+      artisanal et semi-industriel.
     cards:
       - image: /images__9_-removebg-preview%201.png
         alt: Mauritanides

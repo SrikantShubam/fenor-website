@@ -1033,6 +1033,18 @@ export default defineConfig({
             ],
           },
           {
+  type: "object",
+  name: "labels",
+  label: "Section Labels",
+  fields: [
+    { type: "string", name: "quickLinks", label: "Quick Links Label" },
+    { type: "string", name: "aboutUs", label: "About Us Label" },
+    { type: "string", name: "importantLinks", label: "Important Links Label" },
+    { type: "string", name: "ourSocials", label: "Our Socials Label" },
+  ]
+}
+,
+          {
             type: "object",
             name: "aboutUs",
             label: "About Us Links",

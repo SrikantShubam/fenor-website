@@ -8,7 +8,8 @@ seo:
 blocks:
   - bigHeading: 'Organization , Development ,Sustainability'
     smallHeading: Empowering Gold. Enabling Growth. Protecting the Future
-    video: 'http://localhost:3000/Sequence 02 optimized.mp4'
+    video: >-
+      https://assets.tina.io/0f5ed42e-063d-477a-93a5-ca99a6aba7d7/Sequence%2002.mp4
     _template: textwVideo
   - smallHeading: Who We Are
     bigHeading: The Backbone of a Structured and United Gold Industry

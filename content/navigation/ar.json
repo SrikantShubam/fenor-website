@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "label": "الصفحة الرئيسية",
+      "label": "الصقحة الرئيسية",
       "url": "/"
     },
     {
@@ -10,11 +10,11 @@
       "isDropdown": true,
       "dropdownLinks": [
         {
-          "label": "معلومات عنا",
+          "label": "حولنا،",
           "url": "/ar/about"
         },
         {
-          "label": "أعضاء",
+          "label": "أعضائنا",
           "url": "/ar/members"
         }
       ]
@@ -25,12 +25,12 @@
       "isDropdown": false
     },
     {
-      "label": "الصحافة",
+      "label": "الأخبار",
       "url": "/ar/press",
       "isDropdown": false
     },
     {
-      "label": "اتصل بنا",
+      "label": "تواصل معنا",
       "url": "/ar/contact",
       "isDropdown": false
     },
@@ -54,6 +54,10 @@
         {
           "label": "الوكالة الموريتانية لترقية الاستثمارات (APIM)",
           "url": "https://apim.gov.mr"
+        },
+        {
+          "label": "مجلس التعدين الأهلي",
+          "url": "https://artisanalgold.org/"
         }
       ]
     }

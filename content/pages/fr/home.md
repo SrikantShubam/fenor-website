@@ -12,7 +12,8 @@ blocks:
       Des années de leadership dans l’organisation et le développement de
       l’exploitation minière artisanale et semi-industrielle en Mauritanie.
     video: >-
-      https://assets.tina.io/0f5ed42e-063d-477a-93a5-ca99a6aba7d7/Sequence%2002.mp4
+      https://assets.tina.io/0f5ed42e-063d-477a-93a5-ca99a6aba7d7/final before
+      format change.mp4
     _template: textwVideo
   - smallHeading: Qui nous sommes
     bigHeading: L'épine dorsale d'une industrie aurifère structurée et unie

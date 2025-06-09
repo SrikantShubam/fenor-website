@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ButtonHTMLAttributes } from 'react';
 import axios from 'axios';
-
+import Link from 'next/link';
 type GoldButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
 export default function GoldButton({
@@ -48,6 +48,7 @@ export default function GoldButton({
     'hover:bg-special transition-colors duration-200';
 
   return (
+    <Link href="https://www.apmex.com/gold-price" target='_blank'>
     <button
       id="gold-btn"
       className={`${baseClasses} ${className}`}
@@ -55,5 +56,6 @@ export default function GoldButton({
     >
       Gold: ${goldPrice ?? '...'} / oz
     </button>
+    </Link>
   );
 }

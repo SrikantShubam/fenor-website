@@ -311,6 +311,7 @@ import {
   faLinkedin,
   faInstagram,
   faYoutube,
+  faWhatsapp,
 } from '@fortawesome/free-brands-svg-icons';
 import Button from './Button';
 
@@ -330,8 +331,10 @@ const iconMap = {
   facebook: faFacebook,
   twitter: faXTwitter,
   linkedin: faLinkedin,
+  whatsapp:faWhatsapp,
   instagram: faInstagram,
   youtube: faYoutube,
+  
 };
 
 const InvestContact: React.FC<InvestContactProps> = ({

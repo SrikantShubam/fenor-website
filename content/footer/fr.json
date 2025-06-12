@@ -58,11 +58,15 @@
   ],
   "socials": [
     {
-      "name": "Linkedin",
-      "url": "https://www.gold.org/"
+      "name": "Facebook",
+      "url": "https://www.facebook.com/fenor.mr "
     },
     {
-      "name": "Youtube",
+      "name": "Linkedin",
+      "url": "https://www.linkedin.com/company/fenor-mr/"
+    },
+    {
+      "name": "Whatsapp",
       "url": "https://www.gold.org/"
     }
   ]

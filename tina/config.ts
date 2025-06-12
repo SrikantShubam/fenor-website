@@ -251,7 +251,8 @@ export default defineConfig({
             { value: "twitter", label: "Twitter" },
             { value: "linkedin", label: "LinkedIn" },
             { value: "instagram", label: "Instagram" },
-            { value: "youtube", label: "YouTube" }
+            { value: "youtube", label: "YouTube" },
+            { value: "whatsapp", label: "Whatsapp" }
           ]
         },
         {
@@ -415,7 +416,8 @@ export default defineConfig({
             { value: "twitter", label: "Twitter" },
             { value: "linkedin", label: "LinkedIn" },
             { value: "instagram", label: "Instagram" },
-            { value: "youtube", label: "YouTube" }
+            { value: "youtube", label: "YouTube" },
+            { value: "whatsapp", label: "Whatsapp" }
           ]
         },
         {

@@ -34,15 +34,11 @@ blocks:
       text: 'Disponible du lundi au vendredi, de 9 h à 17 h GMT'
     followLabel: Suivez-nous
     socialMedia:
-      - platform: linkedin
-        link: 'https://www.youtube.com/watch?v=NyzJQsT9Lo4'
-      - platform: youtube
-        link: 'https://www.youtube.com/watch?v=NyzJQsT9Lo4'
-      - platform: twitter
-        link: 'https://www.youtube.com/watch?v=NyzJQsT9Lo4'
-      - platform: instagram
-        link: 'https://www.youtube.com/watch?v=NyzJQsT9Lo4'
       - platform: facebook
+        link: 'https://www.facebook.com/fenor.mr'
+      - platform: linkedin
+        link: 'https://www.linkedin.com/company/fenor-mr/'
+      - platform: whatsapp
         link: 'https://www.youtube.com/watch?v=NyzJQsT9Lo4'
     _template: contact
 ---

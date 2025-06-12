@@ -119,15 +119,11 @@ blocks:
       phone: '22650000'
     socialsHeading: 'Nos Réseaux Sociaux :'
     socialMedia:
-      - platform: youtube
-        link: 'https://www.youtube.com/watch?v=gmf4WvXL_u8'
       - platform: facebook
-        link: 'https://www.youtube.com/watch?v=pnn8AaSPlGk&list=RD9ExQrA7zsBM&index=3'
-      - platform: twitter
-        link: 'https://www.youtube.com/watch?v=pnn8AaSPlGk&list=RD9ExQrA7zsBM&index=3'
-      - platform: instagram
-        link: 'https://www.youtube.com/watch?v=pnn8AaSPlGk&list=RD9ExQrA7zsBM&index=3'
-      - platform: linkedin
+        link: 'https://www.facebook.com/fenor.mr'
+      - platform: facebook
+        link: 'https://www.linkedin.com/company/fenor-mr/'
+      - platform: whatsapp
         link: 'https://www.youtube.com/watch?v=pnn8AaSPlGk&list=RD9ExQrA7zsBM&index=3'
     _template: investContact
 ---

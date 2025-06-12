@@ -442,6 +442,7 @@ import {
   faLinkedin,
   faInstagram,
   faYoutube,
+  faWhatsapp
 } from '@fortawesome/free-brands-svg-icons';
 
 // Social media icon map
@@ -451,6 +452,7 @@ const iconMap = {
   linkedin: faLinkedin,
   instagram: faInstagram,
   youtube: faYoutube,
+  whatsapp:faWhatsapp,
 };
 
 // Animation variants

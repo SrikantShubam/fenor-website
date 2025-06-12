@@ -6,7 +6,7 @@
       "url": "/ar/contact"
     },
     {
-      "label": "مركز المستثمرين",
+      "label": "مركز المستثمرين  ",
       "url": "/ar/invest"
     },
     {
@@ -26,33 +26,33 @@
   },
   "aboutUs": [
     {
-      "label": "التاريخ",
-      "url": "/ar/history"
+      "label": "رسالة الرئيس",
+      "url": "/ar/chairman"
     },
     {
       "label": "إدارتنا",
       "url": "/ar/management"
     },
     {
-      "label": "رسالة الرئيس",
-      "url": "/ar/chairman"
+      "label": "التاريخ",
+      "url": "/ar/history"
     }
   ],
   "importantLinks": [
     {
-      "label": "معادن موريتانيا ",
-      "url": "https://maaden.mr"
+      "label": "الاتحاد الوطني لأرباب العمل الموريتانيين  (UNPM) ",
+      "url": "http://www.unpm.mr"
     },
     {
-      "label": "الاتحاد الوطني لأرباب العمل الموريتانيين  (UNPM): ",
-      "url": "http://www.unpm.mr"
+      "label": "معادن موريتانيا ",
+      "url": "https://maaden.mr"
     },
     {
       "label": "الوكالة الموريتانية لترقية الاستثمارات  (APIM) ",
       "url": "https://apim.gov.mr"
     },
     {
-      "label": "مجلس التعدين الأهلي",
+      "label": "مجلس التعدين الأهلي للذهب",
       "url": "https://artisanalgold.org/"
     }
   ],

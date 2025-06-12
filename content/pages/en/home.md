@@ -92,7 +92,7 @@ blocks:
       providing them with administrative and technical support.
     buttonText: 'invest now '
     buttonUrl: /en/invest
-    backgroundImage: /unsplash_Mk2ls9UBO2E.webp
+    backgroundImage: /investor center bg image.webp
     _template: textWithImageBG
   - smallHeading: News
     bigHeading: 'Read the Latest News '

@@ -65,7 +65,7 @@ blocks:
       - icon: /arrow-down-circle.png
         header: ' الالتزام البيئي:'
         text: |
-          نسعى للحد من الأثر البيئي لأنشطتنا من خلال
+          نسعى للحد من الأثر البيئي لأنشطتنا من خلال:
 
           · تحسين كفاءة استخدام الموارد الطبيعية.
 
@@ -94,7 +94,7 @@ blocks:
     paragraph: "موقع استراتيجي وموارد طبيعية غنية ومتنوعة، ومناخ\_استثماري\_جاذب\n"
     buttonText: استثمر الآن
     buttonUrl: /ar/invest
-    backgroundImage: /unsplash_Mk2ls9UBO2E.webp
+    backgroundImage: /investor center bg image.webp
     _template: textWithImageBG
   - smallHeading: الأخبار
     bigHeading: اقرأ آخر الاخبار

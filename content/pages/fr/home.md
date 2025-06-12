@@ -100,7 +100,7 @@ blocks:
       premier plan.
     buttonText: Investissez maintenant
     buttonUrl: /fr/investir
-    backgroundImage: /unsplash_Mk2ls9UBO2E.webp
+    backgroundImage: /investor center bg image.webp
     _template: textWithImageBG
   - smallHeading: Actualités
     bigHeading: Consultez les dernières nouvelles

@@ -123,7 +123,7 @@ const TextBoxWithImageAndButton: React.FC<TextBoxWithImageAndButtonProps> = ({
 
         {buttonText && buttonUrl && (
           <motion.div variants={textVariants} custom={3}>
-            <Button href={buttonUrl} className="w-[250px] text-center">
+            <Button href={buttonUrl} className="w-[160px] text-center">
               {buttonText}
             </Button>
           </motion.div>

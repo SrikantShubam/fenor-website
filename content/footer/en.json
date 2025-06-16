@@ -30,26 +30,26 @@
   },
   "aboutUs": [
     {
+      "label": "Chairman’s Message",
+      "url": "/en/chairman"
+    },
+    {
       "label": "History",
       "url": "history"
     },
     {
       "label": "Our Management",
       "url": "/en/management"
-    },
-    {
-      "label": "Chairman’s Message",
-      "url": "/en/chairman"
     }
   ],
   "importantLinks": [
     {
-      "label": "Maaden Mauritania",
-      "url": "https://maaden.mr"
-    },
-    {
       "label": "National Union of Mauritanian Employers (UNPM)",
       "url": "http://www.unpm.mr"
+    },
+    {
+      "label": "Maaden Mauritania",
+      "url": "https://maaden.mr"
     },
     {
       "label": "Investment Promotion Agency in Mauritania (APIM)",

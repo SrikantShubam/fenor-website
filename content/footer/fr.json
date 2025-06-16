@@ -26,26 +26,26 @@
   },
   "aboutUs": [
     {
-      "label": "Histoire",
-      "url": "/fr/history"
+      "label": "Message du président",
+      "url": "/fr/chairman"
     },
     {
       "label": "Notre direction",
       "url": "/fr/management"
     },
     {
-      "label": "Message du président",
-      "url": "/fr/chairman"
+      "label": "Histoire",
+      "url": "/fr/history"
     }
   ],
   "importantLinks": [
     {
-      "label": "Maaden Mauritania ",
-      "url": "https://maaden.mr"
-    },
-    {
       "label": "Union Nationale des Patrons Mauritaniens (UNPM) ",
       "url": "http://www.unpm.mr"
+    },
+    {
+      "label": "Maaden Mauritania ",
+      "url": "https://maaden.mr"
     },
     {
       "label": "Agence Mauritanienne de Promotion des Investissements (APIM)",

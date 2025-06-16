@@ -516,8 +516,8 @@ const Management: NextPage<ManagementProps> = ({ content, managementEntries, loc
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-[120px] md:mt-[200px]"
             variants={containerVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
+          whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
           >
             {managementEntries.map((entry, i) => (
               <ManagementCard

@@ -6,7 +6,7 @@ import { faWhatsapp, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 // Animation variants for card (simplified, no tilt)
 const cardVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.9 },
+  hidden: { opacity: .2, y: 30, scale: 0.9 },
   visible: {
     opacity: 1,
     y: 0,

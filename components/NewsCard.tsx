@@ -248,7 +248,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-
+import { useRouter } from 'next/router';
 interface NewsCardProps {
   title: string;
   excerpt: string;
@@ -279,7 +279,9 @@ const NewsCard: React.FC<NewsCardProps> = ({
     })
     .replace(/ /g, '-')
     .replace(',', '');
-
+  const { locale } = useRouter();
+  const langSuffix = locale?.split('-')[0].toLowerCase() || 'en';
+  const localeKey = langSuffix.charAt(0).toUpperCase() + langSuffix.slice(1).toLowerCase();
   return (
     <motion.div
       className={`
@@ -298,7 +300,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
   style={{ objectFit: 'cover' }}
             className="rounded-[30px]"
           />
-          {eventType && (
+          {eventType && localeKey !== 'Fr' && localeKey !== 'Ar' && (
             <span
               className={`
                 absolute top-10 left-5 bg-black text-yellow-500 uppercase px-2 py-1 rounded

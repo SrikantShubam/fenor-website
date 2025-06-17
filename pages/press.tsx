@@ -859,6 +859,7 @@ import TextBoxWithImage from '../components/textbox-variations/TextBoxWithImage'
 import { RichTextBodyFormat } from 'contentful-management/dist/typings/entities/comment';
 import { SlugMapProvider } from '../lib/SlugMapContext';
 import SEOComponent from '../components/SEOComponent';
+
 interface NewsArticleFields {
   titleEn?: string;
   titleFr?: string;
@@ -919,7 +920,8 @@ export const getStaticProps: GetStaticProps<PressPageProps> = async ({ locale })
   try {
     const langSuffix = locale?.split('-')[0].toLowerCase() || 'en';
     const localeKey = langSuffix.charAt(0).toUpperCase() + langSuffix.slice(1).toLowerCase();
-
+   
+   
     const contentfulClient = createClient({
       space: process.env.CONTENTFUL_SPACE_ID!,
       accessToken: process.env.CONTENTFUL_ACCESS_TOKEN!,
@@ -957,7 +959,7 @@ export const getStaticProps: GetStaticProps<PressPageProps> = async ({ locale })
       };
       return map;
     }, {} as { [id: string]: { [locale: string]: string } });
-
+ 
     return {
       props: {
         content: {
@@ -1012,6 +1014,13 @@ const PressPage: NextPage<PressPageProps> = ({ content, newsArticles, slugMap, l
         description: highlightedArticle.excerpt,
       }
     : undefined;
+     const langSuffix = locale?.split('-')[0].toLowerCase() || 'en';
+    const localeKey = langSuffix.charAt(0).toUpperCase() + langSuffix.slice(1).toLowerCase();
+   
+    const buttonText =
+    localeKey === 'Fr' ? 'Lire la suite' :
+    localeKey === 'Ar' ? 'اقرأ المزيد' :
+    'Read More';
   return (
     <SlugMapProvider slugMap={slugMap}>
      <SEOComponent
@@ -1046,11 +1055,11 @@ const PressPage: NextPage<PressPageProps> = ({ content, newsArticles, slugMap, l
                     >
                       <div className="absolute inset-0 bg-black/50 rounded-[30px]"></div>
                       <div className="relative z-10">
-                        {highlightedArticle.eventType && (
-                          <span className="inline-block bg-black text-yellow-500 uppercase px-2 py-1 rounded text-[16px] sm:text-[20px] mb-4">
-                            {highlightedArticle.eventType}
-                          </span>
-                        )}
+                      {highlightedArticle.eventType && localeKey !== 'Fr' && localeKey !== 'Ar' && (
+  <span className="inline-block bg-black text-yellow-500 uppercase px-2 py-1 rounded text-[16px] sm:text-[20px] mb-4">
+    {highlightedArticle.eventType}
+  </span>
+)}
                         <p className="text-white text-[16px] sm:text-[20px] mb-4">
                           {new Date(highlightedArticle.publishedDate)
                             .toLocaleDateString('en-US', {
@@ -1065,7 +1074,7 @@ const PressPage: NextPage<PressPageProps> = ({ content, newsArticles, slugMap, l
                           {highlightedArticle.title}
                         </h3>
                         <Link href={`/press/${highlightedArticle.slug}`}>
-                          <Button className="cursor-pointer">Read More</Button>
+                          <Button className="cursor-pointer">{buttonText}</Button>
                         </Link>
                       </div>
                     </div>

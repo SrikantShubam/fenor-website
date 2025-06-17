@@ -6,13 +6,14 @@ seo:
     Restez informé des derniers communiqués de presse et actualités de FENOR
     dans l'industrie de l'or. Découvrez nos histoires et annonces maintenant !
 blocks:
-  - smallHeading: Press
-    bigHeading: Staying Connected with FENOR’s Impact
+  - smallHeading: Presse
+    bigHeading: Suivre l'impact de FENOR
     paragraph: >
-      Stay updated with the latest news and milestones from the National
-      Federation of Gold Factories (FENOR). From community initiatives to
-      industry leadership, our press updates highlight our commitment to
-      advancing Mauritania’s artisanal and semi-industrial gold mining sector.
+      Restez informé des dernières nouvelles et des jalons de la Fédération
+      Nationale des Usines d'Or (FENOR). Des initiatives communautaires au
+      leadership de l'industrie, nos mises à jour de presse soulignent notre
+      engagement à faire progresser le secteur de l'extraction d'or artisanal et
+      semi-industriel en Mauritanie.
     image: ''
     _template: textBoxWithImage
 ---

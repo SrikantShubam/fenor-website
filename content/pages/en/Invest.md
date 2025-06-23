@@ -112,7 +112,8 @@ blocks:
       - platform: linkedin
         link: 'https://www.linkedin.com/company/fenor-mr/'
       - platform: whatsapp
-        link: 'https://www.youtube.com/watch?v=pnn8AaSPlGk&list=RD9ExQrA7zsBM&index=3'
+        link: >-
+          https://api.whatsapp.com/send?phone=22222650000&text=I%20am%20coming%20from%20the%20FENOR%20website%20I%20would%20like%20to%20know%20about%20more%20about%20Fenor.%20
     _template: investContact
 ---
 

@@ -14,6 +14,10 @@
           "url": "/ar/about"
         },
         {
+          "label": "إدارتنا",
+          "url": "/ar/management"
+        },
+        {
           "label": "أعضائنا",
           "url": "/ar/members"
         }

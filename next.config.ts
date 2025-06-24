@@ -3,7 +3,8 @@ import { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   i18n: {
     locales: ['en', 'fr', 'ar'],
-    defaultLocale: 'en',
+    defaultLocale: 'ar',
+    localeDetection: false,
   },
   reactStrictMode: true,
   images: {

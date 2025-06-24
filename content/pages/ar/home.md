@@ -11,8 +11,8 @@ blocks:
       سنوات من الريادة في تنظيم وتطوير قطاع التعدين الأهلي وشبه الصناعي في
       موريتانيا
     video: >-
-      https://assets.tina.io/0f5ed42e-063d-477a-93a5-ca99a6aba7d7/final before
-      format change.mp4
+      https://assets.tina.io/0f5ed42e-063d-477a-93a5-ca99a6aba7d7/homepage
+      banner video.mp4
     _template: textwVideo
   - smallHeading: من نحن
     bigHeading: 'هدفنا قطاع تعدين قوي، منظم ومستدام '
@@ -63,7 +63,7 @@ blocks:
     _template: textBoxWithButton
   - cards:
       - icon: /arrow-down-circle.png
-        header: ' الالتزام البيئي:'
+        header: ' الالتزام البيئي'
         text: |
           نسعى للحد من الأثر البيئي لأنشطتنا من خلال:
 

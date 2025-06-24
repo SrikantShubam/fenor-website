@@ -1517,7 +1517,7 @@ import styles from './nav.module.css';
 import GoldButton from '../GoldButton';
 import { useSlugMap } from '../../lib/SlugMapContext';
 
-type Locale = 'en' | 'fr' | 'ar';
+type Locale = 'ar' | 'fr' | 'en';
 
 interface NavItem {
   label: string;
@@ -1533,9 +1533,10 @@ interface LangItem {
 }
 
 const LANG_DROPDOWN_ITEMS: LangItem[] = [
-  { href: '/', label: 'English', locale: 'en' },
+   { href: '/', label: 'العربية', locale: 'ar' },
   { href: '/', label: 'Français', locale: 'fr' },
-  { href: '/', label: 'العربية', locale: 'ar' },
+ 
+  { href: '/', label: 'English', locale: 'en' }
 ];
 
 const navVariants = {

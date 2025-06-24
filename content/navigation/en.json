@@ -6,12 +6,16 @@
     },
     {
       "label": "Who we are",
-      "url": "/about",
+      "url": "/en/about",
       "isDropdown": true,
       "dropdownLinks": [
         {
           "label": "About Us",
           "url": "/en/about"
+        },
+        {
+          "label": "Our Team",
+          "url": "/en/management"
         },
         {
           "label": "Members",

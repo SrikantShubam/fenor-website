@@ -3,11 +3,11 @@
   "quickLinks": [
     {
       "label": "Home",
-      "url": "/"
+      "url": "/en/"
     },
     {
       "label": "Contact Us",
-      "url": "contact"
+      "url": "/en/contact"
     },
     {
       "label": "Investor Center",
@@ -35,7 +35,7 @@
     },
     {
       "label": "History",
-      "url": "history"
+      "url": "/en/history"
     },
     {
       "label": "Our Management",

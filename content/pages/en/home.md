@@ -59,30 +59,54 @@ blocks:
     _template: textBoxWithButton
   - cards:
       - icon: /arrow-down-circle.png
-        header: Environmental
+        header: Environmental Commitment
         text: >
-          We advocate for cleaner, more efficient gold processing practices. Our
-          members are encouraged to adopt eco-friendly technologies, reduce
-          emissions, minimize waste, and support the rehabilitation of mining
-          sites. We promote responsible sourcing and the circular use of
-          materials wherever possible.
+          We are committed to minimizing the environmental impact of our
+          activities through the following actions:
+
+
+          · Improving the efficiency of natural resource use.
+
+
+
+          · Complying with local and international environmental regulations.
+
+
+
+          · Supporting initiatives that promote environmental protection.
       - icon: /ad-logo.png
-        header: Social
+        header: Social Responsibility
         text: >
-          Our federation fosters an inclusive and safe work environment,
-          champions fair labor practices, and invests in the well-being of
-          workers and local communities. We are committed to promoting gender
-          equality, upskilling the workforce, and supporting local development
-          initiatives.
+          We believe in our role in supporting the community through the
+          following actions:
+
+
+          · Promoting a fair and inclusive work environment.
+
+
+
+          · Contributing to social and development initiatives.
+
+
+
+          · Ensuring human rights and compliance with ethical standards.
       - icon: /circuit-pushbutton.png
-        header: Governance
+        header: Good Governance
         text: >
-          Transparency, accountability, and ethical business conduct are the
-          pillars of our governance approach. We provide our members with
-          frameworks to improve internal controls, comply with legal
-          requirements, and align with international standards such as the OECD
-          Due Diligence Guidance and UN Guiding Principles on Business and Human
-          Rights.
+          We are committed to applying the principles of good governance through
+          the following actions:
+
+
+          · Ensuring transparency in operations and information disclosure.
+
+
+
+          · Promoting accountability and responsibility at all management
+          levels.
+
+
+
+          · Combating corruption and enforcing strict compliance policies.
     _template: cardGroup
   - smallHeading: Invest
     bigHeading: Your Gold Investment Ally in Mauritania

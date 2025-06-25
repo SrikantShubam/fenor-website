@@ -50,7 +50,7 @@ blocks:
       - image: /1 11.png
         alt: SCET (Sudan Center for Engineering Training)
     _template: imageCardGroup
-  - smallHeading: Nos politiques ESG
+  - smallHeading: 'Environnement, Social et Gouvernance ESG'
     bigHeading: Ouverts à la collaboration avec toutes les parties pour le bien du secteur
     paragraph: >
       À la Fédération Nationale des Usines d’Or, nous souhaitons que notre
@@ -64,33 +64,53 @@ blocks:
     _template: textBoxWithButton
   - cards:
       - icon: /arrow-down-circle.png
-        header: Environnement
+        header: Engagement Environnemental
         text: >
-          Nous prônons une exploitation minière efficace. Nous encourageons nos
-          membres à adopter des technologies respectueuses de l’environnement, à
-          réduire les déchets, et à soutenir la réhabilitation des sites
-          miniers. Nous renforçons également l’utilisation responsable des
-          ressources et la réutilisation des matériaux dans une économie
-          circulaire durable dès que possible.
+          Nous nous engageons à minimiser l'impact environnemental de nos
+          activités à travers les actions suivantes :
+
+
+          · Améliorer l'efficacité de l'utilisation des ressources naturelles.
+
+
+          · Se conformer aux réglementations environnementales locales et
+          internationales.
+
+
+          · Soutenir les initiatives visant à promouvoir la protection de
+          l'environnement.
       - icon: /ad-logo.png
-        header: Social
+        header: Responsabilité Sociétale
         text: >
-          Notre fédération cherche à promouvoir un environnement de travail
-          inclusif et sûr, à défendre des pratiques de travail équitables, et à
-          investir dans le bien-être des travailleurs et des communautés
-          locales. Nous sommes engagés à renforcer l’égalité des genres, à
-          développer les compétences de la main-d’œuvre, et à soutenir les
-          initiatives de développement local.
+          Nous croyons en notre rôle dans le soutien à la communauté à travers
+          les actions suivantes :
+
+
+          · Promouvoir un environnement de travail équitable et inclusif.
+
+
+          · Contribuer aux initiatives sociales et de développement.
+
+
+          · Garantir le respect des droits de l’homme et la conformité aux
+          normes éthiques.
       - icon: /circuit-pushbutton.png
-        header: Gouvernance
+        header: Bonne Gouvernance
         text: >
-          La transparence, la responsabilité et l’éthique commerciale
-          constituent les fondements de notre approche de la gouvernance. Nous
-          fournissons à nos membres des cadres qui les aident à améliorer le
-          contrôle interne, à respecter les exigences légales, et à se conformer
-          aux normes internationales telles que le Guide de diligence
-          raisonnable de l’OCDE et les Principes directeurs des Nations Unies
-          relatifs aux entreprises et aux droits de l’homme.
+          Nous nous engageons à appliquer les principes de la bonne gouvernance
+          à travers les actions  suivantes :
+
+
+          · Assurer la transparence dans les opérations et la divulgation des
+          informations.
+
+
+          · Promouvoir la responsabilité et l'obligation de rendre des comptes à
+          tous les niveaux de gestion.
+
+
+          · Lutter contre la corruption et appliquer des politiques de
+          conformité strictes.
     _template: cardGroup
   - smallHeading: Investir
     bigHeading: Votre allié pour l’investissement aurifère en Mauritanie

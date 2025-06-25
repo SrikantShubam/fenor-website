@@ -1,6 +1,10 @@
 {
   "items": [
     {
+      "label": "Maison",
+      "url": "/fr/"
+    },
+    {
       "label": "Qui nous sommes",
       "url": "/about",
       "isDropdown": true,
@@ -12,6 +16,10 @@
         {
           "label": "Notre Équipe",
           "url": "/management"
+        },
+        {
+          "label": "Message du Président",
+          "url": "/fr/chairman"
         },
         {
           "label": "Membres",
@@ -33,7 +41,7 @@
           "url": "https://maaden.mr"
         },
         {
-          "label": "Union Nationale des Patrons Mauritaniens (UNPM)",
+          "label": "Union Nationale du Patronat Mauritanien (UNPM)",
           "url": "http://www.unpm.mr"
         },
         {

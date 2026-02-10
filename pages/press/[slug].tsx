@@ -1053,8 +1053,10 @@ export const getStaticProps: GetStaticProps<NewsArticlePageProps> = async ({ par
 };
 
 // Helper function to format the date based on locale
-const formatDate = (dateStr: string, locale: string) => {
+const formatDate = (dateStr: string, locale: string): string | null => {
+  if (!dateStr) return null;
   const date = new Date(dateStr);
+  if (Number.isNaN(date.getTime())) return null;
   return date.toLocaleDateString(locale === 'ar' ? 'ar-EG' : locale === 'fr' ? 'fr-FR' : 'en-US', {
     month: 'long',
     day: '2-digit',
@@ -1067,6 +1069,7 @@ const NewsArticlePage: NextPage<NewsArticlePageProps> = ({ article, slugMap, loc
   if (!article) {
     return <div className="container mx-auto py-12">Article not found.</div>;
   }
+  const formattedPublishedDate = formatDate(article.publishedDate, locale);
 
   // Rich text rendering options with animations
   const richTextOptions = {
@@ -1235,14 +1238,18 @@ const NewsArticlePage: NextPage<NewsArticlePageProps> = ({ article, slugMap, loc
     },
   };
 
+  const seoDescription =
+    article.excerpt?.trim() ||
+    `Read the latest news and updates from FENOR: ${article.title}.`;
+
   return (
     <SlugMapProvider slugMap={slugMap}>
       <NextSeo
         title={article.title}
-        description={article.excerpt}
+        description={seoDescription}
         openGraph={{
           title: article.title,
-          description: article.excerpt,
+          description: seoDescription,
           images: article.featuredImage ? [
             {
               url: `https:${article.featuredImage.url}`,
@@ -1285,15 +1292,17 @@ const NewsArticlePage: NextPage<NewsArticlePageProps> = ({ article, slugMap, loc
           >
             {article.title}
           </motion.h1>
-          <motion.h3
-            className="mt-4 text-gray-500 uppercase"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            {formatDate(article.publishedDate, locale)}
-          </motion.h3>
+          {formattedPublishedDate && (
+            <motion.h3
+              className="mt-4 text-gray-500 uppercase"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              {formattedPublishedDate}
+            </motion.h3>
+          )}
           <motion.p
             className="text-xl text-gray-600 mb-6 mt-5"
             initial={{ opacity: 0, y: 20 }}

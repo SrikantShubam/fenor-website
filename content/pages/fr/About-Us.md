@@ -77,14 +77,14 @@ blocks:
     buttonText: 'en savoir plus '
     buttonUrl: /history
     _template: textBoxWithButton
-  - smallHeading: Notre direction
+  - smallHeading: Équipe exécutive
     bigHeading: Un leadership qui favorise l'excellence
     paragraph: >
       Dirigé par une équipe de professionnels expérimentés, le Conseil exécutif
       de FENOR s'engage à orienter la fédération vers l'excellence. Rencontrez
       les leaders derrière notre vision
     buttonText: en savoir plus
-    buttonUrl: management
+    buttonUrl: executive-team
     _template: textBoxWithButton
   - smallHeading: Message du président
     bigHeading: Une vision pour un avenir durable
@@ -96,4 +96,3 @@ blocks:
     buttonUrl: chairman
     _template: textBoxWithButton
 ---
-

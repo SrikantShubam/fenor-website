@@ -109,12 +109,12 @@ const about: NextPage<AboutUsProps> = ({ content, locale }) => {
   return (
     <>
    <SEOComponent
-        title={content.seo?.title || content.title || 'Members'}
+        title={content.seo?.title || content.title || 'About Us'}
         description={
-          content.seo?.description || 'Meet the member organizations of FENOR, the National Federation of Gold Factories.'
+          content.seo?.description ||
+          'Learn more about FENOR, the National Federation of Gold Factories, and our mission in Mauritania.'
         }
-        canonicalPath={`/${locale}/members`}
-       
+        canonicalPath={`/${locale}/about`}
       />
       <div className="about-us" lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
         <div className="space-y-[120px] md:space-y-[200px]">

@@ -572,7 +572,8 @@ const ImageCardGroup = ({ heading, cards }) => {
   }, []);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 640);
+    // Treat tablet like mobile so autoplay carousel runs on both.
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -609,14 +610,14 @@ const ImageCardGroup = ({ heading, cards }) => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-[19px] md:text-[33px] text-center md:mx-20 mx-2 font-medium md:mb-[40px] mb-[30px] relative"
+          className="text-[19px] md:text-[33px] text-center md:mx-20 mx-2 font-medium md:mb-[10rem] mb-[30px] relative"
         >
           {heading}
         
         </motion.h2>
       )}
 
-      {/* Mobile View: Carousel */}
+      {/* Mobile + Tablet View: Carousel */}
       {isMobile ? (
         <div className="relative w-full flex flex-col items-center">
           <div className="h-[170px] flex justify-center items-center">

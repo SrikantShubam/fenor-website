@@ -1,6 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import * as brevo from '@getbrevo/brevo'; // Brevo SDK
 
+const escapeHtml = (value: string): string => {
+  const htmlEscapeMap: Record<string, string> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  return value.replace(/[&<>"']/g, (char) => htmlEscapeMap[char]);
+};
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   // Restrict to POST requests
   if (req.method !== 'POST') {
@@ -8,7 +20,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   // Extract form data from request body
-  const { fullName, email, message } = req.body;
+  const fullNameRaw = typeof req.body?.fullName === 'string' ? req.body.fullName : '';
+  const emailRaw = typeof req.body?.email === 'string' ? req.body.email : '';
+  const messageRaw = typeof req.body?.message === 'string' ? req.body.message : '';
+
+  const fullName = escapeHtml(fullNameRaw.trim());
+  const email = escapeHtml(emailRaw.trim());
+  const message = escapeHtml(messageRaw.trim()).replace(/\r?\n/g, '<br />');
 
   try {
     // Initialize Brevo Transactional Emails API
@@ -71,8 +89,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     `;
 
     // Send the email using Brevo's API
-     const response=await apiInstance.sendTransacEmail(sendSmtpEmail);
-    console.log('Brevo API Response:', response);
+    await apiInstance.sendTransacEmail(sendSmtpEmail);
     return res.status(200).json({ message: 'Email sent successfully' });
   } catch (error) {
     // Log the error for debugging

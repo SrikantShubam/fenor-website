@@ -961,6 +961,11 @@ export default defineConfig({
       name: "items",
       label: "Menu Items",
       list: true,
+      ui: {
+        itemProps: (item) => ({
+          label: item?.label ? item.label : "Menu Item",
+        }),
+      },
       fields: [
         {
           type: "string",
@@ -984,6 +989,11 @@ export default defineConfig({
           label: "Dropdown Links",
           list: true,
           description: "Add as many dropdown entries as you like",
+          ui: {
+            itemProps: (item) => ({
+              label: item?.label ? item.label : "Dropdown Link",
+            }),
+          },
           fields: [
             {
               type: "string",
@@ -994,6 +1004,38 @@ export default defineConfig({
               type: "string",
               name: "url",
               label: "Dropdown URL",
+            },
+            {
+              type: "boolean",
+              name: "isDropdown",
+              label: "Is Nested Dropdown",
+              description:
+                "Toggle on if this dropdown entry should have its own submenu",
+            },
+            {
+              type: "object",
+              name: "dropdownLinks",
+              label: "Nested Dropdown Links",
+              list: true,
+              description:
+                "Optional second-level dropdown links for this dropdown entry",
+              ui: {
+                itemProps: (item) => ({
+                  label: item?.label ? item.label : "Nested Dropdown Link",
+                }),
+              },
+              fields: [
+                {
+                  type: "string",
+                  name: "label",
+                  label: "Nested Dropdown Label",
+                },
+                {
+                  type: "string",
+                  name: "url",
+                  label: "Nested Dropdown URL",
+                },
+              ],
             },
           ],
         },

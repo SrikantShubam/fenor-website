@@ -8,11 +8,23 @@
   }
   
   .menuItem {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    border-radius: 6px;
     font-size: 16px;
     font-weight: 400;
     color: var(--color-text);
+    background: transparent;
+    border: none;
+    cursor: pointer;
     transition: color 0.2s ease;
     font-family: 'Poppins', sans-serif;
+  }
+
+  .menuItem :global(.svg-inline--fa) {
+    color: inherit;
   }
   
   .menuItem:hover {
@@ -34,25 +46,100 @@
     border-radius: 8px;
     min-width: 160px;
     z-index: 10;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .langDropdown {
+    left: auto;
+    right: 0;
+  }
+
+  :global([dir='rtl']) .langDropdown {
+    right: auto;
+    left: 0;
   }
   
 
   .show {
-    display: block;
+    display: flex;
   }
   
   .dropdownItem {
-    display: block;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    align-self: stretch;
     padding: 8px 16px;
     font-size: 16px;
     font-weight: 400;
     color: white;
+    text-align: start;
+    background: transparent;
+    border: none;
+    cursor: pointer;
     text-decoration: none;
     transition: background 0.2s ease;
   }
   
   .dropdownItem:hover {
     background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+
+  .dropdownNestedGroup {
+    display: block;
+  }
+
+  .dropdownItemButton {
+    width: 100%;
+    box-sizing: border-box;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: start;
+    transition: background 0.2s ease;
+  }
+
+  .dropdownItemButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+
+  .nestedChevron {
+    transition: transform 0.18s ease;
+  }
+
+  .nestedChevronOpen {
+    transform: rotate(180deg);
+  }
+
+  .nestedMenu {
+    padding-bottom: 4px;
+  }
+
+  .nestedDropdownItem {
+    display: block;
+    padding: 8px 16px 8px 28px;
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .nestedDropdownItem:hover {
+    background: rgba(255, 255, 255, 0.15);
     color: white;
   }
 
@@ -109,11 +196,23 @@
     height: 54px;
   }
   .menuItem {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    border-radius: 6px;
     font-size: 16px;
     font-weight: 400;
     color: var(--color-text);
+    background: transparent;
+    border: none;
+    cursor: pointer;
     transition: color 0.2s ease;
     font-family: 'Poppins', sans-serif;
+  }
+
+  .menuItem :global(.svg-inline--fa) {
+    color: inherit;
   }
   
   .menuItem:hover {
@@ -135,24 +234,98 @@
     border-radius: 8px;
     min-width: 160px;
     z-index: 10;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .langDropdown {
+    left: auto;
+    right: 0;
+  }
+
+  :global([dir='rtl']) .langDropdown {
+    right: auto;
+    left: 0;
   }
   
   .show {
-    display: block;
+    display: flex;
   }
   
   .dropdownItem {
-    display: block;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
     padding: 8px 16px;
     font-size: 16px;
     font-weight: 400;
     color: white;
+    text-align: start;
+    background: transparent;
+    border: none;
+    cursor: pointer;
     text-decoration: none;
     transition: background 0.2s ease;
   }
   
   .dropdownItem:hover {
     background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+
+  .dropdownNestedGroup {
+    display: block;
+  }
+
+  .dropdownItemButton {
+    width: 100%;
+    box-sizing: border-box;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: start;
+    transition: background 0.2s ease;
+  }
+
+  .dropdownItemButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+
+  .nestedChevron {
+    transition: transform 0.18s ease;
+  }
+
+  .nestedChevronOpen {
+    transform: rotate(180deg);
+  }
+
+  .nestedMenu {
+    padding-bottom: 4px;
+  }
+
+  .nestedDropdownItem {
+    display: block;
+    padding: 6px 16px 6px 28px;
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .nestedDropdownItem:hover {
+    background: rgba(255, 255, 255, 0.15);
     color: white;
   }
   
@@ -163,11 +336,15 @@
   @media (max-width: 1023px) {
     .menuItem { font-size: 14px; }
     .dropdownItem { font-size: 14px; padding: 6px 12px; }
+    .dropdownItemButton { font-size: 14px; padding: 6px 12px; }
+    .nestedDropdownItem { font-size: 13px; padding: 5px 12px 5px 22px; }
   }
   
   @media (max-width: 767px) {
     .menuItem { font-size: 12px; }
     .dropdownItem { font-size: 12px; padding: 4px 10px; }
+    .dropdownItemButton { font-size: 12px; padding: 4px 10px; }
+    .nestedDropdownItem { font-size: 12px; padding: 4px 10px 4px 20px; }
   }
   
   .langButton {
@@ -319,18 +496,40 @@
   
   .investMenuHeader {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 12px;
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
-  
+
+  :global([dir='rtl']) .investMenuHeader {
+    flex-direction: row-reverse;
+  }
+
+  .subMenuTitle {
+    flex: 1;
+    min-width: 0;
+    text-align: start;
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   .investMenuHeader button {
     background: none;
     border: none;
     color: white;
     font-size: 20px;
     cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .investMenuItems {

@@ -57,14 +57,14 @@ blocks:
     buttonText: 'اقرأ المزيد '
     buttonUrl: /history
     _template: textBoxWithButton
-  - smallHeading: إدارتنا
+  - smallHeading: الفريق التنفيذي
     bigHeading: مكتب تنفيذي من أصحاب الخبرة
     paragraph: >
       يعمل مكتبنا التنفيذي الذي يجمع بين الخبرة العملية، والرؤية الاستراتيجية،
       والالتزام بخدمة القطاع على توجيه جهودنا نحو تنظيم وتطوير التعدين الأهلي
       وشبه الصناعي للذهب في موريتانيا.
     buttonText: اقرأ المزيد
-    buttonUrl: management
+    buttonUrl: executive-team
     _template: textBoxWithButton
   - smallHeading: رسالةالرئيس
     bigHeading: '"نستخرج معادننا بأيدينا ونحافظ على بيئتنا خدمة لوطننا"'
@@ -80,4 +80,3 @@ blocks:
     buttonUrl: chairman
     _template: textBoxWithButton
 ---
-

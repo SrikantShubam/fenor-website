@@ -301,7 +301,10 @@ const CardGroup = ({ cards }) => {
 
   return (
     <motion.div
-      className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-[19px]"
+      // Original layout kept for quick rollback:
+      // className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-[19px]"
+      // Option 3 active: less rectangular + fatter cards on desktop
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -310,14 +313,23 @@ const CardGroup = ({ cards }) => {
       {cards.map((card, index) => (
         <React.Fragment key={index}>
           <motion.div
+            // Original slim card classes kept for quick rollback:
+            // className="
+            //   bg-[#000B18] text-white
+            //   border-2 border-[#FFD550]
+            //   rounded-[20px]
+            //   py-[14px] px-[10px]
+            //   sm:py-[24px] sm:px-[18px]
+            //   md:py-[20px] md:px-[18px]
+            //   lg:py-[36px] lg:px-[20px]
+            //   flex flex-col space-y-4 md:space-y-4
+            // "
             className="
               bg-[#000B18] text-white 
-              border-[3px] border-[#FFD550] 
-              rounded-[20px] 
-              py-[17px] px-[10px] 
-              sm:py-[30px] sm:px-[20px] 
-              md:py-[25px] md:px-[20px] 
-              lg:py-[50px] lg:px-[24px]
+              border-[1.5px] border-[#FFD550] 
+              rounded-[22px]
+              w-full min-h-[340px]
+              px-7 py-8
               flex flex-col space-y-5 md:space-y-[19px]
             "
             variants={cardVariants}
@@ -329,13 +341,13 @@ const CardGroup = ({ cards }) => {
                 width={85}
                 height={85}
                 className="
-                  w-[49px] h-[49px] 
-                  sm:w-[85px] sm:h-[85px] 
-                  md:w-[50px] md:h-[50px] 
-                  lg:w-[60px] lg:h-[60px]
+                  w-[56px] h-[56px] 
+                  sm:w-[88px] sm:h-[88px] 
+                  md:w-[58px] md:h-[58px] 
+                  lg:w-[64px] lg:h-[64px]
                   mb-4
                 "
-                sizes="(max-width: 640px) 49px, (max-width: 768px) 85px, (max-width: 1024px) 50px, 60px"
+                sizes="(max-width: 640px) 56px, (max-width: 768px) 88px, (max-width: 1024px) 58px, 64px"
               />
             )}
             {card.header && (
@@ -344,7 +356,7 @@ const CardGroup = ({ cards }) => {
                   text-[19px] sm:text-[23px] 
                   md:text-[19px] 
                   lg:text-[24px]
-                  font-medium mb-2
+                  font-medium mb-2 max-w-[34ch]
                 "
               >
                 {card.header}
@@ -356,14 +368,13 @@ const CardGroup = ({ cards }) => {
                   text-[13px] sm:text-[19px] 
                   md:text-[13px] 
                   lg:text-[16px]
-                  font-normal
+                  font-normal max-w-[34ch] leading-[1.55]
                 "
               >
                 <TinaMarkdown content={card.text} />
               </div>
             )}
           </motion.div>
-          {index === 0 && <div className="hidden sm:block md:hidden lg:block"></div>}
         </React.Fragment>
       ))}
     </motion.div>

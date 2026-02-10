@@ -30,12 +30,20 @@
       "url": "/fr/chairman"
     },
     {
-      "label": "Notre direction",
-      "url": "/fr/management"
+      "label": "Équipe exécutive",
+      "url": "/fr/executive-team"
     },
     {
       "label": "Histoire",
       "url": "/fr/history"
+    },
+    {
+      "label": "Haut Comité",
+      "url": "/fr/high-committee"
+    },
+    {
+      "label": "Département d’orfèvrerie et de bijouterie",
+      "url": "/fr/gold-and-jewelry-section"
     }
   ],
   "importantLinks": [

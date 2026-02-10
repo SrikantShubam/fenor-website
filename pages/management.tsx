@@ -398,6 +398,8 @@ interface ManagementFields {
   profileImg?: { fields: { file: { url: string } } };
   whatsapp?: string;
   linkedinUrl?: string;
+  orderId?: number | string;
+  OrderId?: number | string;
   displayOrder?: number;
 }
 
@@ -415,9 +417,18 @@ interface ManagementProps {
   locale: string;
 }
 
+const normalizeOrderValue = (value: unknown): number | null => {
+  if (typeof value === 'number' && Number.isFinite(value)) return value;
+  if (typeof value === 'string') {
+    const parsed = Number(value.trim());
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+  return null;
+};
+
 export const getStaticProps: GetStaticProps<ManagementProps> = async ({ locale }) => {
   // TinaCMS fetch
-  let tinaContent: Content = { title: 'Management', seo: null, blocks: [] };
+  let tinaContent: Content = { title: 'Executive Team', seo: null, blocks: [] };
   try {
     const res = await client.queries.pages({ relativePath: `${locale}/Management.md` });
     const rawContent = res.data.pages;
@@ -428,7 +439,7 @@ export const getStaticProps: GetStaticProps<ManagementProps> = async ({ locale }
      
     }
     tinaContent = {
-      title: rawContent.title || 'Management',
+      title: rawContent.title || 'Executive Team',
       seo: Object.keys(seoTemp).length ? seoTemp : null,
       blocks: rawContent.blocks || [],
     };
@@ -447,9 +458,21 @@ export const getStaticProps: GetStaticProps<ManagementProps> = async ({ locale }
         const response = await contentfulClient.getEntries({
           content_type: 'management',
           include: 2,
-          order: ['fields.displayOrder'],
         });
-        return response.items;
+
+        const sortedItems = [...response.items].sort((a, b) => {
+          const aFields = a.fields as ManagementFields;
+          const bFields = b.fields as ManagementFields;
+          const aOrder = normalizeOrderValue(aFields.orderId ?? aFields.OrderId ?? aFields.displayOrder);
+          const bOrder = normalizeOrderValue(bFields.orderId ?? bFields.OrderId ?? bFields.displayOrder);
+
+          if (aOrder !== null && bOrder !== null) return aOrder - bOrder;
+          if (aOrder !== null) return -1;
+          if (bOrder !== null) return 1;
+          return 0;
+        });
+
+        return sortedItems;
       },
       [`management-entries-${locale}`],
       { revalidate: 86400 } // 24 hours
@@ -503,11 +526,12 @@ const Management: NextPage<ManagementProps> = ({ content, managementEntries, loc
   return (
     <div className="management" lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <SEOComponent
-        title={content.seo?.title || content.title || 'Management'}
+        title={content.seo?.title || content.title || 'Executive Team'}
         description={
-          content.seo?.description || 'Learn more about the menagament of FENOR, the National Federation of Gold Factories.'
+          content.seo?.description ||
+          'Learn more about FENOR executive team, the National Federation of Gold Factories.'
         }
-        canonicalPath={`/${locale}/about-us`}
+        canonicalPath={`/${locale}/executive-team`}
       />
       <div className="container mx-auto py-[60px] md:py-[100px]">
         <div className="space-y-[120px] md:space-y-[200px]">{content.blocks?.map(renderBlock)}</div>
@@ -531,7 +555,7 @@ const Management: NextPage<ManagementProps> = ({ content, managementEntries, loc
             ))}
           </motion.div>
         ) : (
-          <p className="text-center text-gray-500 mt-[120px]">No management entries found.</p>
+          <p className="text-center text-gray-500 mt-[120px]">No executive team entries found.</p>
         )}
       </div>
     </div>

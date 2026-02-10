@@ -14,12 +14,27 @@
           "url": "/about"
         },
         {
-          "label": "Notre Équipe",
-          "url": "/management"
-        },
-        {
           "label": "Message du Président",
           "url": "/fr/chairman"
+        },
+        {
+          "label": "Notre Équipe",
+          "url": "",
+          "isDropdown": true,
+          "dropdownLinks": [
+            {
+              "label": "Haut Comité",
+              "url": "/fr/high-committee"
+            },
+            {
+              "label": "Département d’orfèvrerie et de bijouterie",
+              "url": "/fr/gold-and-jewelry-section"
+            },
+            {
+              "label": "Équipe exécutive",
+              "url": "/fr/executive-team"
+            }
+          ]
         },
         {
           "label": "Membres",

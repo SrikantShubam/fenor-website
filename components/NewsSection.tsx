@@ -105,10 +105,10 @@ const NewsSection: React.FC<NewsSectionProps> = ({ sectionTitle, newsArticles, l
 
   return (
     <section className="news-section">
-      <h2 className="text-2xl font-bold mb-4">{sectionTitle}</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <h2 className="mb-6 text-2xl font-bold">{sectionTitle}</h2>
+      <div className="fenor-news-grid grid grid-cols-1 gap-6 md:grid-cols-3">
         {displayed.map((article) => (
-          <Link key={article.slug} href={`/press/${article.slug}`}>
+          <Link key={article.slug} href={`/press/${article.slug}`} className="fenor-news-link">
             <NewsCard
               title={article.title}
               excerpt={article.excerpt}
@@ -121,9 +121,11 @@ const NewsSection: React.FC<NewsSectionProps> = ({ sectionTitle, newsArticles, l
         ))}
       </div>
 
-      <div className="flex justify-center mt-4">
+      <div className="mt-6 flex justify-center">
         <Link href="/press">
-          <Button>See all news</Button>
+          <Button className="cursor-pointer transition-transform duration-200 ease-out hover:-translate-y-0.5">
+            See all news
+          </Button>
         </Link>
       </div>
     </section>

@@ -1512,19 +1512,28 @@ import {
   faArrowLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import styles from './nav.module.css';
 import GoldButton from '../GoldButton';
 import { useSlugMap } from '../../lib/SlugMapContext';
 
 type Locale = 'ar' | 'fr' | 'en';
+type MobileNavDir = 'forward' | 'back';
 
 interface NavItem {
   label: string;
   url: string;
   isDropdown?: boolean;
-  dropdownLinks?: { label: string; url: string }[];
+  dropdownLinks?: {
+    label: string;
+    url: string;
+    isDropdown?: boolean;
+    dropdownLinks?: { label: string; url: string }[];
+  }[];
 }
+
+type DropdownLinks = NonNullable<NavItem['dropdownLinks']>;
+type MobileMenuPanel = { title: string; links: DropdownLinks };
 
 interface LangItem {
   href: string;
@@ -1533,10 +1542,9 @@ interface LangItem {
 }
 
 const LANG_DROPDOWN_ITEMS: LangItem[] = [
-   { href: '/', label: 'العربية', locale: 'ar' },
+  { href: '/', label: 'العربية', locale: 'ar' },
   { href: '/', label: 'Français', locale: 'fr' },
- 
-  { href: '/', label: 'English', locale: 'en' }
+  { href: '/', label: 'English', locale: 'en' },
 ];
 
 const navVariants = {
@@ -1552,17 +1560,47 @@ const dropdownVariants = {
   visible: { opacity: 1, scale: 1, transition: { duration: 0.2 } },
 };
 
+const nestedMenuVariants = {
+  collapsed: { height: 0, opacity: 0, transition: { duration: 0.18 } },
+  open: { height: 'auto', opacity: 1, transition: { duration: 0.18 } },
+};
+
+const mobilePanelVariants = {
+  enter: (dir: MobileNavDir) => ({
+    x: dir === 'forward' ? '100%' : '-100%',
+    opacity: 0,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    transition: { duration: 0.3 },
+  },
+  exit: (dir: MobileNavDir) => ({
+    x: dir === 'forward' ? '-100%' : '100%',
+    opacity: 0,
+    transition: { duration: 0.3 },
+  }),
+};
+
 export default function Nav() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeMobileLinks, setActiveMobileLinks] = useState<NavItem['dropdownLinks']>([]);
+  const [mobileMenuStack, setMobileMenuStack] = useState<MobileMenuPanel[]>([]);
+  const [mobileMenuDir, setMobileMenuDir] = useState<MobileNavDir>('forward');
   const [navItems, setNavItems] = useState<NavItem[]>([]);
   const [isSticky, setIsSticky] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [openNestedDropdown, setOpenNestedDropdown] = useState<string | null>(null);
   const [isLangOpen, setIsLangOpen] = useState(false);
 
+  const activeMobilePanel: MobileMenuPanel | null = mobileMenuStack.length
+    ? mobileMenuStack[mobileMenuStack.length - 1]
+    : null;
+
+  const activeMobileLinks: DropdownLinks = activeMobilePanel ? activeMobilePanel.links : [];
+
   const router = useRouter();
-  const rawLocale = router.locale ?? 'en';
-  const currentLocale = (['en', 'fr', 'ar'].includes(rawLocale) ? rawLocale : 'en') as Locale;
+  const rawLocale = router.locale ?? 'ar';
+  const currentLocale = (['en', 'fr', 'ar'].includes(rawLocale) ? rawLocale : 'ar') as Locale;
   const { slugMap } = useSlugMap();
 
   // Create individual refs for each dropdown
@@ -1585,6 +1623,11 @@ export default function Nav() {
             dropdownLinks: item!.dropdownLinks?.map(dl => ({
               label: dl!.label,
               url: dl!.url,
+              isDropdown: Boolean(dl!.isDropdown),
+              dropdownLinks: dl!.dropdownLinks?.map(ndl => ({
+                label: ndl!.label,
+                url: ndl!.url,
+              })) || [],
             })) || [],
           })) as NavItem[];
         setNavItems(items);
@@ -1614,6 +1657,7 @@ export default function Nav() {
       
       if (clickedOutsideAllDropdowns) {
         setOpenDropdown(null);
+        setOpenNestedDropdown(null);
         setIsLangOpen(false);
       }
     };
@@ -1629,29 +1673,55 @@ export default function Nav() {
   }, []);
 
   const handleLanguageSwitch = (newLocale: Locale) => {
-    const currentPath = router.asPath;
-    const isArticlePage = currentPath.startsWith('/press/') && currentPath.split('/').length === 3;
+    const isPressArticlePage = router.pathname === '/press/[slug]';
 
-    if (isArticlePage && slugMap) {
-      const currentSlug = currentPath.split('/')[2];
-      const articleId = Object.keys(slugMap).find(id => slugMap[id][currentLocale] === currentSlug);
-      if (articleId) {
-        const newSlug = slugMap[articleId][newLocale];
-        router.push(newSlug ? `/press/${newSlug}` : '/press', undefined, { locale: newLocale });
+    if (isPressArticlePage) {
+      const slugParam = router.query.slug;
+      const currentSlug = Array.isArray(slugParam) ? slugParam[0] : slugParam;
+
+      if (currentSlug) {
+        const articleId = Object.keys(slugMap).find(id => slugMap[id]?.[currentLocale] === currentSlug);
+        const newSlug = articleId ? slugMap[articleId]?.[newLocale] : '';
+
+        if (newSlug) {
+          router.push(
+            { pathname: '/press/[slug]', query: { ...router.query, slug: newSlug } },
+            undefined,
+            { locale: newLocale }
+          );
+        } else {
+          router.push('/press', undefined, { locale: newLocale });
+        }
       } else {
         router.push('/press', undefined, { locale: newLocale });
       }
     } else {
-      router.push(currentPath, undefined, { locale: newLocale });
+      router.push({ pathname: router.pathname, query: router.query }, undefined, { locale: newLocale });
     }
 
     setIsLangOpen(false);
     setIsMobileMenuOpen(false);
+    setMobileMenuStack([]);
   };
 
   // Function to set ref for each dropdown
   const setDropdownRef = (key: string) => (el: HTMLDivElement | null) => {
     dropdownRefs.current[key] = el;
+  };
+
+  const openMobilePanel = (title: string, links: DropdownLinks) => {
+    setMobileMenuDir('forward');
+    setMobileMenuStack([{ title, links }]);
+  };
+
+  const pushMobilePanel = (title: string, links: DropdownLinks) => {
+    setMobileMenuDir('forward');
+    setMobileMenuStack(stack => [...stack, { title, links }]);
+  };
+
+  const popMobilePanel = () => {
+    setMobileMenuDir('back');
+    setMobileMenuStack(stack => stack.slice(0, -1));
   };
 
   return (
@@ -1683,6 +1753,7 @@ export default function Nav() {
                     className={styles.menuItem}
                     onClick={() => {
                       setOpenDropdown(openDropdown === link.label ? null : link.label);
+                      setOpenNestedDropdown(null);
                       setIsLangOpen(false);
                     }}
                     aria-expanded={openDropdown === link.label}
@@ -1695,16 +1766,85 @@ export default function Nav() {
                     animate={openDropdown === link.label ? 'visible' : 'hidden'}
                     variants={dropdownVariants}
                   >
-                    {(link.dropdownLinks || []).map(dl => (
-                      <Link
-                        key={dl.url}
-                        href={dl.url}
-                        className={styles.dropdownItem}
-                        onClick={() => setOpenDropdown(null)}
-                      >
-                        {dl.label}
-                      </Link>
-                    ))}
+                    {(link.dropdownLinks || []).map((dl, dlIndex) => {
+                      const hasNestedDropdown =
+                        Boolean(dl.isDropdown) && Boolean(dl.dropdownLinks && dl.dropdownLinks.length > 0);
+                      const nestedKey = `nav-nested-${idx}-${dlIndex}`;
+                      const nestedMenuId = `nav-nested-menu-${idx}-${dlIndex}`;
+                      const isNestedOpen = openNestedDropdown === nestedKey;
+
+                      if (!hasNestedDropdown) {
+                        return dl.url ? (
+                          <Link
+                            key={nestedKey}
+                            href={dl.url}
+                            className={styles.dropdownItem}
+                            onClick={() => {
+                              setOpenDropdown(null);
+                              setOpenNestedDropdown(null);
+                            }}
+                          >
+                            {dl.label}
+                          </Link>
+                        ) : (
+                          <span key={nestedKey} className={styles.dropdownItem}>
+                            {dl.label}
+                          </span>
+                        );
+                      }
+
+                      return (
+                        <div key={nestedKey} className={styles.dropdownNestedGroup}>
+                          <button
+                            type="button"
+                            className={styles.dropdownItemButton}
+                            onClick={() => setOpenNestedDropdown(isNestedOpen ? null : nestedKey)}
+                            aria-expanded={isNestedOpen}
+                            aria-controls={nestedMenuId}
+                            aria-label={`Toggle ${dl.label} submenu`}
+                          >
+                            <span>{dl.label}</span>
+                            <FontAwesomeIcon
+                              icon={faChevronDown}
+                              className={`${styles.nestedChevron} ${isNestedOpen ? styles.nestedChevronOpen : ''}`}
+                            />
+                          </button>
+                          <AnimatePresence initial={false}>
+                            {isNestedOpen && (
+                              <motion.div
+                                id={nestedMenuId}
+                                className={styles.nestedMenu}
+                                style={{ overflow: 'hidden' }}
+                                variants={nestedMenuVariants}
+                                initial="collapsed"
+                                animate="open"
+                                exit="collapsed"
+                              >
+                                {(dl.dropdownLinks || []).map((ndl, ndlIndex) =>
+                                  ndl.url ? (
+                                    <Link
+                                      key={`${nestedKey}-${ndlIndex}`}
+                                      href={ndl.url}
+                                      className={styles.nestedDropdownItem}
+                                      onClick={() => {
+                                        setOpenDropdown(null);
+                                        setOpenNestedDropdown(null);
+                                      }}
+                                    >
+                                      {ndl.label}
+                                    </Link>
+                                  ) : (
+                                    <span key={`${nestedKey}-${ndlIndex}`} className={styles.nestedDropdownItem}>
+                                      {ndl.label}
+                                    </span>
+                                  )
+                                )}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      );
+                    })}
                   </motion.div>
                 </div>
               ) : (
@@ -1718,7 +1858,7 @@ export default function Nav() {
             </motion.div>
           ))}
 
-          <motion.div ref={langRef} variants={itemVariants} whileHover={{ y: -2 }}>
+          <motion.div ref={langRef} variants={itemVariants} whileHover={{ y: -2 }} className="relative">
             <button
               className={`${styles.menuItem} ${styles.selected}`}
               onClick={() => {
@@ -1730,7 +1870,7 @@ export default function Nav() {
               {currentLocale.toUpperCase()} <FontAwesomeIcon icon={isLangOpen ? faChevronUp : faChevronDown} />
             </button>
             <motion.div
-              className={`${styles.dropdown} ${isLangOpen ? styles.show : ''}`}
+              className={`${styles.dropdown} ${styles.langDropdown} ${isLangOpen ? styles.show : ''}`}
               initial="hidden"
               animate={isLangOpen ? 'visible' : 'hidden'}
               variants={dropdownVariants}
@@ -1784,7 +1924,7 @@ export default function Nav() {
                 className={styles.closeButton}
                 onClick={() => {
                   setIsMobileMenuOpen(false);
-                  setActiveMobileLinks([]);
+                  setMobileMenuStack([]);
                 }}
                 aria-label="Close menu"
               >
@@ -1798,7 +1938,7 @@ export default function Nav() {
                   {link.isDropdown ? (
                     <button
                       className={styles.mobileMenuItem}
-                      onClick={() => setActiveMobileLinks(link.dropdownLinks || [])}
+                      onClick={() => openMobilePanel(link.label, link.dropdownLinks ?? [])}
                     >
                       {link.label}{' '}
                       <FontAwesomeIcon icon={faChevronRight} className="ml-2" />
@@ -1807,7 +1947,10 @@ export default function Nav() {
                     <Link
                       href={link.url}
                       className={styles.mobileMenuItem}
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        setMobileMenuStack([]);
+                      }}
                     >
                       {link.label}
                     </Link>
@@ -1832,32 +1975,69 @@ export default function Nav() {
             </div>
           </motion.div>
 
-          {activeMobileLinks.length > 0 && (
-            <motion.div
-              className={styles.investMenu}
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className={styles.investMenuHeader}>
-                <button onClick={() => setActiveMobileLinks([])}>
-                  <FontAwesomeIcon icon={faArrowLeft} />
-                </button>
-              </div>
-              <div className={styles.investMenuItems}>
-                {activeMobileLinks.map(dl => (
-                  <Link
-                    key={dl.url}
-                    href={dl.url}
-                    className={styles.mobileMenuItem}
-                    onClick={() => setIsMobileMenuOpen(false)}
+          <AnimatePresence initial={false} custom={mobileMenuDir}>
+            {mobileMenuStack.length > 0 && (
+              <motion.div
+                key={mobileMenuStack.length}
+                className={styles.investMenu}
+                custom={mobileMenuDir}
+                variants={mobilePanelVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+              >
+                <div className={styles.investMenuHeader}>
+                  <button onClick={popMobilePanel} aria-label="Back">
+                    <FontAwesomeIcon icon={faArrowLeft} />
+                  </button>
+                  <span className={styles.subMenuTitle}>{activeMobilePanel?.title}</span>
+                  <button
+                    className={styles.closeButton}
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setMobileMenuStack([]);
+                    }}
+                    aria-label="Close menu"
                   >
-                    {dl.label}
-                  </Link>
-                ))}
-              </div>
-            </motion.div>
-          )}
+                    <FontAwesomeIcon icon={faTimes} />
+                  </button>
+                </div>
+                <div className={styles.investMenuItems}>
+                  {activeMobileLinks.map(dl => {
+                    const hasNestedDropdown =
+                      Boolean(dl.isDropdown) && Boolean(dl.dropdownLinks && dl.dropdownLinks.length > 0);
+
+                    return hasNestedDropdown ? (
+                      <button
+                        key={`${dl.label}::${dl.url}`}
+                        className={styles.mobileMenuItem}
+                        onClick={() => pushMobilePanel(dl.label, dl.dropdownLinks ?? [])}
+                      >
+                        {dl.label}{' '}
+                        <FontAwesomeIcon icon={faChevronRight} className="ml-2" />
+                      </button>
+                    ) : dl.url ? (
+                      <Link
+                        key={`${dl.label}::${dl.url}`}
+                        href={dl.url}
+                        className={styles.mobileMenuItem}
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          setMobileMenuStack([]);
+                        }}
+                      >
+                        {dl.label}
+                      </Link>
+                    ) : (
+                      <span key={`${dl.label}::${dl.url}`} className={styles.mobileMenuItem}>
+                        {dl.label}
+                      </span>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       )}
     </motion.nav>

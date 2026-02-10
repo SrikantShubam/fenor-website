@@ -19,7 +19,22 @@
         },
         {
           "label": "Our Team",
-          "url": "/en/management"
+          "url": "",
+          "isDropdown": true,
+          "dropdownLinks": [
+            {
+              "label": "High Committee",
+              "url": "/en/high-committee"
+            },
+            {
+              "label": "Department of Goldsmithing and Jewelry",
+              "url": "/en/gold-and-jewelry-section"
+            },
+            {
+              "label": "Executive Team",
+              "url": "/en/executive-team"
+            }
+          ]
         },
         {
           "label": "Members",

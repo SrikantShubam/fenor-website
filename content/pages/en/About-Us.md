@@ -75,14 +75,14 @@ blocks:
     buttonText: 'read more '
     buttonUrl: /history
     _template: textBoxWithButton
-  - smallHeading: Our Management
+  - smallHeading: Executive Team
     bigHeading: Leadership That Drives Excellence
     paragraph: >
       Led by a team of experienced professionals, FENOR’s Executive Council is
       committed to steering the federation toward excellence. Meet the leaders
       behind our vision
     buttonText: read more
-    buttonUrl: management
+    buttonUrl: executive-team
     _template: textBoxWithButton
   - smallHeading: Chairman’s  Message
     bigHeading: A Vision for a Sustainable Future
@@ -93,4 +93,6 @@ blocks:
     buttonUrl: chairman
     _template: textBoxWithButton
 ---
+
+
 

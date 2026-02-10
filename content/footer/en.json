@@ -1,77 +1,85 @@
 {
-  "description": "The National Federation of Gold Factories (FENOR) is an entity that represents investors and stakeholders in the artisanal and semi-industrial gold mining sector in Mauritania.",
-  "quickLinks": [
-    {
-      "label": "Home",
-      "url": "/en/"
-    },
-    {
-      "label": "Contact Us",
-      "url": "/en/contact"
-    },
-    {
-      "label": "Investor Center",
-      "url": "/en/invest"
-    },
-    {
-      "label": "ESG Policy",
-      "url": "/en/esg"
-    },
-    {
-      "label": "Press",
-      "url": "/en/press"
-    }
-  ],
-  "labels": {
-    "quickLinks": "Quick Links",
-    "aboutUs": "About Us",
-    "importantLinks": "Important Links",
-    "ourSocials": "Our Socials"
-  },
-  "aboutUs": [
-    {
-      "label": "Chairman’s Message",
-      "url": "/en/chairman"
-    },
-    {
-      "label": "History",
-      "url": "/en/history"
-    },
-    {
-      "label": "Our Management",
-      "url": "/en/management"
-    }
-  ],
-  "importantLinks": [
-    {
-      "label": "National Union of Mauritanian Employers (UNPM)",
-      "url": "http://www.unpm.mr"
-    },
-    {
-      "label": "Maaden Mauritania",
-      "url": "https://maaden.mr"
-    },
-    {
-      "label": "Investment Promotion Agency in Mauritania (APIM)",
-      "url": "https://apim.gov.mr"
-    },
-    {
-      "label": "Artisanal Gold Council",
-      "url": "https://artisanalgold.org/"
-    }
-  ],
-  "socials": [
-    {
-      "name": "Facebook",
-      "url": "https://www.facebook.com/fenor.mr "
-    },
-    {
-      "name": "Linkedin",
-      "url": "https://www.linkedin.com/company/fenor-mr/"
-    },
-    {
-      "name": "Whatsapp",
-      "url": "https://api.whatsapp.com/send?phone=22222650000&text=I%20am%20coming%20from%20the%20FENOR%20website%20I%20would%20like%20to%20know%20about%20more%20about%20Fenor.%20"
-    }
-  ]
+    "description":  "The National Federation of Gold Factories (FENOR) is an entity that represents investors and stakeholders in the artisanal and semi-industrial gold mining sector in Mauritania.",
+    "quickLinks":  [
+                       {
+                           "label":  "Home",
+                           "url":  "/en/"
+                       },
+                       {
+                           "label":  "Contact Us",
+                           "url":  "/en/contact"
+                       },
+                       {
+                           "label":  "Investor Center",
+                           "url":  "/en/invest"
+                       },
+                       {
+                           "label":  "ESG Policy",
+                           "url":  "/en/esg"
+                       },
+                       {
+                           "label":  "Press",
+                           "url":  "/en/press"
+                       }
+                   ],
+    "labels":  {
+                   "quickLinks":  "Quick Links",
+                   "aboutUs":  "About Us",
+                   "importantLinks":  "Important Links",
+                   "ourSocials":  "Our Socials"
+               },
+    "aboutUs":  [
+                    {
+                        "label":  "Chairman's Message",
+                        "url":  "/en/chairman"
+                    },
+                    {
+                        "label":  "History",
+                        "url":  "/en/history"
+                    },
+                    {
+                        "label":  "High Committee",
+                        "url":  "/en/high-committee"
+                    },
+                    {
+                        "label":  "Department of Goldsmithing and Jewelry",
+                        "url":  "/en/gold-and-jewelry-section"
+                    },
+                    {
+                        "label":  "Executive Team",
+                        "url":  "/en/executive-team"
+                    }
+                ],
+    "importantLinks":  [
+                           {
+                               "label":  "National Union of Mauritanian Employers (UNPM)",
+                               "url":  "http://www.unpm.mr"
+                           },
+                           {
+                               "label":  "Maaden Mauritania",
+                               "url":  "https://maaden.mr"
+                           },
+                           {
+                               "label":  "Investment Promotion Agency in Mauritania (APIM)",
+                               "url":  "https://apim.gov.mr"
+                           },
+                           {
+                               "label":  "Artisanal Gold Council",
+                               "url":  "https://artisanalgold.org/"
+                           }
+                       ],
+    "socials":  [
+                    {
+                        "name":  "Facebook",
+                        "url":  "https://www.facebook.com/fenor.mr "
+                    },
+                    {
+                        "name":  "Linkedin",
+                        "url":  "https://www.linkedin.com/company/fenor-mr/"
+                    },
+                    {
+                        "name":  "Whatsapp",
+                        "url":  "https://api.whatsapp.com/send?phone=22222650000\u0026text=I%20am%20coming%20from%20the%20FENOR%20website%20I%20would%20like%20to%20know%20about%20more%20about%20Fenor.%20"
+                    }
+                ]
 }

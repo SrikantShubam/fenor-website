@@ -1,12 +1,12 @@
 ---
-title: Gestion
+title: Équipe exécutive
 seo:
-  title: Notre Gestion
+  title: Équipe exécutive
   description: >-
-    Rencontrez l'équipe de direction de FENOR, qui fait avancer la Fédération
+    Rencontrez l'équipe exécutive de FENOR, qui fait avancer la Fédération
     Nationale des Usines d'Or. Découvrez leur expertise et leur vision !
 blocks:
-  - smallHeading: Notre Gestion
+  - smallHeading: Équipe exécutive
     bigHeading: Un Leadership qui Favorise l'Excellence
     paragraph: >
       La Fédération Nationale des Usines d'Or (FENOR) est guidée par un Conseil
@@ -20,4 +20,3 @@ blocks:
     image: /ChatGPT_Image_Apr_25__2025__12_06_56_AM-removebg-preview 1.png
     _template: textBoxWithImage
 ---
-

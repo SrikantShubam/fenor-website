@@ -1010,7 +1010,7 @@ const PressPage: NextPage<PressPageProps> = ({ content, newsArticles, slugMap, l
         '@type': 'NewsArticle',
         headline: highlightedArticle.title,
         image: highlightedArticle.featuredImage,
-        datePublished: highlightedArticle.publishedDate,
+        ...(highlightedArticle.publishedDate ? { datePublished: highlightedArticle.publishedDate } : {}),
         description: highlightedArticle.excerpt,
       }
     : undefined;
@@ -1060,16 +1060,19 @@ const PressPage: NextPage<PressPageProps> = ({ content, newsArticles, slugMap, l
     {highlightedArticle.eventType}
   </span>
 )}
-                        <p className="text-white text-[16px] sm:text-[20px] mb-4">
-                          {new Date(highlightedArticle.publishedDate)
-                            .toLocaleDateString('en-US', {
-                              month: 'long',
-                              day: '2-digit',
-                              year: 'numeric',
-                            })
-                            .replace(/ /g, '-')
-                            .replace(',', '')}
-                        </p>
+                        {highlightedArticle.publishedDate &&
+                          !Number.isNaN(new Date(highlightedArticle.publishedDate).getTime()) && (
+                            <p className="text-white text-[16px] sm:text-[20px] mb-4">
+                              {new Date(highlightedArticle.publishedDate)
+                                .toLocaleDateString('en-US', {
+                                  month: 'long',
+                                  day: '2-digit',
+                                  year: 'numeric',
+                                })
+                                .replace(/ /g, '-')
+                                .replace(',', '')}
+                            </p>
+                          )}
                         <h3 className="font-semibold text-white text-[20px] sm:text-[24px] md:text-[28px] mb-6">
                           {highlightedArticle.title}
                         </h3>
@@ -1084,7 +1087,7 @@ const PressPage: NextPage<PressPageProps> = ({ content, newsArticles, slugMap, l
                 {regularArticles.length > 0 && (
                   <div className="grid md:grid-cols-3 gap-8">
                     {regularArticles.map((article) => (
-                      <Link key={article.id} href={`/press/${article.slug}`}>
+                      <Link key={article.id} href={`/press/${article.slug}`} className="fenor-news-link">
                         <NewsCard
                           title={article.title}
                           excerpt={article.excerpt}

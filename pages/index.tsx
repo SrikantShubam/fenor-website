@@ -1533,28 +1533,17 @@ import { client } from '../tina/__generated__/client';
 import { PagesBlocks } from '../tina/__generated__/types';
 import { createClient } from 'contentful';
 import { RichTextBodyFormat } from 'contentful-management/dist/typings/entities/comment';
-import dynamic from 'next/dynamic';
 import { SlugMapProvider } from '../lib/SlugMapContext';
 import SEOComponent from '../components/SEOComponent';
-// Dynamically import components with SSR disabled for client-side rendering
-const TextBoxWithImageAndButton = dynamic(
-  () => import('../components/textbox-variations/TextBoxWithImageAndButton'),
-  { ssr: false }
-);
-const TextBoxWithButton = dynamic(
-  () => import('../components/textbox-variations/TextBoxWithButton'),
-  { ssr: false }
-);
-const SimpleTextBox = dynamic(
-  () => import('../components/textbox-variations/SimpleTextBox'),
-  { ssr: false }
-);
-const CardGroup = dynamic(() => import('../components/cardgroup'), { ssr: false });
-const ImageCardGroup = dynamic(() => import('../components/ImageCardGroup'), { ssr: false });
-const TextWithImageBG = dynamic(() => import('../components/textwithimgbg'), { ssr: false });
-const TextWithVideo = dynamic(() => import('../components/textwVideo'), { ssr: false });
-const ContactSection = dynamic(() => import('../components/ContactSection'), { ssr: false });
-const NewsSection = dynamic(() => import('../components/NewsSection'), { ssr: false });
+import TextBoxWithImageAndButton from '../components/textbox-variations/TextBoxWithImageAndButton';
+import TextBoxWithButton from '../components/textbox-variations/TextBoxWithButton';
+import SimpleTextBox from '../components/textbox-variations/SimpleTextBox';
+import CardGroup from '../components/cardgroup';
+import ImageCardGroup from '../components/ImageCardGroup';
+import TextWithImageBG from '../components/textwithimgbg';
+import TextWithVideo from '../components/textwVideo';
+import ContactSection from '../components/ContactSection';
+import NewsSection from '../components/NewsSection';
 
 const contentfulClient = createClient({
   space: process.env.CONTENTFUL_SPACE_ID!,

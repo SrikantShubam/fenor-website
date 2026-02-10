@@ -830,37 +830,39 @@ const ContactSection: React.FC<ContactSectionProps> = ({
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Left Info */}
         <motion.div
-          className="space-y-12"
+          className="max-w-[620px] space-y-8 md:space-y-9"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeInLeft}
         >
-          <h2 className="text-[28px] md:text-[33px] lg:text-[48px] font-bold tracking-tight">
+          <h2 className="text-[28px] md:text-[36px] lg:text-[48px] font-bold leading-[1.08] tracking-tight">
             {renderHeader(header)}
           </h2>
           {introText && (
-            <p className="text-white text-[13px] md:text-[16px] lg:text-[19px]">{introText}</p>
+            <p className="max-w-[56ch] text-[14px] leading-relaxed text-white/88 md:text-[16px] lg:text-[18px]">
+              {introText}
+            </p>
           )}
-          <div className="flex items-start gap-4">
-            <Mail className="w-6 h-6 text-[#FFDA66] mt-1" />
-            <div>
-              <p className="text-sm font-medium text-white">{contactEmailLabel}</p>
-              <p className="mt-1 font-bold text-[23px] md:text-[28px] lg:text-[33px] text-white">
+          <div className="flex items-start gap-3 border-l-2 border-[#FFDA66]/75 pl-4">
+            <Mail className="mt-1 h-5 w-5 shrink-0 text-[#FFDA66]" />
+            <div className="min-w-0">
+              <p className="text-sm font-medium text-white/75">{contactEmailLabel}</p>
+              <p className="mt-1 break-all text-[21px] font-semibold leading-tight text-white md:text-[23px] lg:text-[26px]">
                 {contactEmail}
               </p>
             </div>
           </div>
-          <div className="flex items-start gap-4">
-            <Phone className="w-6 h-6 text-[#FFDA66] mt-1" />
-            <div>
-              <p className="text-sm font-medium text-white">{phoneLabel}</p>
-              <p className="mt-1 font-bold text-[23px] md:text-[28px] lg:text-[33px] text-white">
+          <div className="flex items-start gap-3 border-l-2 border-[#FFDA66]/75 pl-4">
+            <Phone className="mt-1 h-5 w-5 shrink-0 text-[#FFDA66]" />
+            <div className="min-w-0">
+              <p className="text-sm font-medium text-white/75">{phoneLabel}</p>
+              <p className="mt-1 text-[21px] font-semibold leading-tight text-white md:text-[23px] lg:text-[26px]">
                 {phoneNumber}
               </p>
             </div>
           </div>
-          <p className="text-white text-[13px] md:text-[16px] lg:text-[19px]">{tagline}</p>
+          <p className="max-w-[56ch] text-[14px] leading-relaxed text-white/80 md:text-[16px] lg:text-[18px]">{tagline}</p>
         </motion.div>
 
         {/* Right Form */}
@@ -871,58 +873,64 @@ const ContactSection: React.FC<ContactSectionProps> = ({
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeInRight}
         >
-          <div className="p-8 bg-white rounded-2xl">
-            <form className="space-y-6" onSubmit={handleSubmit}>
+          <div className="relative overflow-hidden rounded-[28px] border border-white/60 bg-gradient-to-b from-[#F8F8F8] to-[#ECECEC] p-7 shadow-[0_24px_70px_rgba(0,0,0,0.28)] md:p-9">
+            <div className="pointer-events-none absolute -right-14 -top-16 h-48 w-48 rounded-full bg-[#FFDA66]/25 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-16 -left-16 h-44 w-44 rounded-full bg-[#EBBA7F]/20 blur-3xl" />
+            <form className="relative space-y-5" onSubmit={handleSubmit}>
               <div>
-                <label className="block text-sm font-medium text-black mb-1">
+                <label className="mb-2 block text-[0.9rem] font-semibold tracking-[0.01em] text-[#101010]">
                   {form.fullNameLabel}
                 </label>
                 <input
                   type="text"
                   name="fullName"
                   placeholder={form.fullNamePlaceholder}
-                  className="block w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-gray-700 placeholder-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-200 transition-shadow"
+                  className="block w-full rounded-xl border border-[#D6D8DE] bg-white/90 px-4 py-3.5 text-[16px] text-[#1F2430] placeholder:text-[#8C94A9] shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] transition-all duration-200 focus:border-[#EBBA7F] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#FFDA66]/25"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-black mb-1">
+                <label className="mb-2 block text-[0.9rem] font-semibold tracking-[0.01em] text-[#101010]">
                   {form.emailLabel}
                 </label>
                 <input
                   type="email"
                   name="email"
                   placeholder={form.emailPlaceholder}
-                  className="block w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-gray-700 placeholder-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-200 transition-shadow"
+                  className="block w-full rounded-xl border border-[#D6D8DE] bg-white/90 px-4 py-3.5 text-[16px] text-[#1F2430] placeholder:text-[#8C94A9] shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] transition-all duration-200 focus:border-[#EBBA7F] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#FFDA66]/25"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-black mb-1">
+                <label className="mb-2 block text-[0.9rem] font-semibold tracking-[0.01em] text-[#101010]">
                   {form.messageLabel}
                 </label>
                 <textarea
                   name="message"
                   placeholder={form.messagePlaceholder}
-                  rows={4}
-                  className="block w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-gray-700 placeholder-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-200 transition-shadow"
+                  rows={5}
+                  className="block w-full resize-none rounded-xl border border-[#D6D8DE] bg-white/90 px-4 py-3.5 text-[16px] text-[#1F2430] placeholder:text-[#8C94A9] shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] transition-all duration-200 focus:border-[#EBBA7F] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#FFDA66]/25"
                   required
                 />
               </div>
               <motion.button
                 type="submit"
-                className="w-full flex justify-center items-center rounded-lg bg-[#FFDA66] px-6 py-3 text-base font-semibold text-black shadow-sm hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-200"
-                whileHover={{ scale: 1.03 }}
+                className="mt-1 flex w-full cursor-pointer items-center justify-center rounded-xl bg-gradient-to-r from-[#F4D774] to-[#EBBA7F] px-6 py-3.5 text-base font-semibold text-black shadow-[0_8px_24px_rgba(235,186,127,0.28)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(235,186,127,0.34)] focus:outline-none focus:ring-4 focus:ring-[#FFDA66]/35 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
+                whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.97 }}
                 disabled={isSubmitting}
               >
                 {isSubmitting ? 'Sending...' : form.sendButton}
               </motion.button>
               {submitStatus === 'success' && (
-                <p className="text-green-600 mt-4">{form.successMessage}</p>
+                <p className="mt-3 rounded-lg border border-green-200 bg-green-50 px-3 py-2 text-sm font-medium text-green-700">
+                  {form.successMessage}
+                </p>
               )}
               {submitStatus === 'error' && (
-                <p className="text-red-600 mt-4">{form.errorMessage}</p>
+                <p className="mt-3 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm font-medium text-red-700">
+                  {form.errorMessage}
+                </p>
               )}
             </form>
           </div>

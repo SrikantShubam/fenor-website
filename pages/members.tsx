@@ -290,6 +290,26 @@ interface MemberOrg {
   memberName: string;
   memberLogo: string | null;
 }
+
+interface MemberOrgFields {
+  memberName?: string;
+  memberNameEn?: string;
+  memberNameFr?: string;
+  memberNameAr?: string;
+  memberLogo?: { fields: { file: { url: string } } };
+  orderId?: number | string;
+  OrderId?: number | string;
+  displayOrder?: number;
+}
+
+const normalizeOrderValue = (value: unknown): number | null => {
+  if (typeof value === 'number' && Number.isFinite(value)) return value;
+  if (typeof value === 'string') {
+    const parsed = Number(value.trim());
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+  return null;
+};
 type SEO = {
   title?: string;
   description?: string;
@@ -337,18 +357,29 @@ export const getStaticProps: GetStaticProps<MembersPageProps> = async ({ locale 
 
       const response = await contentfulClient.getEntries({
         content_type: 'memberOrg',
-        order: ['fields.memberName'],
       });
 
-      memberOrgs = response.items.map((item) => {
-        const fields = item.fields as {
-          memberName?: string;
-          memberNameEn?: string;
-          memberNameFr?: string;
-          memberNameAr?: string;
-          memberLogo?: { fields: { file: { url: string } } };
-        };
-        const memberNameRaw = fields[`memberName${localeKey}` as keyof typeof fields] || fields.memberName;
+      const sortedItems = [...response.items].sort((a, b) => {
+        const aFields = a.fields as MemberOrgFields;
+        const bFields = b.fields as MemberOrgFields;
+        const aOrder = normalizeOrderValue(aFields.orderId ?? aFields.OrderId ?? aFields.displayOrder);
+        const bOrder = normalizeOrderValue(bFields.orderId ?? bFields.OrderId ?? bFields.displayOrder);
+
+        if (aOrder !== null && bOrder !== null) return aOrder - bOrder;
+        if (aOrder !== null) return -1;
+        if (bOrder !== null) return 1;
+
+        const aNameRaw = aFields[`memberName${localeKey}` as keyof MemberOrgFields] || aFields.memberName || '';
+        const bNameRaw = bFields[`memberName${localeKey}` as keyof MemberOrgFields] || bFields.memberName || '';
+        const aName = typeof aNameRaw === 'string' ? aNameRaw : String(aNameRaw);
+        const bName = typeof bNameRaw === 'string' ? bNameRaw : String(bNameRaw);
+
+        return aName.localeCompare(bName, undefined, { sensitivity: 'base' });
+      });
+
+      memberOrgs = sortedItems.map((item) => {
+        const fields = item.fields as MemberOrgFields;
+        const memberNameRaw = fields[`memberName${localeKey}` as keyof MemberOrgFields] || fields.memberName;
         const memberName = typeof memberNameRaw === 'string' ? memberNameRaw : 'Unnamed Member';
 
         return {

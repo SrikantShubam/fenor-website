@@ -75,11 +75,15 @@ import { Poppins, Noto_Kufi_Arabic } from 'next/font/google'
 import Layout from '../components/Layout'
 import '../styles/globals.css'
 import BackToTop from '../components/BackToTop'
+import { SlugMapProvider } from '../lib/SlugMapContext'
 
 // Extend NextPage to include optional noLayout flag
 type PageWithLayout = NextPage & {
   noLayout?: boolean
 }
+
+type SlugMap = Record<string, Record<string, string>>
+type PagePropsWithSlugMap = { slugMap?: SlugMap }
 
 const poppins = Poppins({
   weight: ['400', '500', '600'],
@@ -102,6 +106,7 @@ export default function App({
 }: AppProps & { Component: PageWithLayout }) {
   const router = useRouter()
   const noLayout = Component.noLayout
+  const slugMap = (pageProps as PagePropsWithSlugMap).slugMap ?? {}
 
   useEffect(() => {
     const handleStart = () => NProgress.start()
@@ -128,5 +133,6 @@ export default function App({
     </main>
   )
 
-  return noLayout ? content : <Layout>{content}</Layout>
+  const appTree = noLayout ? content : <Layout>{content}</Layout>
+  return <SlugMapProvider slugMap={slugMap}>{appTree}</SlugMapProvider>
 }

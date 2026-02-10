@@ -6,7 +6,7 @@ seo:
     Welcome to FENOR, the National Federation of Gold Factories. Discover our
     mission, latest news, and industry leadership. Join us today!
 blocks:
-  - bigHeading: 'Organization , Development ,Sustainability'
+  - bigHeading: 'Organization , Development , Sustainability'
     smallHeading: Empowering Gold. Enabling Growth. Protecting the Future
     video: >-
       https://assets.tina.io/0f5ed42e-063d-477a-93a5-ca99a6aba7d7/homepage
@@ -68,9 +68,7 @@ blocks:
           · Improving the efficiency of natural resource use.
 
 
-
           · Complying with local and international environmental regulations.
-
 
 
           · Supporting initiatives that promote environmental protection.
@@ -84,9 +82,7 @@ blocks:
           · Promoting a fair and inclusive work environment.
 
 
-
           · Contributing to social and development initiatives.
-
 
 
           · Ensuring human rights and compliance with ethical standards.
@@ -100,10 +96,8 @@ blocks:
           · Ensuring transparency in operations and information disclosure.
 
 
-
           · Promoting accountability and responsibility at all management
           levels.
-
 
 
           · Combating corruption and enforcing strict compliance policies.

@@ -55,7 +55,7 @@
 //       <DefaultSeo
 //         titleTemplate="%s | FENOR"
 //         defaultTitle="FENOR"
-//         description="Welcome to FENOR, the Fédération Nationale des Usines d'Or."
+//         description="Welcome to FENOR, the National Federation of Gold Factories."
 //         openGraph={{
 //           type: 'website',
 //           locale: currentLocale,
@@ -134,7 +134,7 @@
 //       <DefaultSeo
 //         titleTemplate="%s | FENOR"
 //         defaultTitle="FENOR"
-//         description="Welcome to FENOR, the Fédération Nationale des Usines d'Or."
+//         description="Welcome to FENOR, the National Federation of Gold Factories."
 //         openGraph={{
 //           type: 'website',
 //           locale: currentLocale,
@@ -208,7 +208,7 @@
 //         <DefaultSeo
 //           titleTemplate="%s | FENOR"
 //           defaultTitle="FENOR"
-//           description="Welcome to FENOR, the Fédération Nationale des Usines d'Or."
+//           description="Welcome to FENOR, the National Federation of Gold Factories."
 //           openGraph={{
 //             type: 'website',
 //             locale: currentLocale,
@@ -318,7 +318,7 @@
 //       <DefaultSeo
 //         titleTemplate="%s | FENOR"
 //         defaultTitle="FENOR"
-//         description="Welcome to FENOR, the Fédération Nationale des Usines d'Or."
+//         description="Welcome to FENOR, the National Federation of Gold Factories."
 //         openGraph={{ type: 'website', locale: currentLocale, url: 'https://www.mywebsite.com', site_name: 'FENOR' }}
 //       />
 
@@ -469,13 +469,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
      <DefaultSeo
         titleTemplate="%s | FENOR" // Page-specific titles append to this
         defaultTitle="FENOR"
-        description="Welcome to FENOR, the Fédération Nationale des Usines d'Or."
+        description="Welcome to FENOR, the National Federation of Gold Factories."
         openGraph={{
           type: 'website',
           locale: currentLocale,
           url: baseUrl,
           site_name: 'FENOR',
-           images: [{ url: '/fenor-website/public/android-chrome-192x192.png' }]
+           images: [{ url: `${baseUrl}/android-chrome-192x192.png` }]
         }}
         additionalLinkTags={[
           { rel: 'icon', href: '/favicon.ico' },

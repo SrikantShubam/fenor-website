@@ -236,8 +236,6 @@ export const getStaticProps: GetStaticProps<HistoryPageProps> = async ({
   locale = 'en' // Provide default fallback
 }) => {
   try {
-    console.log('getStaticProps locale:', locale); // Debug log
-    
     const res = await client.queries.pages({
       relativePath: `${locale}/history.md`,
     });
@@ -249,8 +247,6 @@ export const getStaticProps: GetStaticProps<HistoryPageProps> = async ({
       if (rawContent.seo.description) seoTemp.description = rawContent.seo.description;
     }
     const seo = Object.keys(seoTemp).length ? seoTemp : null;
-
-    console.log('Final locale being passed:', locale);
 
     return {
       props: {
@@ -274,8 +270,6 @@ export const getStaticProps: GetStaticProps<HistoryPageProps> = async ({
 };
 
 const HistoryPage: NextPage<HistoryPageProps> = ({ content, locale }) => {
-  console.log('HistoryPage component locale:', locale); // Debug log
-
   const renderBlock = (block: PagesBlocks, i: number) => {
     switch (block.__typename) {
       case 'PagesBlocksTextBoxWithImageAndButton':

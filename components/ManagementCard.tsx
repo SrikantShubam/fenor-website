@@ -20,8 +20,8 @@ const cardVariants = {
 
 interface ManagementCardProps {
   name: string;
-  designation: string;
-  profileImg: string;
+  designation?: string;
+  profileImg?: string;
   whatsappUrl?: string;
   linkedinUrl?: string;
 }
@@ -49,16 +49,18 @@ const ManagementCard: React.FC<ManagementCardProps> = ({
       "
       variants={cardVariants}
     >
-      <div className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-24 md:h-24 lg:w-32 lg:h-32 mb-4 group">
-        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#FFD550]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        <Image
-          src={profileImg}
-          alt={name}
-          fill
-          className="rounded-full object-cover transition-transform duration-300 group-hover:scale-105"
-          sizes="(max-width: 640px) 80px, (max-width: 768px) 112px, (max-width: 1024px) 96px, 128px"
-        />
-      </div>
+      {profileImg ? (
+        <div className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-24 md:h-24 lg:w-32 lg:h-32 mb-4 group">
+          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#FFD550]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <Image
+            src={profileImg}
+            alt={name}
+            fill
+            className="rounded-full object-cover transition-transform duration-300 group-hover:scale-105"
+            sizes="(max-width: 640px) 80px, (max-width: 768px) 112px, (max-width: 1024px) 96px, 128px"
+          />
+        </div>
+      ) : null}
       <h3
         className="
           text-[16px] sm:text-[19px] lg:text-[23px]
@@ -69,15 +71,17 @@ const ManagementCard: React.FC<ManagementCardProps> = ({
       >
         {name}
       </h3>
-      <p
-        className="
-          text-[13px] sm:text-[16px] lg:text-[19px]
-          font-normal text-gray-300 text-center
-          drop-shadow-sm
-        "
-      >
-        {designation}
-      </p>
+      {designation ? (
+        <p
+          className="
+            text-[13px] sm:text-[16px] lg:text-[19px]
+            font-normal text-gray-300 text-center
+            drop-shadow-sm
+          "
+        >
+          {designation}
+        </p>
+      ) : null}
       {(whatsappUrl || linkedinUrl) && (
         <div className="flex justify-center space-x-6 mt-3">
           {whatsappUrl && (

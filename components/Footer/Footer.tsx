@@ -42,7 +42,7 @@
 //           />
 //           <div>
 //             <h2 className="text-[19px] font-bold ml-2 md:text-2xl">FENOR</h2>
-//             <p className="text-xs font-normal ml-2">Fédération Nationale des Usines d'Or</p>
+//             <p className="text-xs font-normal ml-2">FÃ©dÃ©ration Nationale des Usines d'Or</p>
 //           </div>
 //         </div>
 //       </div>
@@ -125,7 +125,7 @@
 //     {/* Copyright Section */}
 // <div className="flex flex-col md:flex-row justify-between items-start md:items-center  pt-4 mb-4 border-t border-[#EBBA7F]">
 //   <p className="text-[12px] md:text-[14px] font-regular tracking-wide text-gray-300 mb-3 md:mb-0">
-//     © 2025 Fenor. All Rights Reserved.
+//     Â© 2025 Fenor. All Rights Reserved.
 //   </p>
 //   <div className="flex items-center gap-3">
 //     <Link
@@ -222,7 +222,7 @@
 //           />
 //           <div>
 //             <h2 className="text-[19px] font-bold ml-2 md:text-2xl">FENOR</h2>
-//             <p className="text-xs font-normal ml-2">{`Fédération Nationale des Usines d'Or`}</p>
+//             <p className="text-xs font-normal ml-2">{`FÃ©dÃ©ration Nationale des Usines d'Or`}</p>
 //           </div>
 //         </div>
 //       </motion.div>
@@ -308,7 +308,7 @@
 //       {/* Copyright Section */}
 //       <motion.div variants={fadeIn} className="flex flex-col md:flex-row justify-between items-start md:items-center pt-4 mb-4 border-t border-[#EBBA7F]">
 //         <p className="text-[12px] md:text-[14px] font-regular tracking-wide text-gray-300 mb-3 md:mb-0">
-//           © 2025 Fenor. All Rights Reserved.
+//           Â© 2025 Fenor. All Rights Reserved.
 //         </p>
 //         <div className="flex items-center gap-3">
 //           <Link
@@ -403,7 +403,7 @@
 //           />
 //           <div>
 //             <h2 className="text-[19px] font-bold ml-2 md:text-2xl">FENOR</h2>
-//             <p className="text-xs font-normal ml-2">{`Fédération Nationale des Usines d'Or`}</p>
+//             <p className="text-xs font-normal ml-2">{`FÃ©dÃ©ration Nationale des Usines d'Or`}</p>
 //           </div>
 //         </div>
 //       </motion.div>
@@ -491,7 +491,7 @@
 //       {/* Copyright */}
 //       <motion.div variants={fadeIn} className="flex flex-col md:flex-row justify-between items-start md:items-center pt-4 mb-4 border-t border-[#EBBA7F]">
 //         <p className="text-[12px] md:text-[14px] font-regular tracking-wide text-gray-300 mb-3 md:mb-0">
-//           © 2025 Fenor. All Rights Reserved.
+//           Â© 2025 Fenor. All Rights Reserved.
 //         </p>
 //         <div className="flex items-center gap-3">
 //           <Link
@@ -666,7 +666,7 @@
 //           />
 //           <div>
 //             <h2 className="text-[19px] font-bold ml-2 md:text-2xl">FENOR</h2>
-//             <p className="text-xs font-normal ml-2">{`Fédération Nationale des Usines d'Or`}</p>
+//             <p className="text-xs font-normal ml-2">{`FÃ©dÃ©ration Nationale des Usines d'Or`}</p>
 //           </div>
 //         </div>
 //       </motion.div>
@@ -762,7 +762,7 @@
 //       {/* Copyright */}
 //       <motion.div variants={fadeIn} className="flex flex-col md:flex-row justify-between items-start md:items-center pt-4 mb-4 border-t border-[#EBBA7F]">
 //         <p className="text-[12px] md:text-[14px] font-regular tracking-wide text-gray-300 mb-3 md:mb-0">
-//           © 2025 Fenor. All Rights Reserved.
+//           Â© 2025 Fenor. All Rights Reserved.
 //         </p>
 //         <div className="flex items-center gap-3">
 //           <Link
@@ -835,6 +835,7 @@ const fadeIn = {
 };
 
 const Footer: React.FC<{ footerData?: FooterData }> = ({ footerData }) => {
+  const currentYear = new Date().getFullYear();
   if (!footerData) {
     return (
       <motion.footer
@@ -869,7 +870,7 @@ const Footer: React.FC<{ footerData?: FooterData }> = ({ footerData }) => {
           />
           <div>
             <h2 className="text-[19px] font-bold ml-2 md:text-2xl">FENOR</h2>
-            <p className="text-xs font-normal ml-2">{`Fédération Nationale des Usines d'Or`}</p>
+            <p className="text-xs font-normal ml-2">{`FÃ©dÃ©ration Nationale des Usines d'Or`}</p>
           </div>
         </div>
       </motion.div>
@@ -929,7 +930,7 @@ const Footer: React.FC<{ footerData?: FooterData }> = ({ footerData }) => {
       {/* Socials Section */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="pb-4 mb-12">
         <h3 className="text-[19px] font-bold mb-4">{footerData.labels?.ourSocials || "Our Socials"}</h3>
-        <div className="flex gap-5 md:gap-8">
+        <div className="flex max-w-full flex-wrap items-center gap-3 md:gap-4">
           {(footerData.socials || []).map((social, index) => {
             // cast to known key to satisfy TS
             const key = social.name.toLowerCase() as keyof typeof socialIcons;
@@ -941,9 +942,10 @@ const Footer: React.FC<{ footerData?: FooterData }> = ({ footerData }) => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.2 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                  className="text-white text-2xl hover:text-[#EBBA7F]"
+                  whileHover={{ y: -1 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#EBBA7F]/45 text-white transition-colors duration-200 hover:text-[#EBBA7F]"
+                  aria-label={social.name}
                 >
                   <FontAwesomeIcon icon={icon} />
                 </motion.a>
@@ -957,21 +959,21 @@ const Footer: React.FC<{ footerData?: FooterData }> = ({ footerData }) => {
       {/* Copyright */}
       <motion.div variants={fadeIn} className="flex flex-col md:flex-row justify-between items-start md:items-center pt-4 mb-4 border-t border-[#EBBA7F]">
         <p className="text-[12px] md:text-[14px] font-regular tracking-wide text-gray-300 mb-3 md:mb-0">
-          © 2025 Fenor. All Rights Reserved.
+          &copy; {currentYear} Fenor. All Rights Reserved.
         </p>
         <div className="flex items-center gap-3">
           <Link
-            href="https://api.whatsapp.com/send?phone=916202130675&text=Hey%20liked%20your%20work%20with%20FENOR%2C%20can%20we%20connect%20%3F"
+            href="https://vectorveda.online/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[12px] md:text-[14px] font-medium text-gray-200 hover:text-[#EBBA7F] transition-colors duration-300 no-underline"
           >
-            Made by Agency10169
+            Made by VectorVeda
           </Link>
           <motion.a
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.3 }}
-            href="https://api.whatsapp.com/send?phone=916202130675&text=Hey%20liked%20your%20work%20with%20FENOR%2C%20can%20we%20connect%20%3F"
+            href="https://vectorveda.online/"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden md:flex items-center justify-center text-gray-200 hover:text-[#EBBA7F] transition-colors duration-300"

@@ -425,14 +425,14 @@ const GoldAndJewellerySectionPage: NextPage<GoldJewelleryPageProps> = ({
   };
 
   return (
-    <div className="gold-and-jewelry-section" lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="department-of-goldsmithing-and-jewelry" lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <SEOComponent
         title={content.seo?.title || content.title || 'Department of Goldsmithing and Jewelry'}
         description={
           content.seo?.description ||
           "Explore FENOR's Department of Goldsmithing and Jewelry, from executive leadership to member craftsmanship."
         }
-        canonicalPath={`/${locale}/gold-and-jewelry-section`}
+        canonicalPath={`/${locale}/department-of-goldsmithing-and-jewelry`}
       />
 
       <div className="container mx-auto py-[30px]">

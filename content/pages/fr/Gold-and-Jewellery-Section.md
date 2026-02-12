@@ -1,9 +1,9 @@
 ---
-title: Département d’orfèvrerie et de bijouterie
+title: Départements
 seo:
-  title: Département d’orfèvrerie et de bijouterie
+  title: Départements
 blocks:
-  - smallHeading: Département d’orfèvrerie et de bijouterie
+  - smallHeading: Départements
     bigHeading: De l’or brut aux bijoux raffinés
     paragraph: >
       Au sein de la Fédération Nationale des Usines d’Or (FENOR), le département
@@ -43,4 +43,3 @@ blocks:
           Données à ajouter ultérieurement !
     _template: cardGroup
 ---
-

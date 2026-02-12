@@ -10,22 +10,22 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/gold-and-jewelry-section',
-        destination: '/department-of-goldsmithing-and-jewelry',
+        destination: '/departments',
         permanent: true,
       },
       {
         source: '/en/gold-and-jewelry-section',
-        destination: '/en/department-of-goldsmithing-and-jewelry',
+        destination: '/en/departments',
         permanent: true,
       },
       {
         source: '/fr/gold-and-jewelry-section',
-        destination: '/fr/department-of-goldsmithing-and-jewelry',
+        destination: '/fr/departments',
         permanent: true,
       },
       {
         source: '/ar/gold-and-jewelry-section',
-        destination: '/ar/department-of-goldsmithing-and-jewelry',
+        destination: '/ar/departments',
         permanent: true,
       },
     ];

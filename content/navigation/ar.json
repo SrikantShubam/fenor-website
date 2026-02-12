@@ -18,7 +18,7 @@
           "url": "/ar/chairman"
         },
         {
-          "label": "فريقنا",
+          "label": "إدارتنا",
           "url": "",
           "isDropdown": true,
           "dropdownLinks": [
@@ -27,12 +27,12 @@
               "url": "/ar/high-committee"
             },
             {
-              "label": "قسم صناعة الذهب والمجوهرات",
-              "url": "/ar/department-of-goldsmithing-and-jewelry"
+              "label": "المكتب التنفيذي",
+              "url": "/ar/executive-team"
             },
             {
-              "label": "الفريق التنفيذي",
-              "url": "/ar/executive-team"
+              "label": "الأقسام",
+              "url": "/ar/departments"
             }
           ]
         },

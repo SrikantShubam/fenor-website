@@ -18,7 +18,7 @@
           "url": "/en/chairman"
         },
         {
-          "label": "Our Team",
+          "label": "Our Management",
           "url": "",
           "isDropdown": true,
           "dropdownLinks": [
@@ -27,12 +27,12 @@
               "url": "/en/high-committee"
             },
             {
-              "label": "Department of Goldsmithing and Jewelry",
-              "url": "/en/department-of-goldsmithing-and-jewelry"
+              "label": "Executive Office",
+              "url": "/en/executive-team"
             },
             {
-              "label": "Executive Team",
-              "url": "/en/executive-team"
+              "label": "Departments",
+              "url": "/en/departments"
             }
           ]
         },

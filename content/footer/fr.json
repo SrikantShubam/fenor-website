@@ -30,10 +30,6 @@
       "url": "/fr/chairman"
     },
     {
-      "label": "Équipe exécutive",
-      "url": "/fr/executive-team"
-    },
-    {
       "label": "Histoire",
       "url": "/fr/history"
     },
@@ -42,8 +38,12 @@
       "url": "/fr/high-committee"
     },
     {
-      "label": "Département d’orfèvrerie et de bijouterie",
-      "url": "/fr/department-of-goldsmithing-and-jewelry"
+      "label": "Bureau exécutif",
+      "url": "/fr/executive-team"
+    },
+    {
+      "label": "Départements",
+      "url": "/fr/departments"
     }
   ],
   "importantLinks": [

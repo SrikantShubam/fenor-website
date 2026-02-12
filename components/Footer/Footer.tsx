@@ -870,7 +870,7 @@ const Footer: React.FC<{ footerData?: FooterData }> = ({ footerData }) => {
           />
           <div>
             <h2 className="text-[19px] font-bold ml-2 md:text-2xl">FENOR</h2>
-            <p className="text-xs font-normal ml-2">{`FÃ©dÃ©ration Nationale des Usines d'Or`}</p>
+            <p className="text-xs font-normal ml-2">{`Fédération Nationale des Usines d'Or`}</p>
           </div>
         </div>
       </motion.div>

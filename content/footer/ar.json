@@ -30,10 +30,6 @@
       "url": "/ar/chairman"
     },
     {
-      "label": "الفريق التنفيذي",
-      "url": "/ar/executive-team"
-    },
-    {
       "label": "التاريخ",
       "url": "/ar/history"
     },
@@ -42,8 +38,12 @@
       "url": "/ar/high-committee"
     },
     {
-      "label": "قسم صياغة الذهب والمجوهرات",
-      "url": "/ar/department-of-goldsmithing-and-jewelry"
+      "label": "المكتب التنفيذي",
+      "url": "/ar/executive-team"
+    },
+    {
+      "label": "الأقسام",
+      "url": "/ar/departments"
     }
   ],
   "importantLinks": [

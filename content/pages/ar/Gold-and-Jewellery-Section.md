@@ -4,37 +4,27 @@ seo:
   title: الأقسام
 blocks:
   - smallHeading: الأقسام
-    bigHeading: من الذهب الخام إلى المجوهرات المصقولة
-    paragraph: >
-      في إطار الاتحادية الوطنية لمصانع الذهب (FENOR)، يُشكّل قسم صياغة الذهب
-      والمجوهرات حلقة الوصل بين الاستخراج والابتكار، والحِرفية الماهرة،
-      والتشطيب الجاهز للأسواق. إذ نعمل على دعم سلسلة قيمة منظمة تعزز التصنيع
-      المحلي، وترسّخ معايير الجودة، وتشجع الممارسات المستدامة. ويساهم هذا
-      التوجه في تحويل ذهب موريتانيا إلى منتجات تنافسية، تخلق فرص عمل، وتعزز
-      القدرات الصناعية، وتُولّد قيمة وطنية مستدامة على المدى الطويل.
+    bigHeading: قسم صياغة الذهب والمجوهرات
+    paragraph: ''
     _template: textBoxWithImage
   - content: |
-      ### مكتبنا التنفيذي
+      ### المكتب التنفيذي لقسم صياغة الذهب والمجوهرات
     _template: text
   - content: |
       ### أعضاؤنا
     _template: text
-  - smallHeading: أنشطة القسم
-    bigHeading: الأنشطة الأساسية للقسم تحت شعار التميّز في صياغة الذهب والمجوهرات
+  - smallHeading: ''
+    bigHeading: 'قسم ازويرات'
     paragraph: ''
-    _template: simpleTextBox
-  - cards:
-      - icon: /odnoklassniki.svg
-        header: بيانات ستُضاف لاحقًا
-        text: |
-          سيتم إضافة البيانات لاحقًا!
-      - icon: /sitemap.svg
-        header: بيانات ستُضاف لاحقًا
-        text: |
-          سيتم إضافة البيانات لاحقًا!
-      - icon: /sitemap.svg
-        header: بيانات ستُضاف لاحقًا
-        text: |
-          سيتم إضافة البيانات لاحقًا!
-    _template: cardGroup
+    _template: textBoxWithImage
+  - content: |
+      ### أعضاء قسم ازويرات
+    _template: text
+  - smallHeading: ''
+    bigHeading: قسم الشامي
+    paragraph: ''
+    _template: textBoxWithImage
+  - content: |
+      ### أعضاء قسم الشامي
+    _template: text
 ---

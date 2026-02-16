@@ -475,7 +475,7 @@ const GoldAndJewellerySectionPage: NextPage<GoldJewelleryPageProps> = ({
         return (
           <div
             key={`department-text-${idx}`}
-            className={`${departmentTopMarginClass} mb-[52px] md:mb-[64px] [&_h3]:mb-3 md:[&_h3]:mb-4 [&_h3_span:last-child]:block [&_h3_span:last-child]:mt-0 md:[&_h3_span:first-child]:whitespace-nowrap [&_h2]:mt-[50px]`}
+            className={`${departmentTopMarginClass} mb-[12px] md:mb-[24px] [&_h3]:mb-3 md:[&_h3]:mb-4 [&_h3_span:last-child]:block [&_h3_span:last-child]:mt-0 md:[&_h3_span:first-child]:whitespace-nowrap [&_h2]:mt-[50px]`}
           >
             <TextBoxWithImage
               smallHeading={block.smallHeading || undefined}
@@ -511,7 +511,7 @@ const GoldAndJewellerySectionPage: NextPage<GoldJewelleryPageProps> = ({
             </div>
           ) : null}
 
-          <section className="mt-[7rem] mb-[10rem] md:space-y-10">
+          <section className="mt-[1rem] mb-[10rem] md:space-y-10">
             {renderThemedHeadingFromBlock(executiveHeadingBlock)}
             <div className="mt-[2rem] md:mt-[2.5rem]">
               {renderEntriesGrid(executiveEntries, 'executive-office')}

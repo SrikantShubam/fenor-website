@@ -10,11 +10,8 @@ blocks:
   - content: |
       ### Bureau exécutif du Département de l’orfèvrerie et de la bijouterie
     _template: text
-  - content: |
-      ### Nos Membres
-    _template: text
   - smallHeading: ''
-    bigHeading: 'Département de Zouérat'
+    bigHeading: Département de Zouérat
     paragraph: ''
     _template: textBoxWithImage
   - content: |
@@ -28,3 +25,4 @@ blocks:
       ### Membres du Département de Chami
     _template: text
 ---
+

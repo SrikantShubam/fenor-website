@@ -1610,11 +1610,10 @@ export default function Nav() {
   useEffect(() => {
     const fetchNavItems = async () => {
       try {
-        const { client } = await import('../../tina/__generated__/client');
-        const navData = await client.queries.navigation({
-          relativePath: `${currentLocale}.json`,
-        });
-        const items = (navData?.data?.navigation?.items || [])
+        const res = await fetch(`/api/navigation?locale=${currentLocale}`);
+        if (!res.ok) throw new Error(`Navigation API failed: ${res.status}`);
+        const navData = (await res.json()) as { items?: Array<NavItem | null> };
+        const items = (navData?.items || [])
           .filter(item => item !== null)
           .map(item => ({
             label: item!.label,

@@ -10,11 +10,8 @@ blocks:
   - content: |
       ### المكتب التنفيذي لقسم صياغة الذهب والمجوهرات
     _template: text
-  - content: |
-      ### أعضاؤنا
-    _template: text
   - smallHeading: ''
-    bigHeading: 'قسم ازويرات'
+    bigHeading: قسم ازويرات
     paragraph: ''
     _template: textBoxWithImage
   - content: |
@@ -28,3 +25,4 @@ blocks:
       ### أعضاء قسم الشامي
     _template: text
 ---
+

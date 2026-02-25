@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev --turbopack\"",
+    "dev": "cross-env TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
     "build": "dotenv -e .env.local -- tinacms build --datalayer-port 9001 && next build && next-sitemap",
     "build:tina": "dotenv -e .env.local -- tinacms build --datalayer-port 9001",
     "start": "next start",

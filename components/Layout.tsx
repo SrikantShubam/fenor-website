@@ -404,7 +404,6 @@ import { motion, Variants } from 'framer-motion';
 import Header from './Header';
 import Footer, { FooterData } from './Footer/Footer';
 import styles from '../styles/layout.module.css';
-import { client } from '../tina/__generated__/client';
 import ClientOnlyAnimatePresence from './ClientOnlyAnimatePresence';
 
 // Overlay variants covering full viewport
@@ -432,28 +431,29 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const baseUrl = 'https://www.fenor.org';
   // Fetch footer JSON based on locale
   useEffect(() => {
-    client.queries.footer({ relativePath: `${currentLocale}.json` })
-      .then(res => {
-        const raw = res.data.footer;
+    fetch(`/api/footer?locale=${currentLocale}`)
+      .then(async (res) => {
+        if (!res.ok) throw new Error(`Footer API failed: ${res.status}`);
+        const raw = (await res.json()) as FooterData;
         const clean: FooterData = {
           description: raw.description ?? undefined,
           quickLinks: raw.quickLinks
-            ?.filter((x): x is { __typename: 'FooterQuickLinks'; label: string; url: string } => Boolean(x))
+            ?.filter((x): x is { label: string; url: string } => Boolean(x))
             .map(({ label, url }) => ({ label, url })),
           aboutUs: raw.aboutUs
-            ?.filter((x): x is { __typename: 'FooterAboutUs'; label: string; url: string } => Boolean(x))
+            ?.filter((x): x is { label: string; url: string } => Boolean(x))
             .map(({ label, url }) => ({ label, url })),
           importantLinks: raw.importantLinks
-            ?.filter((x): x is { __typename: 'FooterImportantLinks'; label: string; url: string } => Boolean(x))
+            ?.filter((x): x is { label: string; url: string } => Boolean(x))
             .map(({ label, url }) => ({ label, url })),
           socials: raw.socials
-            ?.filter((x): x is { __typename: 'FooterSocials'; name: string; url: string } => Boolean(x))
+            ?.filter((x): x is { name: string; url: string } => Boolean(x))
             .map(({ name, url }) => ({ name, url })),
-            labels: raw.labels ?? {},
+          labels: raw.labels ?? {},
         };
         setFooterData(clean);
       })
-      .catch(err => console.error('Error fetching footer:', err));
+      .catch((err) => console.error('Error fetching footer:', err));
   }, [currentLocale]);
 
   // Trigger overlay on route change

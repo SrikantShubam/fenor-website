@@ -76,6 +76,8 @@ interface JewelryCraftingEntry {
   linkedinUrl?: string;
   departmentNames: string[];
   isExecutive: boolean;
+  orderValue: number | null;
+  sourceIndex: number;
 }
 
 interface GoldJewelleryPageProps {
@@ -138,8 +140,16 @@ const toNonEmptyString = (value: unknown): string | undefined => {
   return trimmed ? trimmed : undefined;
 };
 
-const isZouerattDepartmentName = (name: string): boolean => compactText(name).includes('zoueratt');
-const isChamiDepartmentName = (name: string): boolean => compactText(name).includes('chami');
+const ZOUERAT_MATCH_KEYS = ['zouerat', 'zuerat', 'zoueratt', 'ازويرات', 'الزويرات', 'زويرات'];
+const isZouerattDepartmentName = (name: string): boolean => {
+  const key = compactText(name);
+  return ZOUERAT_MATCH_KEYS.some((candidate) => key.includes(candidate));
+};
+const CHAMI_MATCH_KEYS = ['chami', 'الشامي', 'شامي'];
+const isChamiDepartmentName = (name: string): boolean => {
+  const key = compactText(name);
+  return CHAMI_MATCH_KEYS.some((candidate) => key.includes(candidate));
+};
 const isGoldDepartmentName = (name: string): boolean => {
   const key = compactText(name);
   return (
@@ -153,8 +163,8 @@ const isGoldDepartmentName = (name: string): boolean => {
 
 const detectDepartmentFromText = (text: string): DepartmentBucket => {
   const key = compactText(text);
-  if (key.includes('zoueratt')) return 'zoueratt';
-  if (key.includes('chami')) return 'chami';
+  if (ZOUERAT_MATCH_KEYS.some((candidate) => key.includes(candidate))) return 'zoueratt';
+  if (CHAMI_MATCH_KEYS.some((candidate) => key.includes(candidate))) return 'chami';
   if (
     key.includes('goldsmithingandjewelry') ||
     key.includes('goldandjewelry') ||
@@ -169,6 +179,17 @@ const detectDepartmentFromText = (text: string): DepartmentBucket => {
 const isExecutiveHeadingText = (text: string): boolean => {
   const key = compactText(text);
   return key.includes('executive') || key.includes('executif') || key.includes('تنفيذي');
+};
+
+const isMembersHeadingText = (text: string): boolean => {
+  const key = compactText(text);
+  return (
+    key.includes('member') ||
+    key.includes('membre') ||
+    key.includes('membres') ||
+    key.includes('اعضاء') ||
+    key.includes('أعضاء')
+  );
 };
 
 const getDepartmentTopMarginClass = (department: DepartmentBucket): string => {
@@ -251,22 +272,13 @@ export const getStaticProps: GetStaticProps<GoldJewelleryPageProps> = async ({ l
             revalidate: 86400,
           })();
 
-    const sortedItems = [...items].sort((a, b) => {
-      const aFields = a.fields as JewelryCraftingFields;
-      const bFields = b.fields as JewelryCraftingFields;
-      const aOrder = normalizeOrderValue(aFields.orderId ?? aFields.OrderId ?? aFields.displayOrder);
-      const bOrder = normalizeOrderValue(bFields.orderId ?? bFields.OrderId ?? bFields.displayOrder);
-
-      if (aOrder !== null && bOrder !== null) return aOrder - bOrder;
-      if (aOrder !== null) return -1;
-      if (bOrder !== null) return 1;
-      return 0;
-    });
-
-    entries = sortedItems.map((item) => {
+    entries = items.map((item, sourceIndex) => {
       const fields = item.fields as JewelryCraftingFields;
       const localeNameField = `name_${langSuffix}` as keyof JewelryCraftingFields;
       const localeDesignationField = `designation_${langSuffix}` as keyof JewelryCraftingFields;
+      const orderValue = normalizeOrderValue(
+        fields.orderId ?? fields.OrderId ?? fields.displayOrder
+      );
 
       const nameRaw =
         fields[`name${localeKey}` as keyof JewelryCraftingFields] ||
@@ -326,6 +338,8 @@ export const getStaticProps: GetStaticProps<GoldJewelleryPageProps> = async ({ l
         ...(linkedinUrl ? { linkedinUrl } : {}),
         departmentNames,
         isExecutive: normalizeBool(fields.isExecutive ?? fields.isexecutive ?? fields.executive),
+        orderValue,
+        sourceIndex,
       };
     });
   } catch (error) {
@@ -348,28 +362,41 @@ const GoldAndJewellerySectionPage: NextPage<GoldJewelleryPageProps> = ({
   locale,
 }) => {
   const blocks = content.blocks || [];
+  const sortEntriesForSection = (list: JewelryCraftingEntry[]): JewelryCraftingEntry[] =>
+    [...list].sort((a, b) => {
+      if (a.orderValue !== null && b.orderValue !== null) {
+        if (a.orderValue !== b.orderValue) return a.orderValue - b.orderValue;
+        return a.sourceIndex - b.sourceIndex;
+      }
+      if (a.orderValue !== null) return -1;
+      if (b.orderValue !== null) return 1;
+      return a.sourceIndex - b.sourceIndex;
+    });
 
   const textBoxWithImageBlocks = blocks.filter(
     (block): block is TextBoxWithImageBlock => block.__typename === 'PagesBlocksTextBoxWithImage'
   );
   const introBlock = textBoxWithImageBlocks[0];
-  const sectionHeadingBlocks = blocks.filter(
-    (block): block is TextHeadingBlock => block.__typename === 'PagesBlocksText'
-  );
-  const executiveHeadingBlock = sectionHeadingBlocks[0];
-  const membersHeadingBlock = sectionHeadingBlocks[1];
 
-  const goldDepartmentEntries = entries.filter((entry) => {
-    if (!entry.departmentNames.length) return true;
-    return entry.departmentNames.some(isGoldDepartmentName);
-  });
-
-  const executiveEntries = goldDepartmentEntries.filter((entry) => entry.isExecutive);
-  const memberEntries = goldDepartmentEntries.filter((entry) => !entry.isExecutive);
-  const zouerattEntries = entries.filter((entry) =>
-    entry.departmentNames.some(isZouerattDepartmentName)
+  const goldDepartmentEntries = sortEntriesForSection(
+    entries.filter((entry) => {
+      if (!entry.departmentNames.length) return true;
+      return entry.departmentNames.some(isGoldDepartmentName);
+    })
   );
-  const chamiEntries = entries.filter((entry) => entry.departmentNames.some(isChamiDepartmentName));
+
+  const executiveEntries = sortEntriesForSection(
+    goldDepartmentEntries.filter((entry) => entry.isExecutive)
+  );
+  const memberEntries = sortEntriesForSection(
+    goldDepartmentEntries.filter((entry) => !entry.isExecutive)
+  );
+  const zouerattEntries = sortEntriesForSection(
+    entries.filter((entry) => entry.departmentNames.some(isZouerattDepartmentName))
+  );
+  const chamiEntries = sortEntriesForSection(
+    entries.filter((entry) => entry.departmentNames.some(isChamiDepartmentName))
+  );
 
   const renderEntriesGrid = (list: JewelryCraftingEntry[], key: string) => {
     if (!Array.isArray(list) || list.length === 0) {
@@ -432,17 +459,45 @@ const GoldAndJewellerySectionPage: NextPage<GoldJewelleryPageProps> = ({
     );
   };
 
+  const sectionHeadingBlocks = blocks.flatMap((block, idx) => {
+    if (block.__typename !== 'PagesBlocksText') return [];
+    const heading = extractPlainText(block.content).replace(/\s+/g, ' ').trim();
+    if (!heading) return [];
+    return [{ block, idx, heading }];
+  });
+  const executiveHeading =
+    sectionHeadingBlocks.find((item) => isExecutiveHeadingText(item.heading)) || sectionHeadingBlocks[0];
+  const executiveHeadingBlock = executiveHeading?.block;
+  const executiveHeadingIndex = executiveHeading?.idx;
+
+  const membersHeading =
+    memberEntries.length > 0
+      ? sectionHeadingBlocks.find((item) => {
+          if (item.idx === executiveHeadingIndex) return false;
+          if (isExecutiveHeadingText(item.heading)) return false;
+          const headingDepartment = detectDepartmentFromText(item.heading);
+          if (headingDepartment === 'zoueratt' || headingDepartment === 'chami') return false;
+          return isMembersHeadingText(item.heading);
+        })
+      : undefined;
+  const membersHeadingBlock = membersHeading?.block;
+  const membersHeadingIndex = membersHeading?.idx;
+  const reservedHeadingIndices = new Set<number>(
+    [executiveHeadingIndex, membersHeadingIndex].filter(
+      (value): value is number => typeof value === 'number'
+    )
+  );
+
   const renderSupplementaryBlocks = () => {
-    let seenTextHeadingBlocks = 0;
     let seenTextWithImageBlocks = 0;
     let activeDepartment: DepartmentBucket = null;
 
     return blocks.map((block, idx) => {
       if (block.__typename === 'PagesBlocksText') {
-        seenTextHeadingBlocks += 1;
-        if (seenTextHeadingBlocks <= 2) return null;
+        if (reservedHeadingIndices.has(idx)) return null;
 
         const heading = extractPlainText(block.content).replace(/\s+/g, ' ').trim();
+        if (!heading) return null;
         const headingDepartment = detectDepartmentFromText(heading);
         const resolvedDepartment = headingDepartment || activeDepartment;
         const listForBlock = isExecutiveHeadingText(heading)
@@ -518,12 +573,14 @@ const GoldAndJewellerySectionPage: NextPage<GoldJewelleryPageProps> = ({
             </div>
           </section>
 
-          <section className="mb-[7rem]  md:mb-[122px] md:space-y-10">
-            {renderThemedHeadingFromBlock(membersHeadingBlock)}
-            <div className="mt-[2rem] md:mt-[2.5rem]">
-              {renderEntriesGrid(memberEntries, 'our-members')}
-            </div>
-          </section>
+          {membersHeadingBlock && memberEntries.length > 0 ? (
+            <section className="mb-[7rem]  md:mb-[122px] md:space-y-10">
+              {renderThemedHeadingFromBlock(membersHeadingBlock)}
+              <div className="mt-[2rem] md:mt-[2.5rem]">
+                {renderEntriesGrid(memberEntries, 'our-members')}
+              </div>
+            </section>
+          ) : null}
 
           {renderSupplementaryBlocks()}
         </div>

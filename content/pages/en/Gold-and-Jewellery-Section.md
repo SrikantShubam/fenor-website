@@ -8,10 +8,7 @@ blocks:
     paragraph: ''
     _template: textBoxWithImage
   - content: |
-      ### Executive Office of the Department of goldsmithing and jewerly 
-    _template: text
-  - content: |
-      ### Our Members
+      ### Executive Office of the Department of goldsmithing and jewerly
     _template: text
   - smallHeading: ''
     bigHeading: 'Zouérat Department '
@@ -28,4 +25,3 @@ blocks:
       ### Members of the Chami Department
     _template: text
 ---
-

@@ -1,6 +1,6 @@
 import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
-import { createClient } from 'contentful';
+import { createClient, ContentfulClientApi } from 'contentful';
 import { motion } from 'framer-motion';
 import { unstable_cache } from 'next/cache';
 
@@ -10,11 +10,16 @@ import ManagementCard from '../components/ManagementCard';
 import { client } from '../tina/__generated__/client';
 import { PagesBlocks } from '../tina/__generated__/types';
 
-const contentfulClient = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID!,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN!,
-  environment: process.env.CONTENTFUL_ENVIRONMENT || 'master',
-});
+const getContentfulClient = (): ContentfulClientApi<undefined> | null => {
+  const space = process.env.CONTENTFUL_SPACE_ID;
+  const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
+  if (!space || !accessToken) return null;
+  return createClient({
+    space,
+    accessToken,
+    environment: process.env.CONTENTFUL_ENVIRONMENT || 'master',
+  });
+};
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -227,6 +232,19 @@ export const getStaticProps: GetStaticProps<GoldJewelleryPageProps> = async ({ l
 
   let entries: JewelryCraftingEntry[] = [];
   try {
+    const contentfulClient = getContentfulClient();
+    if (!contentfulClient) {
+      console.warn('Skipping Contentful fetch for departments: missing CONTENTFUL_SPACE_ID or CONTENTFUL_ACCESS_TOKEN');
+      return {
+        props: {
+          content: tinaContent,
+          entries,
+          locale: locale || 'en',
+        },
+        revalidate: 86400,
+      };
+    }
+
     const langSuffix = (locale || 'en').split('-')[0].toLowerCase();
     const localeKey = langSuffix.charAt(0).toUpperCase() + langSuffix.slice(1).toLowerCase();
 

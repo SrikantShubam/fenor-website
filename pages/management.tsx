@@ -362,17 +362,22 @@ import { GetStaticProps, NextPage } from 'next';
 import SEOComponent from '@/components/SEOComponent';
 import { client } from '../tina/__generated__/client';
 import { PagesBlocks } from '../tina/__generated__/types';
-import { createClient } from 'contentful';
+import { createClient, ContentfulClientApi } from 'contentful';
 import { motion } from 'framer-motion';
 import TextBoxWithImage from '../components/textbox-variations/TextBoxWithImage';
 import ManagementCard from '../components/ManagementCard';
 import { unstable_cache } from 'next/cache';
 
-// Contentful client setup
-const contentfulClient = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID!,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN!,
-});
+const getContentfulClient = (): ContentfulClientApi<undefined> | null => {
+  const space = process.env.CONTENTFUL_SPACE_ID;
+  const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
+  if (!space || !accessToken) return null;
+  return createClient({
+    space,
+    accessToken,
+    environment: process.env.CONTENTFUL_ENVIRONMENT || 'master',
+  });
+};
 
 // Animation variants
 const containerVariants = {
@@ -450,6 +455,21 @@ export const getStaticProps: GetStaticProps<ManagementProps> = async ({ locale }
   // Contentful fetch with caching
   let managementEntries: ManagementEntry[] = [];
   try {
+    const contentfulClient = getContentfulClient();
+    if (!contentfulClient) {
+      console.warn(
+        'Skipping Contentful fetch for executive-team: missing CONTENTFUL_SPACE_ID or CONTENTFUL_ACCESS_TOKEN'
+      );
+      return {
+        props: {
+          content: tinaContent,
+          managementEntries,
+          locale: locale || 'en',
+        },
+        revalidate: 86400,
+      };
+    }
+
     const langSuffix = (locale || 'en').split('-')[0].toLowerCase();
     const localeKey = langSuffix.charAt(0).toUpperCase() + langSuffix.slice(1).toLowerCase();
 
